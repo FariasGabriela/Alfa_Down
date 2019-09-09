@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 //import Mapa from './components/Mapa/Mapa'
-import ViewQuadro from './components/Quadro/ViewQuadro';
+import Palavra from './view/Atividades/AtividadePalavras';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
         width: '100%',
         height: '100%'
         }} >
-        <ViewQuadro />
+        <Palavra />
       </div>
     );
   }

@@ -22,20 +22,7 @@ class ViewQuadro extends Component {
          <img   src={Quadro} 
                 style={{ height: '100%', width: '100%' }}
                 alt="Quadro"/> {/*Referenciar criador*/}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              alignItems: 'center',
-              display: 'flex',
-              justifyContent: 'center',
-              fontSize: 196,
-              height: '80%',
-              width: '100%'
-            }}>
-              BA
-            </div>
+          {this.props.children}
         </div>   
         <div style={{ 
             width: 150, 
@@ -52,7 +39,7 @@ class ViewQuadro extends Component {
                 display: 'flex',
                 alignItems: 'flex-end'
                 }} >
-                <Button name={'Próximo'} icon={Proximo} onClick={() => console.log("proximo")} />
+                <Button name={'Próximo'} icon={Proximo} onClick={this.props.onClickProximo} />
             </div>
         </div>
       </div>
