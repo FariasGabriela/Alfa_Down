@@ -1,5 +1,38 @@
 import React, { Component } from 'react';
 import ViewQuadro from './../../components/Quadro/ViewQuadro';
+import { withStyles } from '@material-ui/styles';
+
+const styles = ({
+    view: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize: 100,
+        height: '80%',
+        width: '100%'
+    },
+    silabas: {
+        display: 'flex',
+        width: '81%',
+        height: '64%',
+        flexWrap: 'wrap'
+    },
+    name: {
+        display: 'flex',
+        height: 116,
+        fontSize: 70,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: doc.select ? 'rgb(231, 111, 81)' : '',
+        borderRadius: doc.select ? 20 : '',
+        color: doc.select ? '#FFFFFF' : '',
+        boxShadow: doc.select ?'0px 6px 9px rgb(0, 0, 0, 0.2)' : '',
+        width: 119
+    }
+})
 
 class AtividadePalavra extends Component {
     constructor(props){
@@ -68,39 +101,17 @@ class AtividadePalavra extends Component {
     }
 
     render() {
+        const {classes} = this.props;
+
         return (
             <ViewQuadro 
                 onClickProximo={this.clickProximo}>
-                <div
-                style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'center',
-                fontSize: 100,
-                height: '80%',
-                width: '100%'}}>
-                    <div style={{
-                            display: 'flex',
-                            width: '81%',
-                            height: '64%',
-                            flexWrap: 'wrap'
-                    }} >
+                <div className={classes.view}>
+                    <div className={classes.silabas}>
                         {this.state.silabas.map((doc) => {
                             return (<div key={doc.key}
                                 onClick={() => this.clickItem(doc)}
-                                style={{ display: 'flex',
-                                    height: 116,
-                                    fontSize: 70,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    backgroundColor: doc.select ? 'rgb(231, 111, 81)' : '',
-                                    borderRadius: doc.select ? 20 : '',
-                                    color: doc.select ? '#FFFFFF' : '',
-                                    boxShadow: doc.select ?'0px 6px 9px rgb(0, 0, 0, 0.2)' : '',
-                                    width: 119 }}>{doc.name}</div>)
+                                className={classes.name}>{doc.name}</div>)
                         })}
                     </div>
                 </div>
@@ -109,4 +120,4 @@ class AtividadePalavra extends Component {
     }
 }
 
-export default AtividadePalavra;
+export default withStyles(styles)(AtividadePalavra);

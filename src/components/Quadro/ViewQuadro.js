@@ -2,43 +2,64 @@ import React, { Component } from 'react';
 import Quadro from './../../icons/Quadro.svg'
 import Button from '../Button/Button';
 import Speaker from './../../icons/speaker.svg'
-import Proximo from './../../icons/right-arrow.svg'
+import Proximo from './../../icons/right-arrow.svg';
+import { withStyles } from '@material-ui/styles';
+
+const styles = ({
+  card: {
+    backgroundColor: '#FFFFFF', 
+    margin: 60,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    flex: 1,
+    borderRadius: 10,
+    boxShadow: '0px 6px 9px rgb(0, 0, 0, 0.2)',
+    padding: 20,
+    maxWidth: 600
+  },
+  image: {
+    position: 'relative', 
+    width: '80%'
+  },
+  img: {
+    height: '100%',
+    width: '100%'
+  },
+  quadro: {
+    width: 150, 
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end'
+  },
+  proximo: {
+    height: '50%'
+  },
+  ouvir: {
+    height: '50%',
+    display: 'flex',
+    alignItems: 'flex-end'
+  }
+})
 
 class ViewQuadro extends Component {
   render() {
+    const {classes} = this.props;
+
     return (
-      <div style={{ 
-          backgroundColor: '#FFFFFF', 
-          margin: 60,
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          flex: 1,
-          borderRadius: 10,
-          boxShadow: '0px 6px 9px rgb(0, 0, 0, 0.2)',
-          padding: 20
-        }} >
-        <div style={{ position: 'relative', width: '80%' }} >
+      <div className={classes.card}>
+        <div className={classes.image} >
          <img   src={Quadro} 
-                style={{ height: '100%', width: '100%' }}
+                className={classes.img}
                 alt="Quadro"/> {/*Referenciar criador*/}
           {this.props.children}
         </div>   
-        <div style={{ 
-            width: 150, 
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end'
-        }} >
-            <div style={{ height: '50%' }} >
+        <div className={classes.quadro} >
+            <div className={classes.ouvir} >
                 <Button name={'Ouvir'} icon={Speaker} onClick={() => console.log("ouvir")}/>
             </div>
-            <div style={{ 
-                height: '50%',
-                display: 'flex',
-                alignItems: 'flex-end'
-                }} >
+            <div className={classes.proximo}>
                 <Button name={'Próximo'} icon={Proximo} onClick={this.props.onClickProximo} />
             </div>
         </div>
@@ -47,4 +68,4 @@ class ViewQuadro extends Component {
   }
 }
 
-export default ViewQuadro;
+export default withStyles(styles)(ViewQuadro);
