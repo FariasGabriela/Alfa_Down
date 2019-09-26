@@ -7,6 +7,11 @@ import { withStyles } from '@material-ui/styles';
 
 const styles = ({
   card: {
+    '&:fade-out' : {
+      opacity: 0.5
+    },
+    opacity: 1,
+    transition: 'opacity 6s linear',
     backgroundColor: '#FFFFFF', 
     margin: 60,
     width: '100%',
@@ -34,16 +39,28 @@ const styles = ({
     alignItems: 'flex-end'
   },
   proximo: {
-    height: '50%'
+    height: '50%',
+    display: 'flex',
+    alignItems: 'flex-end'
   },
   ouvir: {
     height: '50%',
     display: 'flex',
-    alignItems: 'flex-end'
+    alignItems: 'flex-start'
   }
 })
 
 class ViewQuadro extends Component {
+  //constructor(props){
+  //  super(props);
+
+    
+  //}
+
+  componentDidMount(){
+   
+  }
+
   render() {
     const {classes} = this.props;
 

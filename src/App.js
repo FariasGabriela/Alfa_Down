@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Inicio from './view/Inicio/Inicio';
 import { withStyles } from '@material-ui/styles';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Atividade from './view/Atividades/AtividadePalavras';
+import Palavra from './view/Atividades/Palavras';
 
 const style = ({
   card: {
@@ -21,8 +24,14 @@ class App extends Component {
     const {classes} = this.props;
 
     return (
-      <div className={classes.card} >
-        <Inicio />
+      <div className={classes.card}>
+        <BrowserRouter>
+          <Switch>
+              <Route path="/" exact={true} component={Inicio} />
+              <Route path="/palavra" component={Palavra} />
+              <Route path="/atividade" component={Atividade} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

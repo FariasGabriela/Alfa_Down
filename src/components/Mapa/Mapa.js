@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Farmer from './../../icons/farmer.svg';
 import Play from './../../icons/play.svg';
 import { withStyles } from '@material-ui/styles';
+import { withRouter } from 'react-router-dom'
 
 const styles = ({
     card: {
@@ -34,7 +35,8 @@ const styles = ({
         margin: 0,
         marginTop: 5,
         fontSize: 20, 
-        color: 'rgb(112, 112, 122)'
+        color: 'rgb(112, 112, 122)', 
+        cursor: 'pointer'
     },
     icon: {
         height: 40, 
@@ -69,9 +71,11 @@ class Mapa extends Component {
 
                     <div className={classes.button} >
                         <img src={Play} 
+                            onClick={() => { this.props.history.push('/palavra')}}
                             className={classes.icon}
                             alt="Play" /> {/*Referenciar criador*/}
-                         <p className={classes.iniciar}> 
+                         <p onClick={() => { this.props.history.push('/palavra')}}
+                            className={classes.iniciar}> 
                             Iniciar
                         </p>
                     </div>
@@ -81,4 +85,4 @@ class Mapa extends Component {
   
 }
 
-export default withStyles(styles)(Mapa);
+export default withRouter(withStyles(styles)(Mapa));

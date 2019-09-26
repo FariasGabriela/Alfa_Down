@@ -26,10 +26,6 @@ const styles = ({
         fontSize: 70,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: doc.select ? 'rgb(231, 111, 81)' : '',
-        borderRadius: doc.select ? 20 : '',
-        color: doc.select ? '#FFFFFF' : '',
-        boxShadow: doc.select ?'0px 6px 9px rgb(0, 0, 0, 0.2)' : '',
         width: 119
     }
 })
@@ -111,7 +107,16 @@ class AtividadePalavra extends Component {
                         {this.state.silabas.map((doc) => {
                             return (<div key={doc.key}
                                 onClick={() => this.clickItem(doc)}
-                                className={classes.name}>{doc.name}</div>)
+                                className={classes.name}
+                                style={{
+                                    backgroundColor: doc.select ? 'rgb(231, 111, 81)' : '',
+                                    borderRadius: doc.select ? 20 : '',
+                                    color: doc.select ? '#FFFFFF' : '',
+                                    boxShadow: doc.select ?'0px 6px 9px rgb(0, 0, 0, 0.2)' : '',
+                                }}>
+                                    {doc.name}
+                                </div>
+                            )
                         })}
                     </div>
                 </div>
