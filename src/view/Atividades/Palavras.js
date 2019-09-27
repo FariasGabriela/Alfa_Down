@@ -21,16 +21,42 @@ class Palavra extends Component {
         super(props);
 
         this.state = {
-            silaba: 'A'
+            letraNivel: 'A',
+            silaba: 'A',
+            silabasUtilizadas: [
+                ['B', 'C', 'D', 'F', 'G', 'H'],
+                ['J', 'L', 'M', 'N', 'P', 'Q'],
+                ['R', 'S', 'T', 'V', 'X', 'Z']
+            ], 
+            indexNivelSilabas: 0,
+            index: 0
         }
 
         this.clickProximo = this.clickProximo.bind(this);
     }
 
-    clickProximo(){
+    componentDidMount(){
+        console.log(this.props.match.params)
+        var vogal = this.props.match.params.vogal.toUpperCase()
+
+        console.log(vogal)
         this.setState({
-            silaba: 'BA'
+            letraNivel: vogal,
+            indexNivelSilabas: parseFloat(this.props.match.params.index)
         })
+        
+    }
+
+    clickProximo(){
+        if (this.state.index <= 5) {
+            console.log(this.state.silabasUtilizadas)
+            this.setState({
+                silaba: this.state.silabasUtilizadas[this.state.indexNivelSilabas][this.state.index] + this.state.letraNivel,
+                index: this.state.index + 1
+            })
+        } else {
+            this.props.history.push('/atividade/'+ this.props.match.params.vogal + "/" + this.state.indexNivelSilabas )
+        }
     }
 
     render() {

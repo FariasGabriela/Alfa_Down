@@ -14,7 +14,8 @@ class Button extends Component {
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                cursor: 'pointer'
                 }}
                 onClick={this.props.onClick}> 
                <img   src={this.props.icon} 

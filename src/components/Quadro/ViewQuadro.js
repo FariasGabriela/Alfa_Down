@@ -41,7 +41,7 @@ const styles = ({
   proximo: {
     height: '50%',
     display: 'flex',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end', 
   },
   ouvir: {
     height: '50%',
@@ -74,7 +74,7 @@ class ViewQuadro extends Component {
         </div>   
         <div className={classes.quadro} >
             <div className={classes.ouvir} >
-                <Button name={'Ouvir'} icon={Speaker} onClick={() => console.log("ouvir")}/>
+                <Button  name={'Ouvir'} icon={Speaker} onClick={() => console.log("ouvir")}/>
             </div>
             <div className={classes.proximo}>
                 <Button name={'Próximo'} icon={Proximo} onClick={this.props.onClickProximo} />

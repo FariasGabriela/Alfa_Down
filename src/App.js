@@ -28,8 +28,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
               <Route path="/" exact={true} component={Inicio} />
-              <Route path="/palavra" component={Palavra} />
-              <Route path="/atividade" component={Atividade} />
+              <Route path="/palavra/:vogal/:index" component={Palavra} />
+              <Route path="/atividade/:vogal/:index" component={Atividade} />
           </Switch>
         </BrowserRouter>
       </div>

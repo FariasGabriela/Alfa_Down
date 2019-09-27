@@ -35,7 +35,8 @@ class AtividadePalavra extends Component {
         super(props);
 
         this.state = {
-            silabas: [
+            silabas: [],
+            silabasOne: [
                 {
                     key: 0,
                     name: 'BA',
@@ -66,6 +67,70 @@ class AtividadePalavra extends Component {
                     name: 'JA',
                     select: false
                 },
+            ],
+            sibalasTwo: [
+                {
+                    key: 0,
+                    name: 'JA',
+                    select: false
+                },
+                {   
+                    key: 1,
+                    name: 'LA',
+                    select: false
+                },
+                {
+                    key: 2,
+                    name: 'MA',
+                    select: false
+                },
+                {
+                    key: 3,
+                    name: 'NA',
+                    select: false
+                },
+                {
+                    key: 4,
+                    name: 'PA',
+                    select: false
+                },
+                {   
+                    key: 5,
+                    name: 'QA',
+                    select: false
+                },
+            ],
+            silabasThree: [
+                {
+                    key: 0,
+                    name: 'RA',
+                    select: false
+                },
+                {   
+                    key: 1,
+                    name: 'SA',
+                    select: false
+                },
+                {
+                    key: 2,
+                    name: 'TA',
+                    select: false
+                },
+                {
+                    key: 3,
+                    name: 'VA',
+                    select: false
+                },
+                {
+                    key: 4,
+                    name: 'XA',
+                    select: false
+                },
+                {   
+                    key: 5,
+                    name: 'ZA',
+                    select: false
+                },
             ]
         }
 
@@ -73,14 +138,35 @@ class AtividadePalavra extends Component {
         this.clickItem = this.clickItem.bind(this);
     }
 
+    componentDidMount(){
+        console.log(this.props.match.params.index)
+        const value = parseFloat(this.props.match.params.index)
+        if ( value === 0 ) {
+            console.log("teste")
+            this.setState({
+                silabas: this.state.silabasOne
+            })
+        } else if ( value === 1 ) {
+            this.setState({
+                silabas: this.state.sibalasTwo
+            })
+        } else if ( value === 2 ) {
+            this.setState({
+                silabas: this.state.silabasThree
+            })
+        }
+    }
+
     clickProximo(){
-        //this.setState({
-        //    silaba: 'BA'
-        //})
+        var value = parseFloat(this.props.match.params.index)
+        if ( value !== 2 ) {
+            this.props.history.push(
+                '/palavra/' + this.props.match.params.vogal + "/" + (value + 1)
+            )
+        }
     }
 
     clickItem(item){
-        console.log(item)
         var list = this.state.silabas;
         list.forEach(doc => {
             if(item.key === doc.key) {
