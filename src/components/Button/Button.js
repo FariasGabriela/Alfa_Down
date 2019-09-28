@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-
 class Button extends Component {
 
     render(){
@@ -17,7 +16,9 @@ class Button extends Component {
                 alignItems: 'center',
                 cursor: 'pointer'
                 }}
-                onClick={this.props.onClick}> 
+                onClick={this.props.onClick}
+                
+                > 
                <img   src={this.props.icon} 
                 style={{ height: 40, width: 45 }}
                 alt="Quadro" /> {/*Referenciar criador*/}

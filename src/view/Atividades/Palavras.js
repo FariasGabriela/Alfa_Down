@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ViewQuadro from './../../components/Quadro/ViewQuadro';
 import { withStyles } from '@material-ui/styles';
+import Sound from 'react-sound';
+import ba from '../../Audios/ba.mp3'
 
 const style = ({
     view: {
@@ -29,10 +31,12 @@ class Palavra extends Component {
                 ['R', 'S', 'T', 'V', 'X', 'Z']
             ], 
             indexNivelSilabas: 0,
-            index: 0
+            index: 0,
+            play: Sound.status.PAUSED
         }
 
         this.clickProximo = this.clickProximo.bind(this);
+        this.clickOuvir = this.clickOuvir.bind(this);
     }
 
     componentDidMount(){
@@ -59,15 +63,29 @@ class Palavra extends Component {
         }
     }
 
+    clickOuvir(){
+        this.setState({
+            play: Sound.status.PLAYING
+        })
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
                 {this.state.silaba}
                 </div>
+                <Sound
+                    url={ba}
+                    playStatus={this.state.play}
+                    onLoading={() => {}}
+                    onPlaying={() => {}}
+                    onFinishedPlaying={() => {}}
+                />
             </ViewQuadro>
         );
     }

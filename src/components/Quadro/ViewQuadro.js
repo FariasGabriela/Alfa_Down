@@ -74,7 +74,7 @@ class ViewQuadro extends Component {
         </div>   
         <div className={classes.quadro} >
             <div className={classes.ouvir} >
-                <Button  name={'Ouvir'} icon={Speaker} onClick={() => console.log("ouvir")}/>
+                <Button  name={'Ouvir'} icon={Speaker} onClick={this.props.onClickOuvir}/>
             </div>
             <div className={classes.proximo}>
                 <Button name={'Próximo'} icon={Proximo} onClick={this.props.onClickProximo} />
