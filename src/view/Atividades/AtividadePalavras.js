@@ -8,11 +8,24 @@ import DA from '../../Audios/da.mp3';
 import FA from '../../Audios/fa.mp3';
 import GA from '../../Audios/ga.mp3';
 import HA from '../../Audios/ha.mp3';
+import JA from '../../Audios/ja.mp3';
+import LA from '../../Audios/la.mp3';
+import MA from '../../Audios/ma.mp3';
+import NA from '../../Audios/na.mp3';
+import PA from '../../Audios/pa.mp3';
+import QUA from '../../Audios/qua.mp3';
+import RA from '../../Audios/ra.mp3';
+import SA from '../../Audios/sa.mp3';
+import TA from '../../Audios/ta.mp3';
+import VA from '../../Audios/va.mp3';
+import XA from '../../Audios/xa.mp3';
+import ZA from '../../Audios/za.mp3';
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg'
 
 const styles = ({
     divButton: {
+        cursor: 'pointer',
         font: 20,
         height: 50,
         width: 100,
@@ -84,8 +97,8 @@ class AtividadePalavra extends Component {
             indexSoundSelect: 0,
             soundListA: [
                 [FA, BA, DA, HA, CA, GA],
-                ['J', 'L', 'M', 'N', 'P', 'Q'],
-                ['R', 'S', 'T', 'V', 'X', 'Z']
+                [LA, NA, PA, JA, QUA, MA],
+                [RA, TA, ZA, VA, XA, SA]
             ],
             silabasOne: [
                 {
@@ -129,64 +142,76 @@ class AtividadePalavra extends Component {
                 {
                     key: 0,
                     name: 'JA',
-                    select: false
+                    select: false,
+                    audio: JA,
                 },
                 {   
                     key: 1,
                     name: 'LA',
-                    select: false
+                    select: false,
+                    audio: LA,
                 },
                 {
                     key: 2,
                     name: 'MA',
-                    select: false
+                    select: false,
+                    audio: MA,
                 },
                 {
                     key: 3,
                     name: 'NA',
-                    select: false
+                    select: false,
+                    audio: NA,
                 },
                 {
                     key: 4,
                     name: 'PA',
-                    select: false
+                    select: false,
+                    audio: PA,
                 },
                 {   
                     key: 5,
                     name: 'QA',
-                    select: false
+                    select: false,
+                    audio: QUA,
                 },
             ],
             silabasThree: [
                 {
                     key: 0,
                     name: 'RA',
-                    select: false
+                    select: false,
+                    audio: RA,
                 },
                 {   
                     key: 1,
                     name: 'SA',
-                    select: false
+                    select: false,
+                    audio: SA,
                 },
                 {
                     key: 2,
                     name: 'TA',
-                    select: false
+                    select: false,
+                    audio: TA,
                 },
                 {
                     key: 3,
                     name: 'VA',
-                    select: false
+                    select: false,
+                    audio: VA,
                 },
                 {
                     key: 4,
                     name: 'XA',
-                    select: false
+                    select: false,
+                    audio: XA,
                 },
                 {   
                     key: 5,
                     name: 'ZA',
-                    select: false
+                    select: false,
+                    audio: ZA,
                 },
             ]
         }
@@ -205,11 +230,13 @@ class AtividadePalavra extends Component {
             })
         } else if ( value === 1 ) {
             this.setState({
-                silabas: this.state.sibalasTwo
+                silabas: this.state.sibalasTwo,
+                soundSelect: this.state.soundListA[1][this.state.indexSoundSelect]
             })
         } else if ( value === 2 ) {
             this.setState({
-                silabas: this.state.silabasThree
+                silabas: this.state.silabasThree,
+                soundSelect: this.state.soundListA[2][this.state.indexSoundSelect]
             })
         }
     }
@@ -235,14 +262,17 @@ class AtividadePalavra extends Component {
             }
         }) 
 
+        console.log(soundSelect)
         if (soundSelect.audio === this.state.soundSelect) {
+            console.log(this.state.indexSoundSelect)
             if ( this.state.indexSoundSelect > 4 ) {
                 this.setState({
                     open: true
                 })
             } else {
+                console.log("else")
                 this.setState({
-                    soundSelect: this.state.soundListA[0][this.state.indexSoundSelect + 1],
+                    soundSelect: this.state.soundListA[parseFloat(this.props.match.params.index)][this.state.indexSoundSelect + 1],
                     indexSoundSelect: this.state.indexSoundSelect + 1,
                     silabas: list
                 })

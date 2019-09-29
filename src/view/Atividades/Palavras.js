@@ -9,6 +9,19 @@ import DA from '../../Audios/da.mp3';
 import FA from '../../Audios/fa.mp3';
 import GA from '../../Audios/ga.mp3';
 import HA from '../../Audios/ha.mp3';
+import JA from '../../Audios/ja.mp3';
+import LA from '../../Audios/la.mp3';
+import MA from '../../Audios/ma.mp3';
+import NA from '../../Audios/na.mp3';
+import PA from '../../Audios/pa.mp3';
+import QUA from '../../Audios/qua.mp3';
+import RA from '../../Audios/ra.mp3';
+import SA from '../../Audios/sa.mp3';
+import TA from '../../Audios/ta.mp3';
+import VA from '../../Audios/va.mp3';
+import XA from '../../Audios/xa.mp3';
+import ZA from '../../Audios/za.mp3';
+
 
 const style = ({
     view: {
@@ -40,8 +53,8 @@ class Palavra extends Component {
             sound: A,
             soundListA: [
                 [BA, CA, DA, FA, GA, HA],
-                ['J', 'L', 'M', 'N', 'P', 'Q'],
-                ['R', 'S', 'T', 'V', 'X', 'Z']
+                [JA, LA, MA, NA, PA, QUA],
+                [RA, SA, TA, VA, XA, ZA]
             ],
             soundList: [],
             indexNivelSilabas: 0,
