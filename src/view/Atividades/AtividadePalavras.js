@@ -1,8 +1,49 @@
 import React, { Component } from 'react';
 import ViewQuadro from './../../components/Quadro/ViewQuadro';
 import { withStyles } from '@material-ui/styles';
+import Sound from 'react-sound';
+import BA from '../../Audios/ba.mp3';
+import CA from '../../Audios/ca.mp3';
+import DA from '../../Audios/da.mp3';
+import FA from '../../Audios/fa.mp3';
+import GA from '../../Audios/ga.mp3';
+import HA from '../../Audios/ha.mp3';
+import Modal from '@material-ui/core/Modal';
+import Trofeu from './../../icons/trofeu.svg'
 
 const styles = ({
+    divButton: {
+        font: 20,
+        height: 50,
+        width: 100,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgb(42, 157, 143)',
+        borderRadius: 10,
+        marginTop: 70
+    },
+    divModal: {
+        flexDirection: 'column',
+        width: '50%', 
+        height: '50%', 
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modal: {
+        width: '100%', 
+        height: '100%', 
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    img: {
+        width: 100,
+        height: 100
+    },
     view: {
         position: 'absolute',
         top: 0,
@@ -33,38 +74,54 @@ const styles = ({
 class AtividadePalavra extends Component {
     constructor(props){
         super(props);
+        window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            open: false,
+            play: Sound.status.PAUSED,
             silabas: [],
+            soundSelect: "",
+            indexSoundSelect: 0,
+            soundListA: [
+                [FA, BA, DA, HA, CA, GA],
+                ['J', 'L', 'M', 'N', 'P', 'Q'],
+                ['R', 'S', 'T', 'V', 'X', 'Z']
+            ],
             silabasOne: [
                 {
                     key: 0,
                     name: 'BA',
+                    audio: BA,
                     select: false
                 },
                 {   
                     key: 1,
                     name: 'CA',
+                    audio: CA,
                     select: false
                 },
                 {
                     key: 2,
                     name: 'DA',
+                    audio: DA,
                     select: false
                 },
                 {
                     key: 3,
                     name: 'FA',
+                    audio: FA,
                     select: false
                 },
                 {
                     key: 4,
                     name: 'GA',
+                    audio: GA,
                     select: false
                 },
                 {   
                     key: 5,
-                    name: 'JA',
+                    name: 'HA',
+                    audio: HA,
                     select: false
                 },
             ],
@@ -136,15 +193,15 @@ class AtividadePalavra extends Component {
 
         this.clickProximo = this.clickProximo.bind(this);
         this.clickItem = this.clickItem.bind(this);
+        this.clickOuvir = this.clickOuvir.bind(this);
     }
 
     componentDidMount(){
-        console.log(this.props.match.params.index)
         const value = parseFloat(this.props.match.params.index)
         if ( value === 0 ) {
-            console.log("teste")
             this.setState({
-                silabas: this.state.silabasOne
+                silabas: this.state.silabasOne,
+                soundSelect: this.state.soundListA[0][this.state.indexSoundSelect]
             })
         } else if ( value === 1 ) {
             this.setState({
@@ -168,17 +225,40 @@ class AtividadePalavra extends Component {
 
     clickItem(item){
         var list = this.state.silabas;
+        var soundSelect = {}
         list.forEach(doc => {
             if(item.key === doc.key) {
+                soundSelect = doc;
                 doc.select = true;
             } else {
                 doc.select = false;
             }
         }) 
 
-        console.log(list)
+        if (soundSelect.audio === this.state.soundSelect) {
+            if ( this.state.indexSoundSelect > 4 ) {
+                this.setState({
+                    open: true
+                })
+            } else {
+                this.setState({
+                    soundSelect: this.state.soundListA[0][this.state.indexSoundSelect + 1],
+                    indexSoundSelect: this.state.indexSoundSelect + 1,
+                    silabas: list
+                })
+            }
+            
+        } else {
+            this.setState({
+                silabas: list
+            })
+        }
+        
+    }
+
+    clickOuvir(){
         this.setState({
-            silabas: list
+            play: Sound.status.PLAYING
         })
     }
 
@@ -187,6 +267,7 @@ class AtividadePalavra extends Component {
 
         return (
             <ViewQuadro 
+                onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
                     <div className={classes.silabas}>
@@ -204,6 +285,32 @@ class AtividadePalavra extends Component {
                                 </div>
                             )
                         })}
+                        <Sound
+                            url={this.state.soundSelect}
+                            playStatus={this.state.play}
+                            onLoading={() => {}}
+                            onPlaying={() => {}}
+                            onFinishedPlaying={() => {
+                                    this.setState({
+                                        play: Sound.status.PAUSED
+                                    })
+                            }}
+                        />
+                        <Modal
+                            className={classes.modal}
+                            open={this.state.open}
+                        >
+                        <div className={classes.divModal}>
+                            <img  src={Trofeu} 
+                                className={classes.img}
+                                alt="Trofeu"/> {/*Referenciar criador*/}
+                            <div className={classes.divButton}
+                                 onClick={this.clickProximo}> 
+                                    Continuar 
+                            </div>
+                        </div>
+                            
+                        </Modal>
                     </div>
                 </div>
             </ViewQuadro>
