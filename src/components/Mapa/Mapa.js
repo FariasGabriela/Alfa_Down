@@ -69,7 +69,7 @@ class Mapa extends Component {
                         </p>
                     </div>
 
-                    <div className={classes.button} onClick={() => { this.props.history.push('/palavra/a/0')}} >
+                    <div className={classes.button} onClick={() => { this.props.history.push('/silaba/a/0')}} >
                         <img src={Play} 
                             className={classes.icon}
                             alt="Play" /> {/*Referenciar criador*/}

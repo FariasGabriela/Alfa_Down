@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ViewQuadro from './../../components/Quadro/ViewQuadro';
+import ViewQuadro from '../../components/Quadro/ViewQuadro';
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
 import BA from '../../Audios/ba.mp3';
@@ -85,7 +85,7 @@ const styles = ({
     }
 })
 
-class AtividadePalavra extends Component {
+class AtividadeSilabas extends Component {
     constructor(props){
         super(props);
         window.soundManager.setup({ debugMode: false });
@@ -358,4 +358,4 @@ class AtividadePalavra extends Component {
     }
 }
 
-export default withStyles(styles)(AtividadePalavra);
+export default withStyles(styles)(AtividadeSilabas);

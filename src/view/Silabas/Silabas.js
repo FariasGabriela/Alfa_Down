@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ViewQuadro from './../../components/Quadro/ViewQuadro';
+import ViewQuadro from '../../components/Quadro/ViewQuadro'
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
 import A from '../../Audios/a.mp3';
@@ -108,7 +108,7 @@ const style = ({
     }
 })
 
-class Palavra extends Component {
+class Silabas extends Component {
     constructor(props){
         super(props);
         window.soundManager.setup({ debugMode: false });
@@ -226,4 +226,4 @@ class Palavra extends Component {
     }
 }
 
-export default withStyles(style)(Palavra);
+export default withStyles(style)(Silabas);
