@@ -20,6 +20,7 @@ import TA from '../../Audios/ta.mp3';
 import VA from '../../Audios/va.mp3';
 import XA from '../../Audios/xa.mp3';
 import ZA from '../../Audios/za.mp3';
+import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg'
 
@@ -65,13 +66,13 @@ const styles = ({
         display: 'flex',
         justifyContent: 'center',
         fontSize: 100,
-        height: '80%',
+        height: '78%',
         width: '100%'
     },
     silabas: {
         display: 'flex',
-        width: '81%',
-        height: '64%',
+        width: 370,
+        height: 244,
         flexWrap: 'wrap'
     },
     name: {
@@ -91,6 +92,7 @@ class AtividadePalavra extends Component {
 
         this.state = {
             open: false,
+            playTenteNovamente: Sound.status.PAUSED,
             play: Sound.status.PAUSED,
             silabas: [],
             soundSelect: "",
@@ -262,15 +264,12 @@ class AtividadePalavra extends Component {
             }
         }) 
 
-        console.log(soundSelect)
         if (soundSelect.audio === this.state.soundSelect) {
-            console.log(this.state.indexSoundSelect)
             if ( this.state.indexSoundSelect > 4 ) {
                 this.setState({
                     open: true
                 })
             } else {
-                console.log("else")
                 this.setState({
                     soundSelect: this.state.soundListA[parseFloat(this.props.match.params.index)][this.state.indexSoundSelect + 1],
                     indexSoundSelect: this.state.indexSoundSelect + 1,
@@ -323,6 +322,17 @@ class AtividadePalavra extends Component {
                             onFinishedPlaying={() => {
                                     this.setState({
                                         play: Sound.status.PAUSED
+                                    })
+                            }}
+                        />
+                        <Sound
+                            url={TenteNovamente}
+                            playStatus={this.state.playTenteNovamente}
+                            onLoading={() => {}}
+                            onPlaying={() => {}}
+                            onFinishedPlaying={() => {
+                                    this.setState({
+                                        playTenteNovamente: Sound.status.PAUSED
                                     })
                             }}
                         />
