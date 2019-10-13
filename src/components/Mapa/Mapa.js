@@ -104,7 +104,7 @@ class Mapa extends Component {
 
         this.state = {
             name: 'Amigo',
-            nivel: 2
+            nivel: 0
         }
 
         this.clickIniciar = this.clickIniciar.bind(this);

@@ -3,6 +3,10 @@ import ViewQuadro from '../../components/Quadro/ViewQuadro'
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
 import A from '../../Audios/a.mp3';
+import E from '../../Audios/e.mp3';
+import I from '../../Audios/i.mp3';
+import O from '../../Audios/o.mp3';
+import U from '../../Audios/u.mp3';
 import BA from '../../Audios/ba.mp3';
 import CA from '../../Audios/ca.mp3';
 import DA from '../../Audios/da.mp3';
@@ -96,6 +100,7 @@ import ZU from '../../Audios/zu.mp3';
 
 const style = ({
     view: {
+        transition: 'opacity 1s linear',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -122,6 +127,7 @@ class Silabas extends Component {
                 ['R', 'S', 'T', 'V', 'X', 'Z']
             ], 
             sound: A,
+            listVogais: [A, E, I, O, U],
             soundListA: [
                 [BA, CA, DA, FA, GA, HA],
                 [JA, LA, MA, NA, PA, QUA],
@@ -161,20 +167,28 @@ class Silabas extends Component {
         var vogal = this.props.match.params.vogal.toUpperCase()
 
         var soundList = [];
+        var somVogal = {}; 
 
         if (this.props.match.params.vogal.toUpperCase() === 'A') {
-            soundList = this.state.soundListA
+            soundList = this.state.soundListA;
+            somVogal = this.state.listVogais[0];
         } else if (this.props.match.params.vogal.toUpperCase() === 'E') {
-            soundList = this.state.soundListE
+            soundList = this.state.soundListE;
+            somVogal = this.state.listVogais[1];
         } else if (this.props.match.params.vogal.toUpperCase() === 'I') {
-            soundList = this.state.soundListI
+            soundList = this.state.soundListI;
+            somVogal = this.state.listVogais[2];
         }  else if (this.props.match.params.vogal.toUpperCase() === 'O') {
-            soundList = this.state.soundListO
+            soundList = this.state.soundListO;
+            somVogal = this.state.listVogais[3];
         } else if (this.props.match.params.vogal.toUpperCase() === 'U') {
-            soundList = this.state.soundListU
+            soundList = this.state.soundListU;
+            somVogal = this.state.listVogais[4];
         }
 
         this.setState({
+            sound: somVogal,
+            silaba: vogal,
             soundList: soundList,
             letraNivel: vogal,
             indexNivelSilabas: parseFloat(this.props.match.params.index)
@@ -216,9 +230,9 @@ class Silabas extends Component {
                     onLoading={() => {}}
                     onPlaying={() => {}}
                     onFinishedPlaying={() => {
-                            this.setState({
-                                play: Sound.status.PAUSED
-                            })
+                        this.setState({
+                            play: Sound.status.PAUSED
+                        })
                     }}
                 />
             </ViewQuadro>

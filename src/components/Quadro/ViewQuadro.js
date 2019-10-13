@@ -6,12 +6,8 @@ import Proximo from './../../icons/right-arrow.svg';
 import { withStyles } from '@material-ui/styles';
 
 const styles = ({
-  card: {
-    '&:fade-out' : {
-      opacity: 0.5
-    },
-    opacity: 1,
-    transition: 'opacity 6s linear',
+  card: { 
+    transition: 'opacity 1s linear',
     backgroundColor: '#FFFFFF', 
     margin: 60,
     width: '100%',
@@ -51,21 +47,35 @@ const styles = ({
 })
 
 class ViewQuadro extends Component {
-  //constructor(props){
-  //  super(props);
+  constructor(props){
+    super(props);
 
+    this.state = {
+      opacity: false
+    }
+
+    this.changeOpacity = this.changeOpacity.bind(this);
     
-  //}
+  }
 
   componentDidMount(){
+    setTimeout(() => { 
+      this.changeOpacity()
+    }, 100);
    
+  }
+
+  changeOpacity(){
+    this.setState({
+      opacity: true
+    })
   }
 
   render() {
     const {classes} = this.props;
 
     return (
-      <div className={classes.card}>
+      <div className={classes.card} style={{ opacity: this.state.opacity ? 1 : 0 }}>
         <div className={classes.image} >
          <img   src={Quadro} 
                 className={classes.img}
