@@ -6,6 +6,10 @@ import { withRouter } from 'react-router-dom'
 
 const styles = ({
     card: {
+        width: '100%',
+        height: '100%'
+    },
+    head: {
         height: 100, 
         width: '100%',
         display: 'flex',
@@ -58,7 +62,8 @@ class Mapa extends Component {
         const {classes} = this.props;
 
         return (
-            <div className={classes.card} > 
+            <div className={classes.card} >
+            <div className={classes.head} > 
                     <div className={classes.barra} >
                         <img src={Farmer} 
                         style={{ height: 60, width: 42 }}
@@ -77,6 +82,9 @@ class Mapa extends Component {
                             Iniciar
                         </p>
                     </div>
+            </div>
+            {this.props.children}
+
             </div>
         )
     }
