@@ -8,7 +8,7 @@ import iconAviao from './../../icons/airplane.svg'
 const style = ({
     view: {
         position: 'absolute',
-        top: -10,
+        top: 5,
         left: 0,
         alignItems: 'center',
         display: 'flex',
@@ -28,11 +28,13 @@ class Palavras extends Component {
         this.state = {
             letraNivel: 'A',
             silaba: 'A',
-            silabasUtilizadas: [
-                ['B', 'C', 'D', 'F', 'G', 'H'],
-                ['J', 'L', 'M', 'N', 'P', 'Q'],
-                ['R', 'S', 'T', 'V', 'X', 'Z']
+            palavrasUtilizadas: [
+                [ 'Avião', 'Elefante', 'Igreja', 'Ovo', 'Urubu', '' ],
+                ['Banana', 'Cachorro', 'Dado', 'Faca', 'Gato', 'Hipopotamo'],
+                ['Janela', 'Lebre', 'Maca', 'Navio', 'Papagaio', 'Queijo'],
+                ['Rato', 'Sapo', 'Tatu', 'Vaca', 'X', 'Z']
             ], 
+            palavraAtual: '',
             indexNivelPalavras: 0,
             index: 0,
             play: Sound.status.PAUSED
@@ -43,23 +45,24 @@ class Palavras extends Component {
     }
 
     componentDidMount(){
-        var vogal = this.props.match.params.vogal.toUpperCase()
+        var rodada = parseFloat(this.props.match.params.vogal);
 
         this.setState({
-            letraNivel: vogal,
+            palavraAtual: this.state.palavrasUtilizadas[rodada][parseFloat(this.props.match.params.index)],
+            letraNivel: rodada,
             indexNivelPalavras: parseFloat(this.props.match.params.index)
         })
         
     }
 
-    clickProximo(){
-        if (this.state.index <= 5) {
+    clickProximo(){  
+        if ( this.state.indexNivelPalavras <= 6 ){
             this.setState({
-                silaba: this.state.silabasUtilizadas[this.state.indexNivelPalavras][this.state.index] + this.state.letraNivel,
-                index: this.state.index + 1
+                palavraAtual: this.state.palavrasUtilizadas[this.state.letraNivel][this.state.indexNivelPalavras + 1],
+                indexNivelPalavras: this.state.indexNivelPalavras + 1
             })
         } else {
-            this.props.history.push('/atividade/'+ this.props.match.params.vogal + "/" + this.state.indexNivelPalavras )
+            this.props.history.push('/atividade-palavra/'+ this.state.letraNivel + "/" + this.state.letraNivel )
         }
     }
 
@@ -80,7 +83,7 @@ class Palavras extends Component {
                 <img   src={iconAviao} 
                     style={{ height: 150, width: 150 }}
                     alt="Quadro" /> {/*Referenciar criador*/}
-                {'AVIÃO'}
+                {this.state.palavraAtual}
                 </div>
                 {/*<Sound
                     url={this.state.sound}

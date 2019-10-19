@@ -99,125 +99,6 @@ class AtividadeMontarPalavra extends Component {
             silabas: [],
             soundSelect: "",
             indexSoundSelect: 0,
-            soundListA: [
-                [FA, BA, DA, HA, CA, GA],
-                [LA, NA, PA, JA, QUA, MA],
-                [RA, TA, ZA, VA, XA, SA]
-            ],
-            silabasOne: [
-                {
-                    key: 0,
-                    name: 'BA',
-                    audio: BA,
-                    select: false
-                },
-                {   
-                    key: 1,
-                    name: 'CA',
-                    audio: CA,
-                    select: false
-                },
-                {
-                    key: 2,
-                    name: 'DA',
-                    audio: DA,
-                    select: false
-                },
-                {
-                    key: 3,
-                    name: 'FA',
-                    audio: FA,
-                    select: false
-                },
-                {
-                    key: 4,
-                    name: 'GA',
-                    audio: GA,
-                    select: false
-                },
-                {   
-                    key: 5,
-                    name: 'HA',
-                    audio: HA,
-                    select: false
-                },
-            ],
-            sibalasTwo: [
-                {
-                    key: 0,
-                    name: 'JA',
-                    select: false,
-                    audio: JA,
-                },
-                {   
-                    key: 1,
-                    name: 'LA',
-                    select: false,
-                    audio: LA,
-                },
-                {
-                    key: 2,
-                    name: 'MA',
-                    select: false,
-                    audio: MA,
-                },
-                {
-                    key: 3,
-                    name: 'NA',
-                    select: false,
-                    audio: NA,
-                },
-                {
-                    key: 4,
-                    name: 'PA',
-                    select: false,
-                    audio: PA,
-                },
-                {   
-                    key: 5,
-                    name: 'QA',
-                    select: false,
-                    audio: QUA,
-                },
-            ],
-            silabasThree: [
-                {
-                    key: 0,
-                    name: 'RA',
-                    select: false,
-                    audio: RA,
-                },
-                {   
-                    key: 1,
-                    name: 'SA',
-                    select: false,
-                    audio: SA,
-                },
-                {
-                    key: 2,
-                    name: 'TA',
-                    select: false,
-                    audio: TA,
-                },
-                {
-                    key: 3,
-                    name: 'VA',
-                    select: false,
-                    audio: VA,
-                },
-                {
-                    key: 4,
-                    name: 'XA',
-                    select: false,
-                    audio: XA,
-                },
-                {   
-                    key: 5,
-                    name: 'ZA',
-                    select: false,
-                    audio: ZA,
-                },
-            ]
         }
 
         this.clickProximo = this.clickProximo.bind(this);
@@ -226,32 +107,11 @@ class AtividadeMontarPalavra extends Component {
     }
 
     componentDidMount(){
-        const value = parseFloat(this.props.match.params.index)
-        if ( value === 0 ) {
-            this.setState({
-                silabas: this.state.silabasOne,
-                soundSelect: this.state.soundListA[0][this.state.indexSoundSelect]
-            })
-        } else if ( value === 1 ) {
-            this.setState({
-                silabas: this.state.sibalasTwo,
-                soundSelect: this.state.soundListA[1][this.state.indexSoundSelect]
-            })
-        } else if ( value === 2 ) {
-            this.setState({
-                silabas: this.state.silabasThree,
-                soundSelect: this.state.soundListA[2][this.state.indexSoundSelect]
-            })
-        }
+
     }
 
     clickProximo(){
-        var value = parseFloat(this.props.match.params.index)
-        if ( value !== 2 ) {
-            this.props.history.push(
-                '/palavra/' + this.props.match.params.vogal + "/" + (value + 1)
-            )
-        }
+       
     }
 
     clickItem(item){
