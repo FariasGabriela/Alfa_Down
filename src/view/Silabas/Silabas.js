@@ -204,7 +204,7 @@ class Silabas extends Component {
                 index: this.state.index + 1
             })
         } else {
-            this.props.history.push('/atividade/'+ this.props.match.params.vogal + "/" + this.state.indexNivelSilabas )
+            this.props.history.push('/atividade/'+ 0 + "/" + this.state.indexNivelSilabas )
         }
     }
 
