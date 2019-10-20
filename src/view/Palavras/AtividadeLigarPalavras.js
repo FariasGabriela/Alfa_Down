@@ -5,9 +5,6 @@ import Sound from 'react-sound';
 //import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg';
-import iconAviao from './../../icons/airplane.svg'
-import IconCat from './../../icons/cat.svg';
-import IconBanana from './../../icons/banana.svg';
 import iconbanana from './../../icons/banana.svg';
 import iconmacaco from './../../icons/monkey.svg';
 import iconbatata from './../../icons/potato.svg';
@@ -106,6 +103,10 @@ const styles = ({
         alignItems: 'center'
     },
     cardLetra: {
+        '&:hover' : {
+            boxShadow: '0.5px 1px 10px #000000'
+        },
+        cursor: 'pointer',
         borderRadius: 20, 
         border: '2px solid #000000', 
         height: 60,
@@ -136,6 +137,21 @@ class AtividadeLigarPalavras extends Component {
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
                 [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
             ],
+            iconOne: {
+                icon: iconbanana,
+                firstItem: 'BA',
+                secondItem: 'TATA'
+            },
+            iconTwo: {
+                icon: iconmacaco,
+                firstItem: 'MA',
+                secondItem: 'NANA'
+            },
+            iconThree: {
+                icon: iconbatata,
+                firstItem: 'BA',
+                secondItem: 'CACO'
+            },
         }
 
         this.clickProximo = this.clickProximo.bind(this);
@@ -200,29 +216,30 @@ class AtividadeLigarPalavras extends Component {
 
         return (
             <ViewQuadro 
+                noShow={true}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
                     <div className={classes.viewIcons}>                        
-                        <img   src={iconAviao} 
+                        <img   src={this.state.iconOne.icon} 
                             style={{ height: 80, width: 60, marginRight: 10 }}
                             alt="Quadro" /> {/*Referenciar criador*/}
-                        <div className={classes.cardLetra} >A</div>
-                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >TO</div>
+                        <div className={classes.cardLetra} >{this.state.iconOne.firstItem}</div>
+                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >{this.state.iconOne.secondItem}</div>
                     </div>
                     <div className={classes.viewIcons}>
-                        <img   src={IconCat} 
+                        <img   src={this.state.iconTwo.icon} 
                         style={{ height: 80, width: 60, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                        <div className={classes.cardLetra} >BA</div>
-                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >NANA</div>
+                        <div className={classes.cardLetra} >{this.state.iconTwo.firstItem}</div>
+                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >{this.state.iconTwo.secondItem}</div>
                     </div>
                     <div className={classes.viewIcons}>
-                        <img   src={IconBanana} 
+                        <img   src={this.state.iconThree.icon} 
                         style={{ height: 80, width: 60, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                        <div className={classes.cardLetra} >GA</div>
-                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >VIÃO</div>
+                        <div className={classes.cardLetra} >{this.state.iconThree.firstItem}</div>
+                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >{this.state.iconThree.secondItem}</div>
                     </div>
                     
 
