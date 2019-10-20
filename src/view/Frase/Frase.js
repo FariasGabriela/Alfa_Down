@@ -2,18 +2,23 @@ import React, { Component } from 'react';
 import ViewQuadro from '../../components/Quadro/ViewQuadro'
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
+import aBolaDaFoca from './../../Audios/Frases/aBolaDaFoca.mp3';
+import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
+import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
+import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
+import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
 
 const style = ({
     view: {
         position: 'absolute',
         top: -10,
-        left: 0,
+        left: 23,
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
-        fontSize: 43,
+        fontSize: 40,
         height: '80%',
-        width: '100%',
+        width: 409,
         flexDirection: 'column'
     }
 })
@@ -32,6 +37,14 @@ class Frase extends Component {
                 ['O TATU CAVA O BURACO'],
                 ['O TELEFONE TOCOU'],
             ],
+            audiosUtilizados: [
+                [aGataNaMala],
+                [aBolaDaFoca],
+                [pipocaPulaNaPanela],
+                [oTatuCavaoBuraco],
+                [oTelefoneTocou]
+            ],
+            sound: aGataNaMala,
             play: Sound.status.PAUSED
         }
 
@@ -41,6 +54,7 @@ class Frase extends Component {
 
     componentDidMount(){
         this.setState({
+            sound: this.state.audiosUtilizados[parseFloat(this.props.match.params.index)],
             frase: this.state.frasesUtilizadas[parseFloat(this.props.match.params.index)]
         })
         
@@ -66,7 +80,7 @@ class Frase extends Component {
                 <div className={classes.view}>
                     {this.state.frase}
                 </div>
-                {/*<Sound
+                <Sound
                     url={this.state.sound}
                     playStatus={this.state.play}
                     onLoading={() => {}}
@@ -76,7 +90,7 @@ class Frase extends Component {
                                 play: Sound.status.PAUSED
                             })
                     }}
-                />*/}
+                />
             </ViewQuadro>
         );
     }
