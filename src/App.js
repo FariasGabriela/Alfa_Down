@@ -10,6 +10,7 @@ import AtividadeMontarPalavra from './view/Palavras/AtividadeMontarPalavra';
 import AtividadeLigarPalavras from './view/Palavras/AtividadeLigarPalavras';
 import Frase from './view/Frase/Frase';
 import AtividadeVogalFrase from './view/Frase/AtividadeVogalFrase';
+import Login from './view/Login/Login';
 
 const style = ({
   card: {
@@ -40,6 +41,7 @@ class App extends Component {
               <Route path="/atividade-ligar/:vogal/:index" component={AtividadeLigarPalavras} />
               <Route path="/frase/:index" component={Frase} />
               <Route path="/atividade-frase-vogal/:vogal/:index" component={AtividadeVogalFrase} /> 
+              <Route path="/login" component={Login} />
           </Switch>
         </BrowserRouter>
       </div>
