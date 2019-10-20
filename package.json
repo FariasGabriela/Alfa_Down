@@ -6,9 +6,12 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "0.9.5",
-    "react-sound": "^1.2.0"
+    "react-sound": "^1.2.0",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4"
   },
