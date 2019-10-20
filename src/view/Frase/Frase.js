@@ -24,15 +24,14 @@ class Frase extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
-            letraNivel: 'A',
-            silaba: 'A',
-            silabasUtilizadas: [
-                ['B', 'C', 'D', 'F', 'G', 'H'],
-                ['J', 'L', 'M', 'N', 'P', 'Q'],
-                ['R', 'S', 'T', 'V', 'X', 'Z']
-            ], 
-            indexNivelPalavras: 0,
-            index: 0,
+            frase: [],
+            frasesUtilizadas: [
+                ['A GATA NA MALA'],
+                ['A BOLA DA FOCA'],
+                ['A PIPOCA PULA NA PANELA'],
+                ['O TATU CAVA O BURACO'],
+                ['O TELEFONE TOCOU'],
+            ],
             play: Sound.status.PAUSED
         }
 
@@ -41,24 +40,14 @@ class Frase extends Component {
     }
 
     componentDidMount(){
-        var vogal = this.props.match.params.vogal.toUpperCase()
-
         this.setState({
-            letraNivel: vogal,
-            indexNivelPalavras: parseFloat(this.props.match.params.index)
+            frase: this.state.frasesUtilizadas[parseFloat(this.props.match.params.index)]
         })
         
     }
 
     clickProximo(){
-        if (this.state.index <= 5) {
-            this.setState({
-                silaba: this.state.silabasUtilizadas[this.state.indexNivelPalavras][this.state.index] + this.state.letraNivel,
-                index: this.state.index + 1
-            })
-        } else {
-            this.props.history.push('/atividade/'+ this.props.match.params.vogal + "/" + this.state.indexNivelPalavras )
-        }
+        
     }
 
     clickOuvir(){
@@ -75,7 +64,7 @@ class Frase extends Component {
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
-                {'A PACA NA MALA'}
+                    {this.state.frase}
                 </div>
                 {/*<Sound
                     url={this.state.sound}

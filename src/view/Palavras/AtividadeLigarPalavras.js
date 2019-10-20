@@ -2,30 +2,42 @@ import React, { Component } from 'react';
 import ViewQuadro from '../../components/Quadro/ViewQuadro';
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
-import BA from '../../Audios/ba.mp3';
-import CA from '../../Audios/ca.mp3';
-import DA from '../../Audios/da.mp3';
-import FA from '../../Audios/fa.mp3';
-import GA from '../../Audios/ga.mp3';
-import HA from '../../Audios/ha.mp3';
-import JA from '../../Audios/ja.mp3';
-import LA from '../../Audios/la.mp3';
-import MA from '../../Audios/ma.mp3';
-import NA from '../../Audios/na.mp3';
-import PA from '../../Audios/pa.mp3';
-import QUA from '../../Audios/qua.mp3';
-import RA from '../../Audios/ra.mp3';
-import SA from '../../Audios/sa.mp3';
-import TA from '../../Audios/ta.mp3';
-import VA from '../../Audios/va.mp3';
-import XA from '../../Audios/xa.mp3';
-import ZA from '../../Audios/za.mp3';
 //import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg';
 import iconAviao from './../../icons/airplane.svg'
 import IconCat from './../../icons/cat.svg';
 import IconBanana from './../../icons/banana.svg';
+import iconbanana from './../../icons/banana.svg';
+import iconmacaco from './../../icons/monkey.svg';
+import iconbatata from './../../icons/potato.svg';
+import iconbala from './../../icons/bala.svg';
+import iconfaca from './../../icons/knife.svg';
+import iconlampada from './../../icons/lampada.svg';
+import iconcanela from './../../icons/cinnamon.svg';
+import iconcaneta from './../../icons/pen.svg';
+import iconabacate from './../../icons/avocado.svg';
+import iconjacare from './../../icons/alligator.svg';
+import iconleite from './../../icons/milk.svg';
+import iconpeixe from './../../icons/fish.svg';
+import iconlixo from './../../icons/garbage.svg';
+import iconioio from './../../icons/yoyo.svg';
+import iconlimao from './../../icons/lemon.svg';
+import iconmeia from './../../icons/socks.svg';
+import iconpalito from './../../icons/match.svg';
+import iconpapai from './../../icons/father.svg';
+import iconfoca from './../../icons/seal.svg';
+import iconfogo from './../../icons/fire.svg';
+import icongato from './../../icons/cat.svg';
+import icongoiaba from './../../icons/guava.svg';
+import iconcopo from './../../icons/glass.svg';
+import iconcarro from './../../icons/car.svg';
+import iconluva from './../../icons/mitten.svg';
+import iconlupa from './../../icons/research.svg';
+import iconuva from './../../icons/grapes.svg';
+import iconsuco from './../../icons/orange-juice.svg';
+import icontouro from './../../icons/bull.svg';
+import iconurubu from './../../icons/vulture.svg';
 
 const styles = ({
     divButton: {
@@ -64,7 +76,7 @@ const styles = ({
     view: {
         flexDirection: 'column',
         position: 'absolute',
-        top: 50,
+        top: 45,
         left: 0,
         alignItems: 'center',
         display: 'flex',
@@ -86,6 +98,22 @@ const styles = ({
         alignItems: 'center',
         justifyContent: 'center',
         width: 119
+    },
+    viewIcons: {
+        width: '100%', 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    cardLetra: {
+        borderRadius: 20, 
+        border: '2px solid #000000', 
+        height: 60,
+        width: 100, 
+        fontSize: 50, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        display: 'flex'
     }
 })
 
@@ -101,125 +129,13 @@ class AtividadeLigarPalavras extends Component {
             silabas: [],
             soundSelect: "",
             indexSoundSelect: 0,
-            soundListA: [
-                [FA, BA, DA, HA, CA, GA],
-                [LA, NA, PA, JA, QUA, MA],
-                [RA, TA, ZA, VA, XA, SA]
+            iconsUtilizados: [
+                [ iconbanana, iconmacaco, iconbatata, iconbala, iconfaca, iconlampada ],
+                [ iconcanela, iconcaneta, iconabacate, iconjacare, iconleite, iconpeixe ],
+                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
+                [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
+                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
             ],
-            silabasOne: [
-                {
-                    key: 0,
-                    name: 'BA',
-                    audio: BA,
-                    select: false
-                },
-                {   
-                    key: 1,
-                    name: 'CA',
-                    audio: CA,
-                    select: false
-                },
-                {
-                    key: 2,
-                    name: 'DA',
-                    audio: DA,
-                    select: false
-                },
-                {
-                    key: 3,
-                    name: 'FA',
-                    audio: FA,
-                    select: false
-                },
-                {
-                    key: 4,
-                    name: 'GA',
-                    audio: GA,
-                    select: false
-                },
-                {   
-                    key: 5,
-                    name: 'HA',
-                    audio: HA,
-                    select: false
-                },
-            ],
-            sibalasTwo: [
-                {
-                    key: 0,
-                    name: 'JA',
-                    select: false,
-                    audio: JA,
-                },
-                {   
-                    key: 1,
-                    name: 'LA',
-                    select: false,
-                    audio: LA,
-                },
-                {
-                    key: 2,
-                    name: 'MA',
-                    select: false,
-                    audio: MA,
-                },
-                {
-                    key: 3,
-                    name: 'NA',
-                    select: false,
-                    audio: NA,
-                },
-                {
-                    key: 4,
-                    name: 'PA',
-                    select: false,
-                    audio: PA,
-                },
-                {   
-                    key: 5,
-                    name: 'QA',
-                    select: false,
-                    audio: QUA,
-                },
-            ],
-            silabasThree: [
-                {
-                    key: 0,
-                    name: 'RA',
-                    select: false,
-                    audio: RA,
-                },
-                {   
-                    key: 1,
-                    name: 'SA',
-                    select: false,
-                    audio: SA,
-                },
-                {
-                    key: 2,
-                    name: 'TA',
-                    select: false,
-                    audio: TA,
-                },
-                {
-                    key: 3,
-                    name: 'VA',
-                    select: false,
-                    audio: VA,
-                },
-                {
-                    key: 4,
-                    name: 'XA',
-                    select: false,
-                    audio: XA,
-                },
-                {   
-                    key: 5,
-                    name: 'ZA',
-                    select: false,
-                    audio: ZA,
-                },
-            ]
         }
 
         this.clickProximo = this.clickProximo.bind(this);
@@ -228,23 +144,7 @@ class AtividadeLigarPalavras extends Component {
     }
 
     componentDidMount(){
-        const value = parseFloat(this.props.match.params.index)
-        if ( value === 0 ) {
-            this.setState({
-                silabas: this.state.silabasOne,
-                soundSelect: this.state.soundListA[0][this.state.indexSoundSelect]
-            })
-        } else if ( value === 1 ) {
-            this.setState({
-                silabas: this.state.sibalasTwo,
-                soundSelect: this.state.soundListA[1][this.state.indexSoundSelect]
-            })
-        } else if ( value === 2 ) {
-            this.setState({
-                silabas: this.state.silabasThree,
-                soundSelect: this.state.soundListA[2][this.state.indexSoundSelect]
-            })
-        }
+        
     }
 
     clickProximo(){
@@ -303,26 +203,26 @@ class AtividadeLigarPalavras extends Component {
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
-                    <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                    <div className={classes.viewIcons}>                        
                         <img   src={iconAviao} 
-                            style={{ height: 80, width: 80, marginRight: 10 }}
+                            style={{ height: 80, width: 60, marginRight: 10 }}
                             alt="Quadro" /> {/*Referenciar criador*/}
-                        <div style={{borderRadius: 20, border: '2px solid #000000', height: '100%', width: 100, fontSize: 60, alignItems: 'center', justifyContent: 'center', display: 'flex'}} >A</div>
-                        <div style={{borderRadius: 20, border: '2px solid #000000', height: '100%', width: 170, fontSize: 60, alignItems: 'center', justifyContent: 'center', display: 'flex', marginLeft: 35}} >TO</div>
+                        <div className={classes.cardLetra} >A</div>
+                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >TO</div>
                     </div>
-                    <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                    <div className={classes.viewIcons}>
                         <img   src={IconCat} 
-                        style={{ height: 80, width: 80, marginRight: 10 }}
+                        style={{ height: 80, width: 60, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                        <div style={{borderRadius: 20, border: '2px solid #000000', height: '100%', width: 100, fontSize: 60, alignItems: 'center', justifyContent: 'center', display: 'flex'}} >BA</div>
-                        <div style={{borderRadius: 20, border: '2px solid #000000', height: '100%', width: 170, fontSize: 60, alignItems: 'center', justifyContent: 'center', display: 'flex', marginLeft: 35}} >NANA</div>
+                        <div className={classes.cardLetra} >BA</div>
+                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >NANA</div>
                     </div>
-                    <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                    <div className={classes.viewIcons}>
                         <img   src={IconBanana} 
-                        style={{ height: 80, width: 80, marginRight: 10 }}
+                        style={{ height: 80, width: 60, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                        <div style={{borderRadius: 20, border: '2px solid #000000', height: '100%', width: 100, fontSize: 60, alignItems: 'center', justifyContent: 'center', display: 'flex'}} >GA</div>
-                        <div style={{borderRadius: 20, border: '2px solid #000000', height: '100%', width: 170, fontSize: 60, alignItems: 'center', justifyContent: 'center', display: 'flex', marginLeft: 35}} >VIÃO</div>
+                        <div className={classes.cardLetra} >GA</div>
+                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >VIÃO</div>
                     </div>
                     
 

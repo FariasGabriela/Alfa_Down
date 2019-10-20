@@ -38,7 +38,7 @@ class App extends Component {
               <Route path="/palavra/:vogal/:index" component={Palavra} />
               <Route path="/atividade-palavra/:vogal/:index" component={AtividadeMontarPalavra} />
               <Route path="/atividade-ligar/:vogal/:index" component={AtividadeLigarPalavras} />
-              <Route path="/frase/:vogal/:index" component={Frase} />
+              <Route path="/frase/:index" component={Frase} />
               <Route path="/atividade-frase-vogal/:vogal/:index" component={AtividadeVogalFrase} /> 
           </Switch>
         </BrowserRouter>
