@@ -11,6 +11,7 @@ import AtividadeLigarPalavras from './view/Palavras/AtividadeLigarPalavras';
 import Frase from './view/Frase/Frase';
 import AtividadeVogalFrase from './view/Frase/AtividadeVogalFrase';
 import Login from './view/Login/Login';
+import ListIcons from './view/ListIcons/ListIcons';
 
 const style = ({
   card: {
@@ -42,6 +43,7 @@ class App extends Component {
               <Route path="/frase/:index" component={Frase} />
               <Route path="/atividade-frase-vogal/:vogal/:index" component={AtividadeVogalFrase} /> 
               <Route path="/login" component={Login} />
+              <Route path="/icons" component={ListIcons} />
           </Switch>
         </BrowserRouter>
       </div>

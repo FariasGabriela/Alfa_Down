@@ -776,39 +776,38 @@ class AtividadeSilabas extends Component {
     }
 
     componentDidMount(){
-        var vogal = this.props.match.params.vogal.toUpperCase();
+        var vogal = parseFloat(this.props.match.params.vogal);
         var soundList = [];
         var silabasOne = [];
         var silabasTwo = [];
         var silabasThree = [];
 
-        if (vogal === 'A') {
+        if (vogal === 0) {
             soundList = this.state.soundListA;
             silabasOne = this.state.silabasOneA;
             silabasTwo = this.state.silabasTwoA;
             silabasThree = this.state.silabasThreeA;
-        } else if (vogal === 'E') {
+        } else if (vogal === 1) {
             soundList = this.state.soundListE;
             silabasOne = this.state.silabasOneE;
             silabasTwo = this.state.silabasTwoE;
             silabasThree = this.state.silabasThreeE;
-        } else if (vogal === 'I') {
+        } else if (vogal === 2) {
             soundList = this.state.soundListI;
             silabasOne = this.state.silabasOneI;
             silabasTwo = this.state.silabasTwoI;
             silabasThree = this.state.silabasThreI;
-        } else if (vogal === 'O') {
+        } else if (vogal === 3) {
             soundList = this.state.soundListO;
             silabasOne = this.state.silabasOneO;
             silabasTwo = this.state.silabasTwoO;
             silabasThree = this.state.silabasThreeO;
-        } else if (vogal === 'U') {
+        } else if (vogal === 4) {
             soundList = this.state.soundListU;
             silabasOne = this.state.silabasOneU;
             silabasTwo = this.state.silabasTwoU;
             silabasThree = this.state.silabasThreeU;
         } 
-
 
         const value = parseFloat(this.props.match.params.index)
         if ( value === 0 ) {

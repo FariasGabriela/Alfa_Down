@@ -164,33 +164,37 @@ class Silabas extends Component {
     }
 
     componentDidMount(){
-        var vogal = this.props.match.params.vogal.toUpperCase()
-
         var soundList = [];
         var somVogal = {}; 
+        var vogalShow = '';
 
-        if (this.props.match.params.vogal.toUpperCase() === 'A') {
+        if (parseFloat(this.props.match.params.vogal) === 0) {
             soundList = this.state.soundListA;
             somVogal = this.state.listVogais[0];
-        } else if (this.props.match.params.vogal.toUpperCase() === 'E') {
+            vogalShow = 'A';
+        } else if (parseFloat(this.props.match.params.vogal) === 1) {
             soundList = this.state.soundListE;
             somVogal = this.state.listVogais[1];
-        } else if (this.props.match.params.vogal.toUpperCase() === 'I') {
+            vogalShow = 'E';
+        } else if (parseFloat(this.props.match.params.vogal) === 2) {
             soundList = this.state.soundListI;
             somVogal = this.state.listVogais[2];
-        }  else if (this.props.match.params.vogal.toUpperCase() === 'O') {
+            vogalShow = 'I';
+        }  else if (parseFloat(this.props.match.params.vogal) === 3) {
             soundList = this.state.soundListO;
             somVogal = this.state.listVogais[3];
-        } else if (this.props.match.params.vogal.toUpperCase() === 'U') {
+            vogalShow = 'O';
+        } else if (parseFloat(this.props.match.params.vogal) === 4) {
             soundList = this.state.soundListU;
             somVogal = this.state.listVogais[4];
+            vogalShow = 'U';
         }
 
         this.setState({
             sound: somVogal,
-            silaba: vogal,
+            silaba: vogalShow,
             soundList: soundList,
-            letraNivel: vogal,
+            letraNivel: vogalShow,
             indexNivelSilabas: parseFloat(this.props.match.params.index)
         })
         

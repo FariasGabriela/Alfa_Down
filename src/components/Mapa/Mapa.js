@@ -112,7 +112,7 @@ class Mapa extends Component {
 
     clickIniciar() {
         //ToDo: Validar nível para iniciar
-        this.props.history.push('/silaba/a/0')
+        this.props.history.push('/silaba/0/0')
     }
 
     componentDidMount(){
