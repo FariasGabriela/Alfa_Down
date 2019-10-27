@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ViewQuadro from '../../components/Quadro/ViewQuadro'
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
+import aBolaDaFoca from './../../Audios/Frases/aBolaDaFoca.mp3';
+import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
+import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
+import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
+import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
 
 const style = ({
     view: {
@@ -15,6 +20,13 @@ const style = ({
         height: '80%',
         width: '100%',
         flexDirection: 'column'
+    },
+    cardVogal: {
+        fontSize: 100, 
+        width: 80, 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignContent: 'center'
     }
 })
 
@@ -24,15 +36,22 @@ class AtividadeVogalFrase extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
-            letraNivel: 'A',
-            silaba: 'A',
-            silabasUtilizadas: [
-                ['B', 'C', 'D', 'F', 'G', 'H'],
-                ['J', 'L', 'M', 'N', 'P', 'Q'],
-                ['R', 'S', 'T', 'V', 'X', 'Z']
-            ], 
-            indexNivelPalavras: 0,
-            index: 0,
+            frase: [],
+            frasesUtilizadas: [
+                ['A GATA NA MALA'],
+                ['A BOLA DA FOCA'],
+                ['A PIPOCA PULA NA PANELA'],
+                ['O TATU CAVA O BURACO'],
+                ['O TELEFONE TOCOU'],
+            ],
+            audiosUtilizados: [
+                aGataNaMala,
+                aBolaDaFoca,
+                pipocaPulaNaPanela,
+                oTatuCavaoBuraco,
+                oTelefoneTocou
+            ],
+            sound: aGataNaMala,
             play: Sound.status.PAUSED
         }
 
@@ -41,24 +60,15 @@ class AtividadeVogalFrase extends Component {
     }
 
     componentDidMount(){
-        var vogal = this.props.match.params.vogal.toUpperCase()
-
         this.setState({
-            letraNivel: vogal,
+            frase: this.state.frasesUtilizadas[parseFloat(this.props.match.params.index)],
             indexNivelPalavras: parseFloat(this.props.match.params.index)
         })
         
     }
 
     clickProximo(){
-        if (this.state.index <= 5) {
-            this.setState({
-                silaba: this.state.silabasUtilizadas[this.state.indexNivelPalavras][this.state.index] + this.state.letraNivel,
-                index: this.state.index + 1
-            })
-        } else {
-            this.props.history.push('/atividade/'+ this.props.match.params.vogal + "/" + this.state.indexNivelPalavras )
-        }
+
     }
 
     clickOuvir(){
@@ -75,27 +85,27 @@ class AtividadeVogalFrase extends Component {
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
-                {'A PACA NA MALA'}
+                    {this.state.frase}
                 <div style={{borderBottom: '2px solid #000000', width: 100, height: 50, marginTop: 20, marginBottom: 10}}></div>
                 <div style={{display: 'flex'}}>
-                    <div style={{fontSize: 100, width: 80, display: 'flex', justifyContent: 'center', alignContent: 'center' }} >
+                    <div className={classes.cardVogal} >
                         A
                     </div>
-                    <div style={{fontSize: 100, width: 80, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                    <div className={classes.cardVogal}>
                         O
                     </div>
-                    <div style={{fontSize: 100, width: 80, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                    <div className={classes.cardVogal}>
                         U
                     </div>
-                    <div style={{fontSize: 100, width: 80, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                    <div className={classes.cardVogal}>
                         I
                     </div>
-                    <div style={{fontSize: 100, width: 80, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                    <div className={classes.cardVogal}>
                         E
                     </div>
                 </div>
                 </div>
-                {/*<Sound
+                <Sound
                     url={this.state.sound}
                     playStatus={this.state.play}
                     onLoading={() => {}}
@@ -105,7 +115,7 @@ class AtividadeVogalFrase extends Component {
                                 play: Sound.status.PAUSED
                             })
                     }}
-                />*/}
+                />
             </ViewQuadro>
         );
     }

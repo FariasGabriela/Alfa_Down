@@ -38,11 +38,11 @@ class Frase extends Component {
                 ['O TELEFONE TOCOU'],
             ],
             audiosUtilizados: [
-                [aGataNaMala],
-                [aBolaDaFoca],
-                [pipocaPulaNaPanela],
-                [oTatuCavaoBuraco],
-                [oTelefoneTocou]
+                aGataNaMala,
+                aBolaDaFoca,
+                pipocaPulaNaPanela,
+                oTatuCavaoBuraco,
+                oTelefoneTocou
             ],
             sound: aGataNaMala,
             play: Sound.status.PAUSED
@@ -54,6 +54,7 @@ class Frase extends Component {
 
     componentDidMount(){
         this.setState({
+            play: Sound.status.PLAYING,
             sound: this.state.audiosUtilizados[parseFloat(this.props.match.params.index)],
             frase: this.state.frasesUtilizadas[parseFloat(this.props.match.params.index)]
         })
@@ -61,7 +62,7 @@ class Frase extends Component {
     }
 
     clickProximo(){
-        
+        this.props.history.push('/atividade-frase-vogal/' + this.props.match.params.index)
     }
 
     clickOuvir(){
