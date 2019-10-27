@@ -157,7 +157,6 @@ class Mapa extends Component {
     }
 
     clickSalvar(infoUser){
-        console.log(infoUser)
         this.setState({
             open: false,
             iconFarmer: this.state.allIconsFarmer[infoUser.indexItem]

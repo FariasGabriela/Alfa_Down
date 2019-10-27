@@ -167,7 +167,7 @@ class AtividadeLigarPalavras extends Component {
         var value = parseFloat(this.props.match.params.index)
         if ( value !== 2 ) {
             this.props.history.push(
-                '/palavra/' + this.props.match.params.vogal + "/" + (value + 1)
+                '/frase/' + this.props.match.params.vogal
             )
         }
     }

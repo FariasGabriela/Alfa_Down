@@ -96,6 +96,7 @@ import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg';
 import FootPrint from './../../icons/footprint.svg';
+import SilabaCorrespondente from './../../Audios/silabaCorrespondente.mp3';
 
 const styles = ({
     divButton: {
@@ -166,6 +167,7 @@ class AtividadeSilabas extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            playSilabaCorrespondente: Sound.status.PAUSED,
             open: false,
             playTenteNovamente: Sound.status.PAUSED,
             play: Sound.status.PAUSED,
@@ -812,6 +814,7 @@ class AtividadeSilabas extends Component {
         const value = parseFloat(this.props.match.params.index)
         if ( value === 0 ) {
             this.setState({
+                playSilabaCorrespondente: Sound.status.PLAYING,
                 soundList: soundList,
                 silabas: silabasOne,
                 soundSelect: soundList[0][this.state.indexSoundSelect]
@@ -829,6 +832,16 @@ class AtividadeSilabas extends Component {
                 soundSelect: soundList[2][this.state.indexSoundSelect]
             })
         }
+
+        this.setState({
+            playSilabaCorrespondente: Sound.status.PLAYING,
+        }, () => {
+            setTimeout(() => { 
+                this.setState({
+                    play: Sound.status.PLAYING
+                })
+              }, 3000);
+        })
     }
 
     clickProximo(){
@@ -866,6 +879,9 @@ class AtividadeSilabas extends Component {
                     open: true
                 })
             } else {
+                setTimeout(() => { 
+                    this.clickOuvir();
+                }, 1000);
                 setTimeout(() => { 
                     soundSelect.select = false;
                 }, 100);
@@ -934,6 +950,17 @@ class AtividadeSilabas extends Component {
                                 onFinishedPlaying={() => {
                                         this.setState({
                                             playTenteNovamente: Sound.status.PAUSED
+                                        })
+                                }}
+                            />
+                            <Sound
+                                url={SilabaCorrespondente}
+                                playStatus={this.state.playSilabaCorrespondente}
+                                onLoading={() => {}}
+                                onPlaying={() => {}}
+                                onFinishedPlaying={() => {
+                                        this.setState({
+                                            playSilabaCorrespondente: Sound.status.PAUSED
                                         })
                                 }}
                             />

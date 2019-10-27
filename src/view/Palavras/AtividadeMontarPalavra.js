@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ViewQuadro from '../../components/Quadro/ViewQuadro';
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
-//import TenteNovamente from '../../Audios/TenteNovamente.mp3'
+import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg';
 
@@ -127,6 +127,15 @@ const styles = ({
         alignItems: 'center',
         justifyContent: 'center',
         width: 119
+    },
+    itemSilaba: {
+        fontSize: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+        marginTop: 20,
+        borderBottom: '2px solid #000000', 
+        width: 80, 
     }
 })
 
@@ -136,6 +145,10 @@ class AtividadeMontarPalavra extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            firstSilaba: '',
+            secondSilaba: '',
+            threeSilaba: '',
+            indexItemSelect: 0,
             index: 0,
             open: false,
             playTenteNovamente: Sound.status.PAUSED,
@@ -161,7 +174,13 @@ class AtividadeMontarPalavra extends Component {
                 [ 'FOCA', 'FOGO', 'GATO', 'GOIABA', 'COPO', 'CARRO' ],
                 [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ]
             ], 
+            qtSilabas: 0,
             silabas: [],
+            qtSilabasOne: [2, 2, 2, 1, 1, 2],
+            qtSilabasTwo: [2, 2, 2, 2, 1, 1],
+            qtSilabasThree: [1, 1, 1, 1, 2, 1],
+            qtSilabasFour: [1, 1, 1, 2, 1, 1],
+            qtSilabasFive: [1, 1, 1, 1, 1, 2],
             silabasOne: [
                 [
                     {
@@ -173,11 +192,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'NA',
                         select: false,
+                        indexSelect: 1,
                     },
                     {
                         key: 2,
                         name: 'BA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 3,
@@ -193,6 +214,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'NA',
                         select: false,
+                        indexSelect: 2,
                     },
                 ],
                 [
@@ -200,6 +222,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'MA',
                         select: false,
+                        indexSelect: 0,
                     },
                     {
                         key: 1,
@@ -210,6 +233,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'CO',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 3,
@@ -220,6 +244,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'CA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 5,
@@ -242,16 +267,19 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'TA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 3,
                         name: 'BA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 4,
                         name: 'TA',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 5,
@@ -264,6 +292,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'BA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 1,
@@ -284,6 +313,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'LA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 5,
@@ -306,6 +336,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'CA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 3,
@@ -321,6 +352,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'FA',
                         select: false,
+                        indexSelect: 0
                     },
                 ],
                 [
@@ -328,6 +360,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'DA',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 1,
@@ -343,6 +376,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'LAM',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 4,
@@ -353,6 +387,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'PA',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
             ],
@@ -367,6 +402,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'NE',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 2,
@@ -377,11 +413,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'LA',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 4,
                         name: 'CA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 5,
@@ -404,11 +442,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'CA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 3,
                         name: 'TA',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 4,
@@ -419,6 +459,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'NE',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -436,11 +477,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'A',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 3,
                         name: 'BA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 4,
@@ -451,6 +494,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'CA',
                         select: false,
+                        indexSelect: 2
                     },
                 ],
                 [
@@ -463,6 +507,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'RÉ',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 2,
@@ -478,11 +523,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'JA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 5,
                         name: 'CA',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -495,6 +542,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'LEI',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -515,6 +563,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'TE',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -532,6 +581,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'XE',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 3,
@@ -547,6 +597,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'PEI',
                         select: false,
+                        indexSelect: 0
                     },
                 ],
             ],
@@ -561,6 +612,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'LI',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -576,6 +628,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'XO',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 5,
@@ -588,6 +641,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'IO',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 1,
@@ -608,6 +662,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'IO',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 5,
@@ -620,6 +675,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'MÃO',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 1,
@@ -630,6 +686,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'LI',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 3,
@@ -657,6 +714,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'IA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 2,
@@ -667,6 +725,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'ME',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 4,
@@ -689,11 +748,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'LI',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 2,
                         name: 'PA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 3,
@@ -709,6 +770,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'TO',
                         select: false,
+                        indexSelect: 2
                     },
                 ],
                 [
@@ -721,6 +783,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'PA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -741,6 +804,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'PAI',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
             ],
@@ -750,6 +814,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'FO',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 1,
@@ -770,6 +835,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'CA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 5,
@@ -802,11 +868,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'FO',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 5,
                         name: 'GO',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -819,6 +887,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'TO',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 2,
@@ -834,6 +903,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'GA',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 5,
@@ -846,6 +916,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'GO',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 1,
@@ -861,6 +932,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'IA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 4,
@@ -871,6 +943,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'BA',
                         select: false,
+                        indexSelect: 2
                     },
                 ],
                 [
@@ -883,6 +956,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'CO',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -903,6 +977,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'PO',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -925,6 +1000,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'RO',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 4,
@@ -935,6 +1011,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'CAR',
                         select: false,
+                        indexSelect: 0
                     },
                 ],
             ],
@@ -942,8 +1019,9 @@ class AtividadeMontarPalavra extends Component {
                 [
                     {
                         key: 0,
-                        name: 'U',
+                        name: 'LU',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 1,
@@ -959,6 +1037,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'VA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 4,
@@ -981,6 +1060,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'LU',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -991,6 +1071,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'PA',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 4,
@@ -1013,6 +1094,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'U',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -1033,6 +1115,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'VA',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -1050,6 +1133,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'SU',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 3,
@@ -1065,6 +1149,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'CO',
                         select: false,
+                        indexSelect: 1
                     },
                 ],
                 [
@@ -1072,6 +1157,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'TOU',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 1,
@@ -1087,6 +1173,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 3,
                         name: 'RO',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 4,
@@ -1104,11 +1191,13 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'RU',
                         select: false,
+                        indexSelect: 1
                     },
                     {
                         key: 1,
                         name: 'U',
                         select: false,
+                        indexSelect: 0
                     },
                     {
                         key: 2,
@@ -1124,6 +1213,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'BU',
                         select: false,
+                        indexSelect: 2
                     },
                     {
                         key: 5,
@@ -1134,7 +1224,6 @@ class AtividadeMontarPalavra extends Component {
             ],
             icon: iconbanana,
             soundSelect: banana,
-            indexSoundSelect: 0,
         }
 
         this.clickProximo = this.clickProximo.bind(this);
@@ -1145,20 +1234,28 @@ class AtividadeMontarPalavra extends Component {
     componentDidMount(){
         var rodada = parseFloat(this.props.match.params.vogal);
         var silabas = [];
+        var qtSilabas = [];
 
         if ( rodada === 0 ) {
-            silabas = this.state.silabasOne
+            silabas = this.state.silabasOne;
+            qtSilabas = this.state.qtSilabasOne;
         } else if ( rodada === 1 ) {
-            silabas = this.state.silabasTwo
+            silabas = this.state.silabasTwo;
+            qtSilabas = this.state.qtSilabasTwo;
         } else if ( rodada === 2 ) {
-            silabas = this.state.silabasThree
+            silabas = this.state.silabasThree;
+            qtSilabas = this.state.qtSilabasThree;
         } else if ( rodada === 3 ) {
-            silabas = this.state.silabasFour
+            silabas = this.state.silabasFour;
+            qtSilabas = this.state.qtSilabasFour;
         } else if ( rodada === 4 ) {
-            silabas = this.state.silabasFive
+            silabas = this.state.silabasFive;
+            qtSilabas = this.state.qtSilabasFive;
         } 
 
         this.setState({
+            qtSilabas: qtSilabas[this.props.match.params.index],
+            play: Sound.status.PLAYING,
             silabas: silabas[this.props.match.params.index],
             icon: this.state.iconsUtilizados[rodada][parseFloat(this.props.match.params.index)],
             soundSelect: this.state.sonsUtilizados[rodada][parseFloat(this.props.match.params.index)],
@@ -1184,10 +1281,15 @@ class AtividadeMontarPalavra extends Component {
 
        if ( this.state.index < 5){
         this.setState({
+            qtSilabas: this.state.qtSilabasOne[this.state.index + 1],
             silabas: silabas[this.state.index + 1],
             icon: this.state.iconsUtilizados[rodada][this.state.index + 1],
             soundSelect: this.state.sonsUtilizados[rodada][this.state.index + 1],
             index: this.state.index + 1,
+        }, () => {
+            this.setState({
+                play: Sound.status.PLAYING
+            })
         })
        } else {
         this.props.history.push('/atividade-ligar/'+ this.props.match.params.vogal + "/" + this.props.match.params.index )
@@ -1196,32 +1298,67 @@ class AtividadeMontarPalavra extends Component {
 
     clickItem(item){
         var list = this.state.silabas;
-        var soundSelect = {}
         list.forEach(doc => {
             if(item.key === doc.key) {
-                soundSelect = doc;
                 doc.select = true;
             } else {
                 doc.select = false;
             }
         }) 
 
-        if (soundSelect.audio === this.state.soundSelect) {
-            if ( this.state.indexSoundSelect > 4 ) {
+        if (item.indexSelect !== undefined && item.indexSelect === this.state.indexItemSelect) {
+            if ( this.state.indexItemSelect > 2 ) {
                 this.setState({
                     open: true
                 })
             } else {
                 this.setState({
-                    soundSelect: this.state.soundListA[parseFloat(this.props.match.params.index)][this.state.indexSoundSelect + 1],
-                    indexSoundSelect: this.state.indexSoundSelect + 1,
+                    indexItemSelect: this.state.indexItemSelect + 1,
                     silabas: list
+                })
+            }
+
+            if ( item.indexSelect === 0 ) {
+                this.setState({
+                    firstSilaba: item.name
+                })
+            } else if ( item.indexSelect === 1 ) {
+                this.setState({
+                    secondSilaba: item.name
+                })
+                if (this.state.qtSilabas === 1) {
+                    setTimeout(() => { 
+                        this.setState({
+                            firstSilaba: '',
+                            secondSilaba: '',
+                            threeSilaba: '',
+                            indexItemSelect: 0
+                        })
+
+                        this.clickProximo()
+                    }, 1000);
+                }
+            } else if ( item.indexSelect === 2 ) {
+                this.setState({
+                    threeSilaba: item.name
+                }, () => {
+                    setTimeout(() => { 
+                        this.setState({
+                            firstSilaba: '',
+                            secondSilaba: '',
+                            threeSilaba: '',
+                            indexItemSelect: 0
+                        })
+
+                        this.clickProximo()
+                      }, 1000);
                 })
             }
             
         } else {
             this.setState({
-                silabas: list
+                silabas: list,
+                playTenteNovamente: Sound.status.PLAYING
             })
         }
         
@@ -1245,9 +1382,11 @@ class AtividadeMontarPalavra extends Component {
                     <img   src={this.state.icon} 
                         style={{ height: 80, width: 80, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                    <div style={{borderBottom: '2px solid #000000', width: 80, marginRight: 5, marginLeft: 10}} ></div>
-                    <div style={{borderBottom: '2px solid #000000', width: 80, marginRight: 5}} ></div>
-                    <div style={{borderBottom: '2px solid #000000', width: 80}} ></div>
+                    <div className={classes.itemSilaba} style={{marginRight: 5, marginLeft: 10}}>{this.state.firstSilaba}</div>
+                    <div className={classes.itemSilaba} style={{marginRight: 5}}>{this.state.secondSilaba}</div>
+                    {this.state.qtSilabas === 2 &&
+                        <div className={classes.itemSilaba}>{this.state.threeSilaba}</div>
+                    }
                     </div>
                     <div className={classes.silabas}>
                         {this.state.silabas.map((doc) => {
@@ -1275,7 +1414,7 @@ class AtividadeMontarPalavra extends Component {
                                     })
                             }}
                         />
-                        {/*<Sound
+                        <Sound
                             url={TenteNovamente}
                             playStatus={this.state.playTenteNovamente}
                             onLoading={() => {}}
@@ -1285,7 +1424,7 @@ class AtividadeMontarPalavra extends Component {
                                         playTenteNovamente: Sound.status.PAUSED
                                     })
                             }}
-                        />*/}
+                        />
                         <Modal
                             className={classes.modal}
                             open={this.state.open}

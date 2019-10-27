@@ -72,7 +72,7 @@ const style = ({
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
-        fontSize: 100,
+        fontSize: 85,
         height: '80%',
         width: '100%',
         flexDirection: 'column'
