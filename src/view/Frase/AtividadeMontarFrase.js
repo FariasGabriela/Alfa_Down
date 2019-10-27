@@ -7,7 +7,10 @@ import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
 import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
 import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
 import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
-import TenteNovamente from '../../Audios/TenteNovamente.mp3'
+import TenteNovamente from '../../Audios/TenteNovamente.mp3';
+import firebase from 'firebase';
+import 'firebase/app';
+import "firebase/firestore"
 
 const style = ({
     view: {
@@ -248,7 +251,9 @@ class AtividadeVogalFrase extends Component {
     }
 
     clickProximo(){
-
+        this.props.history.push(
+            '/texto/' + parseFloat(this.props.match.params.index)
+        )
     }
 
     clickOuvir(){
@@ -286,13 +291,51 @@ class AtividadeVogalFrase extends Component {
                 this.setState({
                     itemThree: item.name,
                 })
+
+                if (this.state.qtFrases === 2){
+                    var user = firebase.auth().currentUser; 
+                    firebase.firestore().collection("Progresso").doc(user.uid).set({
+                        atividade: 'frase',
+                        vogal: parseFloat(this.props.match.params.index),
+                        index: 0
+                    })
+
+                    setTimeout(() => { 
+                        this.props.history.push(
+                            '/texto/' + parseFloat(this.props.match.params.index)
+                        )
+                    }, 100);
+                }
             } else if (this.state.currentIndex === 3 ){
                 this.setState({
                     itemFour: item.name,
                 })
+
+                if (this.state.qtFrases === 3){
+                    var userLogin = firebase.auth().currentUser;
+                    firebase.firestore().collection("Progresso").doc(userLogin.uid).set({
+                        atividade: 'frase',
+                        vogal: parseFloat(this.props.match.params.index),
+                        index: 0
+                    })
+
+                    setTimeout(() => { 
+                        this.props.history.push(
+                            '/texto/' + parseFloat(this.props.match.params.index)
+                        )
+                    }, 100);
+                }
             } else if (this.state.currentIndex === 4 ){
                 this.setState({
                     itemFive: item.name,
+                })
+
+                var userLogado = firebase.auth().currentUser;
+                
+                firebase.firestore().collection("Progresso").doc(userLogado.uid).set({
+                    atividade: 'frase',
+                    vogal: parseFloat(this.props.match.params.index),
+                    index: 0
                 })
 
                 setTimeout(() => { 

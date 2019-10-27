@@ -54,15 +54,18 @@ class Frase extends Component {
 
     componentDidMount(){
         this.setState({
-            play: Sound.status.PLAYING,
             sound: this.state.audiosUtilizados[parseFloat(this.props.match.params.index)],
             frase: this.state.frasesUtilizadas[parseFloat(this.props.match.params.index)]
+        }, () => {
+            this.setState({
+                play: Sound.status.PLAYING,
+            })
         })
         
     }
 
     clickProximo(){
-        this.props.history.push('/atividade-frase-vogal/' + this.props.match.params.index)
+        this.props.history.push('/atividade-frase/' + this.props.match.params.index)
     }
 
     clickOuvir(){

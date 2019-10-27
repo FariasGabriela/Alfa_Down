@@ -97,6 +97,9 @@ import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg';
 import FootPrint from './../../icons/footprint.svg';
 import SilabaCorrespondente from './../../Audios/silabaCorrespondente.mp3';
+import firebase from 'firebase';
+import 'firebase/app';
+import "firebase/firestore";
 
 const styles = ({
     divButton: {
@@ -875,6 +878,14 @@ class AtividadeSilabas extends Component {
 
         if (soundSelect.audio === this.state.soundSelect) {
             if ( this.state.indexSoundSelect > 4 ) {
+                var user = firebase.auth().currentUser;
+
+                firebase.firestore().collection("Progresso").doc(user.uid).set({
+                    atividade: 'silaba',
+                    vogal: parseFloat(this.props.match.params.vogal),
+                    index: parseFloat(this.props.match.params.index)
+                })
+
                 this.setState({
                     open: true
                 })

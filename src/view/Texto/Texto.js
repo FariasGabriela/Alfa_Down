@@ -7,6 +7,9 @@ import Texto02 from './../../Audios/Texto/texto02.mp3';
 import Texto03 from './../../Audios/Texto/texto03.mp3';
 import Texto04 from './../../Audios/Texto/texto04.mp3';
 import Texto05 from './../../Audios/Texto/texto05.mp3';
+import firebase from 'firebase';
+import 'firebase/app';
+import "firebase/firestore"
 
 const style = ({
     view: {
@@ -164,6 +167,13 @@ class Texto extends Component {
     }
 
     clickProximo(){
+        var user = firebase.auth().currentUser; 
+        firebase.firestore().collection("Progresso").doc(user.uid).set({
+            atividade: 'silaba',
+            vogal: parseFloat(this.props.match.params.index) + 1,
+            index: 0
+        })
+
         this.props.history.push('/')
     }
 

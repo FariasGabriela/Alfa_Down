@@ -127,7 +127,7 @@ class Silabas extends Component {
                 ['R', 'S', 'T', 'V', 'X', 'Z']
             ], 
             sound: A,
-            listVogais: [A, E, I, O, U],
+            listVogais: [A, O, U, I, E],
             soundListA: [
                 [BA, CA, DA, FA, GA, HA],
                 [JA, LA, MA, NA, PA, QUA],
@@ -173,21 +173,21 @@ class Silabas extends Component {
             somVogal = this.state.listVogais[0];
             vogalShow = 'A';
         } else if (parseFloat(this.props.match.params.vogal) === 1) {
-            soundList = this.state.soundListE;
-            somVogal = this.state.listVogais[1];
-            vogalShow = 'E';
-        } else if (parseFloat(this.props.match.params.vogal) === 2) {
-            soundList = this.state.soundListI;
-            somVogal = this.state.listVogais[2];
-            vogalShow = 'I';
-        }  else if (parseFloat(this.props.match.params.vogal) === 3) {
             soundList = this.state.soundListO;
-            somVogal = this.state.listVogais[3];
+            somVogal = this.state.listVogais[1];
             vogalShow = 'O';
-        } else if (parseFloat(this.props.match.params.vogal) === 4) {
+        } else if (parseFloat(this.props.match.params.vogal) === 2) {
             soundList = this.state.soundListU;
-            somVogal = this.state.listVogais[4];
+            somVogal = this.state.listVogais[2];
             vogalShow = 'U';
+        }  else if (parseFloat(this.props.match.params.vogal) === 3) {
+            soundList = this.state.soundListI;
+            somVogal = this.state.listVogais[3];
+            vogalShow = 'I';
+        } else if (parseFloat(this.props.match.params.vogal) === 4) {
+            soundList = this.state.soundListE;
+            somVogal = this.state.listVogais[4];
+            vogalShow = 'E';
         }
 
         this.setState({
@@ -208,7 +208,7 @@ class Silabas extends Component {
                 index: this.state.index + 1
             })
         } else {
-            this.props.history.push('/atividade/'+ 0 + "/" + this.state.indexNivelSilabas )
+            this.props.history.push('/atividade/'+ parseFloat(this.props.match.params.vogal) + "/" + this.state.indexNivelSilabas )
         }
     }
 

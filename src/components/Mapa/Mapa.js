@@ -8,8 +8,17 @@ import iconFarmerOne from './../../icons/farmer.svg';
 import iconFarmerTwo from './../../icons/farmer_second.svg';
 import iconFarmerThree from './../../icons/farmer_three.svg';
 import iconFarmerFour from './../../icons/farmer_four.svg';
+import crown from './../../icons/crown.svg';
+import firebase from 'firebase';
+import 'firebase/app';
+import "firebase/firestore"
 
 const styles = ({
+    img: {
+        height: 50,
+        width: 50,
+        marginTop: -5
+    },
     card: {
         width: '100%',
         height: '100%'
@@ -125,13 +134,17 @@ const styles = ({
 class Mapa extends Component {
     constructor(props){
         super(props)
+        window.soundManager.setup({ debugMode: false });
 
         this.state = {
             allIconsFarmer: [iconFarmerOne, iconFarmerTwo, iconFarmerThree, iconFarmerFour],
             iconFarmer: iconFarmerOne,
             open: true,
             name: 'Amigo',
-            nivel: 0
+            nivel: 0,
+            index: 0,
+            vogal: 0,
+            item: 'palavra'
         }
 
         this.clickIniciar = this.clickIniciar.bind(this);
@@ -141,18 +154,44 @@ class Mapa extends Component {
     }
 
     clickIniciar() {
-        //ToDo: Validar nível para iniciar
-        this.props.history.push('/silaba/0/0')
+        this.props.history.push('/' + this.state.item +'/'+ this.state.vogal +'/' + this.state.index)
     }
 
     componentDidMount(){
-        //ToDo: Requisição Login: Name e Nível
-        //Ou URL se nao tiver Login
+
+        firebase.auth().onAuthStateChanged(doc => {
+            this.getDados(doc.uid);
+
+            this.setState({
+                open: false
+            })
+        })
     }
 
     handleClose(){
         this.setState({
             open: false,
+        })
+
+        var user = firebase.auth().currentUser;
+
+        this.getDados(user.uid);
+    }
+
+    getDados(uid){
+        firebase.firestore().collection("Usuario").doc(uid).get().then((user) => {
+            this.setState({
+                iconFarmer: this.state.allIconsFarmer[user.data().indexItem],
+            })
+        })
+
+        firebase.firestore().collection("Progresso").doc(uid).get().then((user) => {
+            this.setState({
+                item: user.data().atividade,
+                index: user.data().index,
+                vogal: user.data().vogal,
+                nivel: user.data().vogal,
+            })
         })
     }
 
@@ -161,6 +200,10 @@ class Mapa extends Component {
             open: false,
             iconFarmer: this.state.allIconsFarmer[infoUser.indexItem]
         })
+
+        var user = firebase.auth().currentUser;
+
+        this.getDados(user.uid);
     }
   
     render(){
@@ -209,15 +252,19 @@ class Mapa extends Component {
                     </div>
                     <div className={classes.meiaLuaRight} style={{boxShadow: this.state.nivel > 1 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
                     <div className={classes.cardMapa}>
-                    <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 2 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 2 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>I</div>
+                    <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 2 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 2 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>U</div>
                     <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 2 ? '5px solid #3E5151' : '5px solid #bdc3c7'}}/>
-                    <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 3 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 3 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>E</div>
+                    <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 3 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 3 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>I</div>
                     </div>
                     <div className={classes.meiaLuaLeft} style={{boxShadow: this.state.nivel > 3 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
                     <div className={classes.cardMapa}>
-                    <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 4 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 4 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>U</div>
+                    <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 4 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 4 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>E</div>
                     <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 4 ? '5px solid #3E5151' : '5px solid #bdc3c7'}} />
-                    <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 5 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 5 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>FI</div>
+                    <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 5 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 5 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>
+                        <img   src={crown} 
+                            className={classes.img}
+                            alt="Quadro"/>
+                    </div>
                     </div>
                 </div>
 

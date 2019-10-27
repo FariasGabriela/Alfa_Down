@@ -17,11 +17,11 @@ const styles = ({
     borderRadius: 10,
     boxShadow: '0px 6px 9px rgb(0, 0, 0, 0.2)',
     padding: 20,
-    maxWidth: 600
+    maxWidth: 750
   },
   image: {
     position: 'relative', 
-    width: '80%'
+    width: '100%'
   },
   img: {
     height: '100%',

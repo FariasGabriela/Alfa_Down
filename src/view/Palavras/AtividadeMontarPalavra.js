@@ -67,6 +67,9 @@ import iconuva from './../../icons/grapes.svg';
 import iconsuco from './../../icons/orange-juice.svg';
 import icontouro from './../../icons/bull.svg';
 import iconurubu from './../../icons/vulture.svg';
+import firebase from 'firebase';
+import 'firebase/app';
+import "firebase/firestore"
 
 const styles = ({
     divButton: {
@@ -1327,6 +1330,14 @@ class AtividadeMontarPalavra extends Component {
                     secondSilaba: item.name
                 })
                 if (this.state.qtSilabas === 1) {
+                    var user = firebase.auth().currentUser;
+                
+                    firebase.firestore().collection("Progresso").doc(user.uid).set({
+                        atividade: 'palavra',
+                        vogal: parseFloat(this.props.match.params.vogal),
+                        index: parseFloat(this.props.match.params.index)
+                    })
+
                     setTimeout(() => { 
                         this.setState({
                             firstSilaba: '',
@@ -1342,6 +1353,14 @@ class AtividadeMontarPalavra extends Component {
                 this.setState({
                     threeSilaba: item.name
                 }, () => {
+                    var user = firebase.auth().currentUser;
+                
+                    firebase.firestore().collection("Progresso").doc(user.uid).set({
+                        atividade: 'palavra',
+                        vogal: parseFloat(this.props.match.params.vogal),
+                        index: parseFloat(this.props.match.params.index)
+                    })
+                    
                     setTimeout(() => { 
                         this.setState({
                             firstSilaba: '',
