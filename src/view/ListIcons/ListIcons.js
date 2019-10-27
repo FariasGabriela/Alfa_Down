@@ -49,7 +49,8 @@ const styles = ({
     },
     card: {
         width: '100%',
-        overflow: 'scroll'
+        overflowY: 'scroll',
+        overflowX: 'hidden'
     }
 })
 
@@ -57,7 +58,7 @@ class ListIcons extends Component {
 
     constructor(props){
         super(props);
-        
+
         window.soundManager.setup({ debugMode: false });
     }
 
@@ -66,6 +67,12 @@ class ListIcons extends Component {
 
         return (
             <div className={classes.card}>
+                <Grid container spacing={8} >
+                    <Grid item xs={12} className={classes.grid} style={{marginTop: 15, fontSize: 20, display: 'flex', justifyContent: 'center' }}>
+                        <div> As imagens utilizadas neste trabalho, foram retiradas no site <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                    </Grid>
+                </Grid>
+
                 <Grid container spacing={8} >
                     <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
                         <img   src={alligator} 
@@ -279,7 +286,7 @@ class ListIcons extends Component {
                         <img   src={quadro} 
                             className={classes.img}
                             alt="Quadro"/> {/*Referenciar criador*/}
-                        
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
                     </Grid>
                 </Grid>  
 
@@ -294,7 +301,7 @@ class ListIcons extends Component {
                         <img   src={rightArrow} 
                             className={classes.img}
                             alt="Quadro"/> {/*Referenciar criador*/}
-                        
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/lyolya" title="Lyolya">Lyolya</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
                     </Grid>
                     <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
                         <img   src={seal} 

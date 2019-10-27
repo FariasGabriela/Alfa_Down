@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import Farmer from './../../icons/farmer.svg';
 import Play from './../../icons/play.svg';
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from 'react-router-dom'
+import Login from './Login';
+import Modal from '@material-ui/core/Modal';
+import iconFarmerOne from './../../icons/farmer.svg';
+import iconFarmerTwo from './../../icons/farmer_second.svg';
+import iconFarmerThree from './../../icons/farmer_three.svg';
+import iconFarmerFour from './../../icons/farmer_four.svg';
 
 const styles = ({
     card: {
@@ -95,7 +100,26 @@ const styles = ({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: '50%'
-      }
+      },
+      modal: {
+        padding: 20,
+        backgroundColor: '#FFFFFF',
+        height: 220,
+        width: 400,
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        borderRadius: 5,
+        fontSize: 20
+      },
+      cardModal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%'
+      },
+      
 })
 
 class Mapa extends Component {
@@ -103,11 +127,17 @@ class Mapa extends Component {
         super(props)
 
         this.state = {
+            allIconsFarmer: [iconFarmerOne, iconFarmerTwo, iconFarmerThree, iconFarmerFour],
+            iconFarmer: iconFarmerOne,
+            open: true,
             name: 'Amigo',
             nivel: 0
         }
 
         this.clickIniciar = this.clickIniciar.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.clickSalvar = this.clickSalvar.bind(this);
+
     }
 
     clickIniciar() {
@@ -119,15 +149,41 @@ class Mapa extends Component {
         //ToDo: Requisição Login: Name e Nível
         //Ou URL se nao tiver Login
     }
+
+    handleClose(){
+        this.setState({
+            open: false,
+        })
+    }
+
+    clickSalvar(infoUser){
+        console.log(infoUser)
+        this.setState({
+            open: false,
+            iconFarmer: this.state.allIconsFarmer[infoUser.indexItem]
+        })
+    }
   
     render(){
         const {classes} = this.props;
 
         return (
             <div className={classes.card} >
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    >
+                    <div className={classes.cardModal}>
+                        <div className={classes.modal}>
+                         <Login clickSalvar={this.clickSalvar} clickFechar={this.handleClose} />
+                    </div>
+                    </div>
+                </Modal>
                 <div className={classes.head} > 
                     <div className={classes.barra} >
-                        <img src={Farmer} 
+                        <img src={this.state.iconFarmer} 
                         style={{ height: 60, width: 42 }}
                         alt="Personagem" /> {/*Referenciar criador*/}
 

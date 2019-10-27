@@ -12,6 +12,7 @@ import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
 
 const styles = ({
   card: { 
@@ -64,11 +65,47 @@ const styles = ({
   },
   cardWrite: {
     height: 40
+  },
+  buttonModal: {
+    color: '#FFFFFF', 
+    height: 40,
+    width: 90,
+    backgroundColor: 'rgb(42, 157, 143)',
+    borderRadius: 5,
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: 15,
+    cursor: 'pointer'
+  },
+  modal: {
+    backgroundColor: '#FFFFFF',
+    height: 200,
+    width: 400,
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    borderRadius: 5,
+    fontSize: 20
+  },
+  cardModal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%'
   }
 })
 
 const theme = createMuiTheme({
   overrides: {
+    MuiInputLabel: {
+      root: {
+        "&$focused": {
+          color: "#2C5364"
+        }
+      }
+    },
     MuiFormLabel: {
       root: {
           color: '#2C5364'
@@ -96,6 +133,7 @@ class ViewQuadro extends Component {
     window.soundManager.setup({ debugMode: false });
 
     this.state = {
+        open: false,
         indexItem: 0,
         opacity: false,
         name: '',
@@ -107,6 +145,8 @@ class ViewQuadro extends Component {
     this.changeOpacity = this.changeOpacity.bind(this);
     this.onSalvar = this.onSalvar.bind(this);
     this.onClickIcon = this.onClickIcon.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.clickFechar = this.clickFechar.bind(this);
   }
 
   componentDidMount(){
@@ -114,19 +154,7 @@ class ViewQuadro extends Component {
       this.changeOpacity()
     }, 100);
    
-      var firebaseConfig = {
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-  /*
-        firebase.auth().signInWithEmailAndPassword('farias.gabrielaa@gmail.com', ' 123456').then((doc) =>{
-            console.log('sucess')
-            console.log(doc)
-        }).catch((err) => {
-            console.log(err)
-        })*/
 
-    
   }
 
   changeOpacity(){
@@ -135,25 +163,41 @@ class ViewQuadro extends Component {
     })
   }
 
+  handleClose(){
+    this.setState({
+      open: false
+    });
+  }
+
+  clickFechar(){
+    this.setState({
+      open: false
+    })
+  }
+
   onSalvar(){
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha)
-      .then(() => {
-        firebase.firestore().collection("Usuario").add({
+      .then((doc) => {
+        firebase.firestore().collection("Usuario").doc(doc.user.uid).set({
             name: this.state.name,
             email: this.state.email,
             indexItem: this.state.indexItem
-        }) //todo: pegar id do usuario para id da tabela
+        })
         .then((docRef) => {
             this.props.history.push(
               '/'
           )
         })
         .catch((error) => {
-            //TODo: validar erro
+          this.setState({
+            open: true
+          });
         });
       })
       .catch((error) => {
-        //todo: validar erro
+        this.setState({
+          open: true
+        });
       });
   }
   
@@ -169,11 +213,25 @@ class ViewQuadro extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.card} style={{ opacity: this.state.opacity ? 1 : 0 }}>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+        >
+          <div className={classes.cardModal}>
+            <div className={classes.modal}>
+              Ocorreu um erro ao cadastrar usuário
+              <div className={classes.buttonModal} onClick={this.clickFechar} > Fechar </div>
+            </div>
+          </div>
+        </Modal>
           <Formik
             initialValues={{
               nome: this.state.name,
               email: this.state.email,
-              senha: this.state.senha
+              senha: this.state.senha,
+              confirmarSenha: this.state.confirmarSenha
             }}
             onSubmit={this.onSalvar}
             validationSchema={Yup.object().shape({
@@ -184,7 +242,7 @@ class ViewQuadro extends Component {
               senha: Yup.string()
               .required( 'Campo obrigatório' ),
               confirmarSenha: Yup.string()
-              .oneOf([Yup.ref('senha'), null], 'Senhas diferentes') //TODO: MUDAR A FRASE
+              .oneOf([Yup.ref('senha'), null], 'Senhas não confere')
               .required( 'Campo obrigatório' ),
             })}
           >
