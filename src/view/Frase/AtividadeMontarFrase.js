@@ -297,7 +297,7 @@ class AtividadeVogalFrase extends Component {
 
                 setTimeout(() => { 
                     this.props.history.push(
-                        '/frase/' + parseFloat(this.props.match.params.index)
+                        '/texto/' + parseFloat(this.props.match.params.index)
                     )
                 }, 100);
             }
