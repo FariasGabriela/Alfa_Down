@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ViewQuadro from '../../components/Quadro/ViewQuadro';
 import { withStyles } from '@material-ui/styles';
 import Sound from 'react-sound';
-//import TenteNovamente from '../../Audios/TenteNovamente.mp3'
+import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
 import Trofeu from './../../icons/trofeu.svg';
 import iconbanana from './../../icons/banana.svg';
@@ -79,7 +79,6 @@ const styles = ({
         display: 'flex',
         justifyContent: 'center',
         fontSize: 100,
-        height: '78%',
         width: '100%'
     },
     silabas: {
@@ -110,7 +109,7 @@ const styles = ({
         borderRadius: 20, 
         border: '2px solid #000000', 
         height: 60,
-        width: 100, 
+        width: 110, 
         fontSize: 50, 
         alignItems: 'center', 
         justifyContent: 'center', 
@@ -124,6 +123,9 @@ class AtividadeLigarPalavras extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            cont: 0,
+            indexItemSelect: [],
+            itemSelect: [],
             open: false,
             playTenteNovamente: Sound.status.PAUSED,
             play: Sound.status.PAUSED,
@@ -137,20 +139,536 @@ class AtividadeLigarPalavras extends Component {
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
                 [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
             ],
+            allIconsOne: [
+                [
+                    {
+                        icon: iconbanana,
+                        firstItem: {
+                            item: 'BA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'TATA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconbala,
+                        firstItem: {
+                            item: 'BA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'CA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconfoca,
+                        firstItem: {
+                            item: 'FO',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'TO',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: icongoiaba,
+                        firstItem: {
+                            item: 'GO',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'RO',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconlixo,
+                        firstItem: {
+                            item: 'LI',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'IO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconmeia,
+                        firstItem: {
+                            item: 'ME',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'PAI',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconluva,
+                        firstItem: {
+                            item: 'LU',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'VA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconsuco,
+                        firstItem: {
+                            item: 'SU',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'RO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconcanela,
+                        firstItem: {
+                            item: 'CA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'BACA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconjacare,
+                        firstItem: {
+                            item: 'JA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'CARÉ',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+            ],
+            allIconsTwo: [
+                [
+                    {
+                        icon: iconmacaco,
+                        firstItem: {
+                            item: 'MA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'NANA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconfaca,
+                        firstItem: {
+                            item: 'FA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'LA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    }
+                ],
+                [
+                    {
+                        icon: iconfogo,
+                        firstItem: {
+                            item: 'FO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'GO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconcopo,
+                        firstItem: {
+                            item: 'CO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'IABA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconioio,
+                        firstItem: {
+                            item: 'IO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'MÃO',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconpalito,
+                        firstItem: {
+                            item: 'PA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'IA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconlupa,
+                        firstItem: {
+                            item: 'LU',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'VA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: icontouro,
+                        firstItem: {
+                            item: 'TOU',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'RUBU',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconabacate,
+                        firstItem: {
+                            item: 'A',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'NETA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconleite,
+                        firstItem: {
+                            item: 'LEI',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'XE',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+            ],
+            allIconsThree: [
+                [
+                    {
+                        icon: iconbatata,
+                        firstItem: {
+                            item: 'BA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'CACO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconlampada,
+                        firstItem: {
+                            item: 'LÂM',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'PADA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    }
+                ],
+                [
+                    {
+                        icon: icongato,
+                        firstItem: {
+                            item: 'GA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'CA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconcarro,
+                        firstItem: {
+                            item: 'CAR',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'PO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconlimao,
+                        firstItem: {
+                            item: 'LI',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'XO',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconpapai,
+                        firstItem: {
+                            item: 'PA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'LITO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconuva,
+                        firstItem: {
+                            item: 'U',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'PA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconurubu,
+                        firstItem: {
+                            item: 'U',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'CO',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconcaneta,
+                        firstItem: {
+                            item: 'CA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'NELA',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconpeixe,
+                        firstItem: {
+                            item: 'PEI',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'TE',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+            ],
             iconOne: {
-                icon: iconbanana,
-                firstItem: 'BA',
-                secondItem: 'TATA'
+                icon: '',
+                firstItem: {
+                    item: '',
+                    index: 0,
+                    select: false,
+                    disable: false
+                },
+                secondItem: {
+                    item: '',
+                    index: 0,
+                    select: false,
+                    disable: false
+                }
             },
             iconTwo: {
-                icon: iconmacaco,
-                firstItem: 'MA',
-                secondItem: 'NANA'
+                icon: '',
+                firstItem: {
+                    item: '',
+                    index: 0,
+                    select: false,
+                    disable: false
+                },
+                secondItem: {
+                    item: '',
+                    index: 0,
+                    select: false,
+                    disable: false
+                }
             },
             iconThree: {
-                icon: iconbatata,
-                firstItem: 'BA',
-                secondItem: 'CACO'
+                icon: '',
+                firstItem: {
+                    item: '',
+                    index: 0,
+                    select: false,
+                    disable: false
+                },
+                secondItem: {
+                    item: '',
+                    index: 0,
+                    select: false,
+                    disable: false
+                }
             },
         }
 
@@ -160,7 +678,11 @@ class AtividadeLigarPalavras extends Component {
     }
 
     componentDidMount(){
-        
+        this.setState({
+            iconOne: this.state.allIconsOne[parseFloat(this.props.match.params.vogal)][parseFloat(this.props.match.params.index)],
+            iconTwo: this.state.allIconsTwo[parseFloat(this.props.match.params.vogal)][parseFloat(this.props.match.params.index)],
+            iconThree: this.state.allIconsThree[parseFloat(this.props.match.params.vogal)][parseFloat(this.props.match.params.index)]
+        })
     }
 
     clickProximo(){
@@ -172,37 +694,81 @@ class AtividadeLigarPalavras extends Component {
         }
     }
 
-    clickItem(item){
-        var list = this.state.silabas;
-        var soundSelect = {}
-        list.forEach(doc => {
-            if(item.key === doc.key) {
-                soundSelect = doc;
-                doc.select = true;
-            } else {
-                doc.select = false;
-            }
-        }) 
-
-        if (soundSelect.audio === this.state.soundSelect) {
-            if ( this.state.indexSoundSelect > 4 ) {
-                this.setState({
-                    open: true
-                })
-            } else {
-                this.setState({
-                    soundSelect: this.state.soundListA[parseFloat(this.props.match.params.index)][this.state.indexSoundSelect + 1],
-                    indexSoundSelect: this.state.indexSoundSelect + 1,
-                    silabas: list
-                })
-            }
+    clickItem(item, index, secondIndex){
+        if(!item.disable) {
+            var itens = [
+                [this.state.iconOne.firstItem, this.state.iconOne.secondItem],
+                [this.state.iconTwo.firstItem, this.state.iconTwo.secondItem],
+                [this.state.iconThree.firstItem, this.state.iconThree.secondItem],
+            ]
             
-        } else {
-            this.setState({
-                silabas: list
-            })
+            var currentItem = itens[index][secondIndex];
+            currentItem.select = true;
+
+            if (this.state.itemSelect.length === 0){
+                this.setState({
+                    itemSelect: currentItem,
+                    indexItemSelect: {
+                        index: index, 
+                        secondIndex: secondIndex
+                    }
+                })
+                
+            } else {
+                if (this.state.itemSelect.index === item.index) {
+                    var indexItemSelect = itens[this.state.indexItemSelect.index][this.state.indexItemSelect.secondIndex];
+                    indexItemSelect.select = false;
+                    currentItem.select = false;
+                    indexItemSelect.disable = true;
+                    currentItem.disable = true;
+                    
+                    this.setState({
+                        cont: this.state.cont + 1,
+                        itemSelect: [],
+                        indexItemSelect: []
+                    }, () => {
+                        if (this.state.cont === 3 ){
+                            if (parseFloat(this.props.match.params.index) === 0){
+                                this.setState({
+                                    cont: 0,
+                                    iconOne: this.state.allIconsOne[parseFloat(this.props.match.params.vogal)][1],
+                                    iconTwo: this.state.allIconsTwo[parseFloat(this.props.match.params.vogal)][1],
+                                    iconThree: this.state.allIconsThree[parseFloat(this.props.match.params.vogal)][1]
+                                })
+
+                                this.props.history.push(
+                                    '/atividade-ligar/' + this.props.match.params.vogal + '/' + 1
+                                )
+                                
+                            } else {
+                                this.props.history.push(
+                                    '/frase/' + this.props.match.params.vogal
+                                )
+                            }
+                            
+                        }
+                    })
+
+                    
+                } else {
+                    setTimeout(() => { 
+                        currentItem.select = false;
+                        var indexItemSelect = itens[this.state.indexItemSelect.index][this.state.indexItemSelect.secondIndex];
+                        indexItemSelect.select = false;
+            
+                        this.setState({
+                            indexItemSelect: [],
+                            itemSelect: []
+                        })
+                    }, 1000);
+
+                    this.setState({
+                        playTenteNovamente: Sound.status.PLAYING,
+                    })
+                }
+            }
         }
-        
+    
     }
 
     clickOuvir(){
@@ -220,31 +786,84 @@ class AtividadeLigarPalavras extends Component {
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
+
                     <div className={classes.viewIcons}>                        
                         <img   src={this.state.iconOne.icon} 
                             style={{ height: 80, width: 60, marginRight: 10 }}
                             alt="Quadro" /> {/*Referenciar criador*/}
-                        <div className={classes.cardLetra} >{this.state.iconOne.firstItem}</div>
-                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >{this.state.iconOne.secondItem}</div>
+                        <div onClick={ () => this.clickItem(this.state.iconOne.firstItem, 0, 0)} 
+                            className={classes.cardLetra} 
+                            style={{ backgroundColor: this.state.iconOne.firstItem.select ? 'rgb(231, 111, 81)' : '', 
+                            opacity: this.state.iconOne.firstItem.disable ? '0.3' : 1,
+                            border: this.state.iconOne.firstItem.select ? '2px solid transparent' : '2px solid #000000',
+                            color: this.state.iconOne.firstItem.select ? '#FFFFFF' : '#000000',
+                            boxShadow: this.state.iconOne.firstItem.select ? '0.5px 1px 10px #000000' : ''}} >
+                            {this.state.iconOne.firstItem.item}
+                        </div>
+                        <div onClick={ () => this.clickItem(this.state.iconOne.secondItem, 0, 1)} 
+                            className={classes.cardLetra} 
+                            style={{marginLeft: 75, width: 150, backgroundColor: this.state.iconOne.secondItem.select ? 'rgb(231, 111, 81)' : '', 
+                            opacity: this.state.iconOne.secondItem.disable ? '0.3' : 1,
+                            border: this.state.iconOne.secondItem.select ? '2px solid transparent' : '2px solid #000000',
+                            color: this.state.iconOne.secondItem.select ? '#FFFFFF' : '#000000',
+                            boxShadow: this.state.iconOne.secondItem.select ? '0.5px 1px 10px #000000' : ''}} >
+                                {this.state.iconOne.secondItem.item}
+                        </div>
                     </div>
+
                     <div className={classes.viewIcons}>
                         <img   src={this.state.iconTwo.icon} 
                         style={{ height: 80, width: 60, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                        <div className={classes.cardLetra} >{this.state.iconTwo.firstItem}</div>
-                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >{this.state.iconTwo.secondItem}</div>
+                        <div onClick={ () => this.clickItem(this.state.iconTwo.firstItem, 1, 0)} 
+                            className={classes.cardLetra} 
+                            style={{ backgroundColor: this.state.iconTwo.firstItem.select ? 'rgb(231, 111, 81)' : '', 
+                            opacity: this.state.iconTwo.firstItem.disable ? '0.3' : 1,
+                            border: this.state.iconTwo.firstItem.select ? '2px solid transparent' : '2px solid #000000',
+                            color: this.state.iconTwo.firstItem.select ? '#FFFFFF' : '#000000',
+                            boxShadow: this.state.iconTwo.firstItem.select ? '0.5px 1px 10px #000000' : ''}}>
+                                {this.state.iconTwo.firstItem.item}
+                        </div>
+                        <div onClick={ () => this.clickItem(this.state.iconTwo.secondItem, 1, 1)} 
+                            className={classes.cardLetra} 
+                            style={{backgroundColor: this.state.iconTwo.secondItem.select ? 'rgb(231, 111, 81)' : '', 
+                            marginLeft: 75, 
+                            width: 150, 
+                            opacity: this.state.iconTwo.secondItem.disable ? '0.3' : 1,
+                            border: this.state.iconTwo.secondItem.select ? '2px solid transparent' : '2px solid #000000',
+                            color: this.state.iconTwo.secondItem.select ? '#FFFFFF' : '#000000', 
+                            boxShadow: this.state.iconTwo.secondItem.select ? '0.5px 1px 10px #000000' : ''}} >
+                                {this.state.iconTwo.secondItem.item}
+                        </div>
                     </div>
+
                     <div className={classes.viewIcons}>
                         <img   src={this.state.iconThree.icon} 
                         style={{ height: 80, width: 60, marginRight: 10 }}
                         alt="Quadro" /> {/*Referenciar criador*/}
-                        <div className={classes.cardLetra} >{this.state.iconThree.firstItem}</div>
-                        <div className={classes.cardLetra} style={{marginLeft: 75, width: 150}} >{this.state.iconThree.secondItem}</div>
+                        <div onClick={ () => this.clickItem(this.state.iconThree.firstItem, 2, 0)} 
+                            className={classes.cardLetra} 
+                            style={{backgroundColor: this.state.iconThree.firstItem.select ? 'rgb(231, 111, 81)' : '', 
+                            opacity: this.state.iconThree.firstItem.disable ? '0.3' : 1,
+                            border: this.state.iconThree.firstItem.select ? '2px solid transparent' : '2px solid #000000',
+                            color: this.state.iconThree.firstItem.select ? '#FFFFFF' : '#000000',
+                            boxShadow: this.state.iconThree.firstItem.select ? '0.5px 1px 10px #000000' : ''}}>
+                                {this.state.iconThree.firstItem.item}
+                        </div>
+                        <div onClick={ () => this.clickItem(this.state.iconThree.secondItem, 2, 1)} 
+                            className={classes.cardLetra} 
+                            style={{backgroundColor: this.state.iconThree.secondItem.select ? 'rgb(231, 111, 81)' : '',
+                            opacity: this.state.iconThree.secondItem.disable ? '0.3' : 1,
+                            border: this.state.iconThree.secondItem.select ? '2px solid transparent' : '2px solid #000000',
+                            color: this.state.iconThree.secondItem.select ? '#FFFFFF' : '#000000',
+                            marginLeft: 75, width: 150,  
+                            boxShadow: this.state.iconThree.secondItem.select ? '0.5px 1px 10px #000000' : ''}}>
+                                {this.state.iconThree.secondItem.item}
+                        </div>
                     </div>
-                    
+
 
                     
-
 
                     <div className={classes.silabas}>
                         
@@ -258,8 +877,8 @@ class AtividadeLigarPalavras extends Component {
                                         play: Sound.status.PAUSED
                                     })
                             }}
-                        />
-                        {/*<Sound
+                        /> */}
+                        <Sound
                             url={TenteNovamente}
                             playStatus={this.state.playTenteNovamente}
                             onLoading={() => {}}
@@ -269,7 +888,7 @@ class AtividadeLigarPalavras extends Component {
                                         playTenteNovamente: Sound.status.PAUSED
                                     })
                             }}
-                        />*/}
+                        />
                         <Modal
                             className={classes.modal}
                             open={this.state.open}

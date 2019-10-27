@@ -18,7 +18,7 @@ const style = ({
         justifyContent: 'center',
         fontSize: 40,
         height: '80%',
-        width: 409,
+        width: 'calc(100% - 50px)',
         flexDirection: 'column'
     }
 })
