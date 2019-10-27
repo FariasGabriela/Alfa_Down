@@ -223,6 +223,7 @@ class AtividadeVogalFrase extends Component {
         this.clickProximo = this.clickProximo.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickItem = this.clickItem.bind(this);
+        this.clickClose = this.clickClose.bind(this);
     }
 
     componentDidMount(){
@@ -355,8 +356,10 @@ class AtividadeVogalFrase extends Component {
                 silabas: list,
             })
         }
+    }
 
-        
+    clickClose(){
+        this.props.history.push('/')
     }
 
     render() {
@@ -364,6 +367,7 @@ class AtividadeVogalFrase extends Component {
         
         return (
             <ViewQuadro 
+                clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>

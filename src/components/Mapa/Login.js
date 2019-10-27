@@ -4,9 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import firebase from 'firebase';
-import 'firebase/app';
-import "firebase/firestore";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
 const styles = ({
@@ -102,6 +99,13 @@ const styles = ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  gridCriarConta: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginRight: 100,
+    fontSize: 17,
+    width: '100%'
   }
 })
 
@@ -151,28 +155,27 @@ class ViewQuadro extends Component {
 
     this.onSalvar = this.onSalvar.bind(this);
     this.clickFechar = this.clickFechar.bind(this);
+    this.criarConta = this.criarConta.bind(this);
   }
 
   onSalvar(){
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha).then((doc) =>{
-            firebase.firestore().collection("Usuario").doc(doc.user.uid).get().then((user) => {
-                this.props.clickSalvar(user.data())
-            })
-        }).catch((err) => {
-            //TODo: validar erro
-        })
+    this.props.clickFechar(this.state.email, this.state.senha);
   }
 
   clickFechar(){
     this.props.clickFechar();
   }
 
+  criarConta(){
+    this.props.criarConta();
+  }
 
   render() {
     const {classes} = this.props;
 
     return (
       <MuiThemeProvider theme={theme}>
+          <div>Login</div>
           <Formik
             initialValues={{
               email: this.state.email,
@@ -242,10 +245,18 @@ class ViewQuadro extends Component {
                       />
                   </Grid>
               </Grid>
+              <Grid container spacing={8} style={{margin: 0}}>
+                  <Grid item xs={12} className={classes.grid}>
+                    <div className={classes.gridCriarConta} onClick={this.criarConta} style={{cursor: 'pointer'}}>
+                      Criar conta
+                    </div>
+                </Grid>
+              </Grid>
+              
               <div className={classes.divButtons}>
-              <div className={classes.buttonModal} onClick={handleSubmit} > Entrar </div>
-              <div className={classes.buttonModal} onClick={this.clickFechar} > Fechar </div>
-          </div>
+                  <div className={classes.buttonModal} onClick={handleSubmit} > Entrar </div>
+                  <div className={classes.buttonModal} onClick={this.clickFechar} > Fechar </div>
+              </div>
             </div>  
             )}}
           </Formik >

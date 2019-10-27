@@ -12,7 +12,7 @@ import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
+import Swal from 'sweetalert2'
 
 const styles = ({
   card: { 
@@ -133,7 +133,6 @@ class ViewQuadro extends Component {
     window.soundManager.setup({ debugMode: false });
 
     this.state = {
-        open: false,
         indexItem: 0,
         opacity: false,
         name: '',
@@ -145,16 +144,12 @@ class ViewQuadro extends Component {
     this.changeOpacity = this.changeOpacity.bind(this);
     this.onSalvar = this.onSalvar.bind(this);
     this.onClickIcon = this.onClickIcon.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.clickFechar = this.clickFechar.bind(this);
   }
 
   componentDidMount(){
     setTimeout(() => { 
       this.changeOpacity()
     }, 100);
-   
-
   }
 
   changeOpacity(){
@@ -163,42 +158,33 @@ class ViewQuadro extends Component {
     })
   }
 
-  handleClose(){
-    this.setState({
-      open: false
-    });
-  }
-
-  clickFechar(){
-    this.setState({
-      open: false
-    })
-  }
-
   onSalvar(){
-      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha)
-      .then((doc) => {
-        firebase.firestore().collection("Usuario").doc(doc.user.uid).set({
-            name: this.state.name,
-            email: this.state.email,
-            indexItem: this.state.indexItem
-        })
-        .then((docRef) => {
-            this.props.history.push(
-              '/'
-          )
-        })
-        .catch((error) => {
-          this.setState({
-            open: true
-          });
-        });
+    Swal.fire({
+      title: 'Carregando',
+      imageWidth: 400,
+      imageHeight: 200,
+    })
+
+    Swal.showLoading();
+
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha)
+    .then((doc) => {
+      firebase.firestore().collection("Usuario").doc(doc.user.uid).set({
+          name: this.state.name,
+          email: this.state.email,
+          indexItem: this.state.indexItem
+      })
+      .then((docRef) => {
+         Swal.close();
+         this.props.history.push( '/' )
       })
       .catch((error) => {
-        this.setState({
-          open: true
-        });
+        Swal.fire('Ocorreu um erro ao cadastrar os dados')
       });
+    })
+    .catch((error) => {
+      Swal.fire('Ocorreu um erro ao cadastrar os dados')
+    });
   }
   
   onClickIcon(index){
@@ -213,19 +199,6 @@ class ViewQuadro extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.card} style={{ opacity: this.state.opacity ? 1 : 0 }}>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.open}
-          onClose={this.handleClose}
-        >
-          <div className={classes.cardModal}>
-            <div className={classes.modal}>
-              Ocorreu um erro ao cadastrar usuário
-              <div className={classes.buttonModal} onClick={this.clickFechar} > Fechar </div>
-            </div>
-          </div>
-        </Modal>
           <Formik
             initialValues={{
               nome: this.state.name,

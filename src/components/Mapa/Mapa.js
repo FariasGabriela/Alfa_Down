@@ -11,7 +11,8 @@ import iconFarmerFour from './../../icons/farmer_four.svg';
 import crown from './../../icons/crown.svg';
 import firebase from 'firebase';
 import 'firebase/app';
-import "firebase/firestore"
+import "firebase/firestore";
+import Swal from 'sweetalert2';
 
 const styles = ({
     img: {
@@ -113,7 +114,7 @@ const styles = ({
       modal: {
         padding: 20,
         backgroundColor: '#FFFFFF',
-        height: 220,
+        height: 300,
         width: 400,
         alignItems: 'center',
         display: 'flex',
@@ -128,7 +129,6 @@ const styles = ({
         justifyContent: 'center',
         height: '100%'
       },
-      
 })
 
 class Mapa extends Component {
@@ -144,12 +144,13 @@ class Mapa extends Component {
             nivel: 0,
             index: 0,
             vogal: 0,
-            item: 'palavra'
+            item: 'silaba'
         }
 
         this.clickIniciar = this.clickIniciar.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.clickSalvar = this.clickSalvar.bind(this);
+        this.criarConta = this.criarConta.bind(this);
 
     }
 
@@ -168,14 +169,39 @@ class Mapa extends Component {
         })
     }
 
-    handleClose(){
+    handleClose(name, senha){
         this.setState({
             open: false,
         })
 
-        var user = firebase.auth().currentUser;
+        if (name === undefined && senha === undefined) {
+            var user = firebase.auth().currentUser;
 
-        this.getDados(user.uid);
+            this.getDados(user.uid);
+        } else {
+            Swal.fire({
+                title: 'Carregando',
+                imageWidth: 400,
+                imageHeight: 200,
+              })
+
+            Swal.showLoading();
+
+            firebase.auth().signInWithEmailAndPassword(name, senha).then((doc) =>{
+                firebase.firestore().collection("Usuario").doc(doc.user.uid).get().then((user) => {
+                    Swal.close();
+
+                    var userLogin = firebase.auth().currentUser;
+
+                    this.getDados(userLogin.uid);
+                }).catch((err) => {
+                    Swal.fire('Ocorreu um erro ao realizar o login')
+                })
+            }).catch((err) => {
+                Swal.fire('Ocorreu um erro ao realizar o login')
+            })
+        }
+        
     }
 
     getDados(uid){
@@ -205,6 +231,10 @@ class Mapa extends Component {
 
         this.getDados(user.uid);
     }
+
+    criarConta(){
+        this.props.history.push('/login')
+    }
   
     render(){
         const {classes} = this.props;
@@ -219,7 +249,7 @@ class Mapa extends Component {
                     >
                     <div className={classes.cardModal}>
                         <div className={classes.modal}>
-                         <Login clickSalvar={this.clickSalvar} clickFechar={this.handleClose} />
+                         <Login criarConta={this.criarConta} clickSalvar={this.clickSalvar} clickFechar={this.handleClose} />
                     </div>
                     </div>
                 </Modal>

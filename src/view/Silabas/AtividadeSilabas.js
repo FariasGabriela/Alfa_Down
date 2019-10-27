@@ -100,6 +100,7 @@ import SilabaCorrespondente from './../../Audios/silabaCorrespondente.mp3';
 import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
+import swal from 'sweetalert';
 
 const styles = ({
     divButton: {
@@ -778,6 +779,7 @@ class AtividadeSilabas extends Component {
         this.clickProximo = this.clickProximo.bind(this);
         this.clickItem = this.clickItem.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
+        this.clickClose = this.clickClose.bind(this);
     }
 
     componentDidMount(){
@@ -886,8 +888,8 @@ class AtividadeSilabas extends Component {
                     index: parseFloat(this.props.match.params.index)
                 })
 
-                this.setState({
-                    open: true
+                swal("Bom trabalho!", "", "success").then(() => {
+                    this.clickProximo();
                 })
             } else {
                 setTimeout(() => { 
@@ -917,12 +919,17 @@ class AtividadeSilabas extends Component {
         })
     }
 
+    clickClose(){
+        this.props.history.push('/')
+    }
+
     render() {
         const {classes} = this.props;
 
         return (
             <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center'}} >
                 <ViewQuadro 
+                    clickClose={this.clickClose}
                     onClickOuvir={this.clickOuvir}
                     onClickProximo={this.clickProximo}>
                     <div className={classes.view}>

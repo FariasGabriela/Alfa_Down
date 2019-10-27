@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import Speaker from './../../icons/speaker.svg'
 import Proximo from './../../icons/right-arrow.svg';
 import { withStyles } from '@material-ui/styles';
+import cross from './../../icons/cross.svg';
 
 const styles = ({
   card: { 
@@ -43,6 +44,15 @@ const styles = ({
     height: '50%',
     display: 'flex',
     alignItems: 'flex-start'
+  },
+  buttonClose: {
+    height: 30,
+    width: 30,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    padding: 20,
+    cursor: 'pointer'
   }
 })
 
@@ -76,10 +86,15 @@ class ViewQuadro extends Component {
 
     return (
       <div className={classes.card} style={{ opacity: this.state.opacity ? 1 : 0 }}>
+        <img src={cross} 
+              onClick={this.props.clickClose}
+              className={classes.buttonClose}
+              alt="Fechar" /> 
+
         <div className={classes.image} >
          <img   src={Quadro} 
                 className={classes.img}
-                alt="Quadro"/> {/*Referenciar criador*/}
+                alt="Quadro"/> 
           {this.props.children}
         </div>   
         <div className={classes.quadro} >

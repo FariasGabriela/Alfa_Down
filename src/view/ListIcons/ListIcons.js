@@ -41,6 +41,7 @@ import trofeu from './../../icons/trofeu.svg';
 import vulture from './../../icons/vulture.svg';
 import yoyo from './../../icons/yoyo.svg';
 import crown from './../../icons/crown.svg';
+import cross from './../../icons/cross.svg';
 import Grid from '@material-ui/core/Grid';
 
 const styles = ({
@@ -350,7 +351,14 @@ class ListIcons extends Component {
                         <img   src={crown} 
                             className={classes.img}
                             alt="Quadro"/> {/*Referenciar criador*/}
-                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>                    </Grid>
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>                    
+                    </Grid>
+                    <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
+                        <img   src={cross} 
+                            className={classes.img}
+                            alt="Quadro"/> {/*Referenciar criador*/}
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/balraj-chana" title="Balraj Chana">Balraj Chana</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
+                    </Grid>
                 </Grid>
             </div>
         )

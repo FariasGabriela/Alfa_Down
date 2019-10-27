@@ -50,6 +50,7 @@ class Frase extends Component {
 
         this.clickProximo = this.clickProximo.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
+        this.clickClose = this.clickClose.bind(this);
     }
 
     componentDidMount(){
@@ -74,11 +75,16 @@ class Frase extends Component {
         })
     }
 
+    clickClose(){
+        this.props.history.push('/')
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
                 <div className={classes.view}>
