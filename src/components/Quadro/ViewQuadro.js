@@ -3,7 +3,7 @@ import Quadro from './../../icons/Quadro.svg'
 import Button from '../Button/Button';
 import Speaker from './../../icons/speaker.svg'
 import Proximo from './../../icons/right-arrow.svg';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import cross from './../../icons/cross.svg';
 import info from './../../icons/info.svg';
 

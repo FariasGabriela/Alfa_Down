@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Mapa from './../../components/Mapa/Mapa';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const style = ({
 

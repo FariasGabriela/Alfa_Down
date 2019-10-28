@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import alligator from './../../icons/alligator.svg';
 import dedo from './../../icons/dedo.svg';
 import bala from './../../icons/bala.svg';

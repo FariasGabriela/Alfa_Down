@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Play from './../../icons/play.svg';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 import Login from './Login';
 import Modal from '@material-ui/core/Modal';

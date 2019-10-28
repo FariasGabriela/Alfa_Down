@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ViewQuadro from '../../components/Quadro/ViewQuadro'
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Sound from 'react-sound';
 import A from '../../Audios/a.mp3';
 import E from '../../Audios/e.mp3';
