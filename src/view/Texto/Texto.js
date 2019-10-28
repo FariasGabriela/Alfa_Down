@@ -9,7 +9,8 @@ import Texto04 from './../../Audios/Texto/texto04.mp3';
 import Texto05 from './../../Audios/Texto/texto05.mp3';
 import firebase from 'firebase';
 import 'firebase/app';
-import "firebase/firestore"
+import "firebase/firestore";
+import Swal from 'sweetalert2';
 
 const style = ({
     view: {
@@ -130,6 +131,7 @@ class Texto extends Component {
         this.clickProximo = this.clickProximo.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
     }
 
     componentDidMount(){
@@ -168,14 +170,21 @@ class Texto extends Component {
     }
 
     clickProximo(){
-        var user = firebase.auth().currentUser; 
-        firebase.firestore().collection("Progresso").doc(user.uid).set({
-            atividade: 'silaba',
-            vogal: parseFloat(this.props.match.params.index) + 1,
-            index: 0
-        })
+        
+        firebase.auth().onAuthStateChanged(doc => {
+            if (doc){
+                firebase.firestore().collection("Progresso").doc(doc.uid).set({
+                    atividade: 'silaba',
+                    vogal: parseFloat(this.props.match.params.index) + 1,
+                    index: 0
+                })
+            }
 
-        this.props.history.push('/')
+            this.props.history.push('/')
+        })
+        
+
+        
     }
 
     clickOuvir(){
@@ -188,11 +197,20 @@ class Texto extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Texto',
+            'Veja o texto e escute a sua pronúncia clicando no botão ouvir',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>

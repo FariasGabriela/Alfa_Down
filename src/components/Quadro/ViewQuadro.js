@@ -5,6 +5,7 @@ import Speaker from './../../icons/speaker.svg'
 import Proximo from './../../icons/right-arrow.svg';
 import { withStyles } from '@material-ui/styles';
 import cross from './../../icons/cross.svg';
+import info from './../../icons/info.svg';
 
 const styles = ({
   card: { 
@@ -53,6 +54,15 @@ const styles = ({
     right: 0,
     padding: 20,
     cursor: 'pointer'
+  },
+  buttonInfo: {
+    height: 30,
+    width: 55,
+    position: 'absolute',
+    top: 0,
+    right: 30,
+    padding: 20,
+    cursor: 'pointer'
   }
 })
 
@@ -89,6 +99,10 @@ class ViewQuadro extends Component {
         <img src={cross} 
               onClick={this.props.clickClose}
               className={classes.buttonClose}
+              alt="Fechar" /> 
+        <img src={info} 
+              onClick={this.props.clickInfo}
+              className={classes.buttonInfo}
               alt="Fechar" /> 
 
         <div className={classes.image} >

@@ -35,6 +35,7 @@ import iconuva from './../../icons/grapes.svg';
 import iconsuco from './../../icons/orange-juice.svg';
 import icontouro from './../../icons/bull.svg';
 import iconurubu from './../../icons/vulture.svg';
+import Swal from 'sweetalert2';
 
 const styles = ({
     divButton: {
@@ -676,6 +677,7 @@ class AtividadeLigarPalavras extends Component {
         this.clickItem = this.clickItem.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
     }
 
     componentDidMount(){
@@ -782,11 +784,20 @@ class AtividadeLigarPalavras extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Atividade com palavras',
+            'Monte a palavra clicando nas duas partes dela',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
 
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 noShow={true}
                 onClickOuvir={this.clickOuvir}

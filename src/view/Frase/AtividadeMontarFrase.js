@@ -10,7 +10,8 @@ import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
 import TenteNovamente from '../../Audios/TenteNovamente.mp3';
 import firebase from 'firebase';
 import 'firebase/app';
-import "firebase/firestore"
+import "firebase/firestore";
+import Swal from 'sweetalert2';
 
 const style = ({
     view: {
@@ -224,6 +225,7 @@ class AtividadeVogalFrase extends Component {
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickItem = this.clickItem.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
     }
 
     componentDidMount(){
@@ -362,11 +364,20 @@ class AtividadeVogalFrase extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Frase',
+            'Escute a frase e monte-a clicando nas palavras',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>

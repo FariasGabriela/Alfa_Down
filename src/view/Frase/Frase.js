@@ -7,6 +7,7 @@ import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
 import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
 import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
 import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
+import Swal from 'sweetalert2';
 
 const style = ({
     view: {
@@ -51,6 +52,7 @@ class Frase extends Component {
         this.clickProximo = this.clickProximo.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
     }
 
     componentDidMount(){
@@ -79,11 +81,20 @@ class Frase extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Frase',
+            'Veja a frase e escute a sua pronúncia clicando no botão ouvir',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>

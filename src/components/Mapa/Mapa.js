@@ -161,11 +161,14 @@ class Mapa extends Component {
     componentDidMount(){
 
         firebase.auth().onAuthStateChanged(doc => {
-            this.getDados(doc.uid);
+            if (doc) {
+                this.getDados(doc.uid);
 
-            this.setState({
-                open: false
-            })
+                this.setState({
+                    open: false
+                })
+            }
+            
         })
     }
 

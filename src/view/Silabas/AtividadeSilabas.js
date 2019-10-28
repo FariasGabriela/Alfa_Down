@@ -101,6 +101,8 @@ import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+
 
 const styles = ({
     divButton: {
@@ -780,6 +782,7 @@ class AtividadeSilabas extends Component {
         this.clickItem = this.clickItem.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
     }
 
     componentDidMount(){
@@ -923,12 +926,21 @@ class AtividadeSilabas extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Atividade com sílabas',
+            'Selecione a sílaba correspondente a pronunciada',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
 
         return (
             <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center'}} >
                 <ViewQuadro 
+                    clickInfo={this.clickInfo}
                     clickClose={this.clickClose}
                     onClickOuvir={this.clickOuvir}
                     onClickProximo={this.clickProximo}>

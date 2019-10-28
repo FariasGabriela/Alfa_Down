@@ -97,6 +97,7 @@ import TU from '../../Audios/tu.mp3';
 import VU from '../../Audios/vu.mp3';
 import XU from '../../Audios/xu.mp3';
 import ZU from '../../Audios/zu.mp3';
+import Swal from 'sweetalert2'
 
 const style = ({
     view: {
@@ -162,6 +163,7 @@ class Silabas extends Component {
         this.clickProximo = this.clickProximo.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
     }
 
     componentDidMount(){
@@ -223,11 +225,20 @@ class Silabas extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Sílabas',
+            'Veja a sílaba e escute a sua pronúncia clicando no botão ouvir',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>

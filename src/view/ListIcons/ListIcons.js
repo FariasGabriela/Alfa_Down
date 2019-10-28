@@ -42,6 +42,7 @@ import vulture from './../../icons/vulture.svg';
 import yoyo from './../../icons/yoyo.svg';
 import crown from './../../icons/crown.svg';
 import cross from './../../icons/cross.svg';
+import info from './../../icons/info.svg';
 import Grid from '@material-ui/core/Grid';
 
 const styles = ({
@@ -53,6 +54,15 @@ const styles = ({
         width: '100%',
         overflowY: 'scroll',
         overflowX: 'hidden'
+    },
+    buttonClose: {
+        height: 30,
+        width: 30,
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        padding: 20,
+        cursor: 'pointer'
     }
 })
 
@@ -62,6 +72,12 @@ class ListIcons extends Component {
         super(props);
 
         window.soundManager.setup({ debugMode: false });
+
+        this.clickClose = this.clickClose.bind(this);
+    }
+
+    clickClose(){
+        this.props.history.push('/')
     }
 
     render(){
@@ -69,6 +85,11 @@ class ListIcons extends Component {
 
         return (
             <div className={classes.card}>
+                <img src={cross} 
+                    onClick={this.clickClose}
+                    className={classes.buttonClose}
+                    alt="Fechar" /> 
+
                 <Grid container spacing={8} >
                     <Grid item xs={12} className={classes.grid} style={{marginTop: 15, fontSize: 20, display: 'flex', justifyContent: 'center' }}>
                         <div> As imagens utilizadas neste trabalho, foram retiradas no site <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -359,6 +380,11 @@ class ListIcons extends Component {
                             alt="Quadro"/> {/*Referenciar criador*/}
                         <div>Icons made by <a href="https://www.flaticon.com/authors/balraj-chana" title="Balraj Chana">Balraj Chana</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
                     </Grid>
+                    <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
+                        <img   src={info} 
+                            className={classes.img}
+                            alt="Quadro"/> {/*Referenciar criador*/}
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>                    </Grid>
                 </Grid>
             </div>
         )

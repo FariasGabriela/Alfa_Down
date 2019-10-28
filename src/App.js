@@ -9,9 +9,21 @@ import Palavra from './view/Palavras/Palavras';
 import AtividadeMontarPalavra from './view/Palavras/AtividadeMontarPalavra';
 import AtividadeLigarPalavras from './view/Palavras/AtividadeLigarPalavras';
 import Frase from './view/Frase/Frase';
-import AtividadeVogalFrase from './view/Frase/AtividadeVogalFrase';
+import AtividadeMontarFrase from './view/Frase/AtividadeMontarFrase';
 import Login from './view/Login/Login';
 import ListIcons from './view/ListIcons/ListIcons';
+import firebase from 'firebase';
+import 'firebase/app';
+import "firebase/firestore";
+import Texto from './view/Texto/Texto';
+import IniciarMapa from './view/Inicio/InicioMapa';
+
+var firebaseConfig = {
+
+  
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
 const style = ({
   card: {
@@ -35,13 +47,15 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
               <Route path="/" exact={true} component={Inicio} />
+              <Route path="/iniciar" component={IniciarMapa} />
               <Route path="/silaba/:vogal/:index" component={Silaba} />
               <Route path="/atividade/:vogal/:index" component={AtividadeSilabas} />
               <Route path="/palavra/:vogal/:index" component={Palavra} />
               <Route path="/atividade-palavra/:vogal/:index" component={AtividadeMontarPalavra} />
               <Route path="/atividade-ligar/:vogal/:index" component={AtividadeLigarPalavras} />
               <Route path="/frase/:index" component={Frase} />
-              <Route path="/atividade-frase-vogal/:vogal/:index" component={AtividadeVogalFrase} /> 
+              <Route path="/atividade-frase/:index" component={AtividadeMontarFrase} /> 
+              <Route path="/texto/:index" component={Texto} />
               <Route path="/login" component={Login} />
               <Route path="/icons" component={ListIcons} />
           </Switch>

@@ -63,6 +63,7 @@ import iconuva from './../../icons/grapes.svg';
 import iconsuco from './../../icons/orange-juice.svg';
 import icontouro from './../../icons/bull.svg';
 import iconurubu from './../../icons/vulture.svg';
+import Swal from 'sweetalert2';
 
 const style = ({
     view: {
@@ -119,6 +120,7 @@ class Palavras extends Component {
         this.clickProximo = this.clickProximo.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
 
     }
 
@@ -158,11 +160,20 @@ class Palavras extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Palavra',
+            'Veja a palavra e escute a sua pronúncia clicando no botão ouvir',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>

@@ -69,7 +69,8 @@ import icontouro from './../../icons/bull.svg';
 import iconurubu from './../../icons/vulture.svg';
 import firebase from 'firebase';
 import 'firebase/app';
-import "firebase/firestore"
+import "firebase/firestore";
+import Swal from 'sweetalert2';
 
 const styles = ({
     divButton: {
@@ -1233,6 +1234,7 @@ class AtividadeMontarPalavra extends Component {
         this.clickItem = this.clickItem.bind(this);
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
+        this.clickInfo = this.clickInfo.bind(this);
 
     }
 
@@ -1395,11 +1397,20 @@ class AtividadeMontarPalavra extends Component {
         this.props.history.push('/')
     }
 
+    clickInfo(){
+        Swal.fire(
+            'Atividade com palavras',
+            'Monte a palavra pronunciada selecionando suas sílabas',
+            'question'
+        )
+    }
+
     render() {
         const {classes} = this.props;
 
         return (
             <ViewQuadro 
+                clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
                 onClickProximo={this.clickProximo}>
