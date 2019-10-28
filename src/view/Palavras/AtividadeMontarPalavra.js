@@ -14,7 +14,7 @@ import faca from '../../Audios/Palavras/faca.mp3';
 import lampada from '../../Audios/Palavras/lampada.mp3';
 import canela from '../../Audios/Palavras/canela.mp3';
 import caneta from '../../Audios/Palavras/caneta.mp3';
-import abacate from '../../Audios/Palavras/abacate.mp3';
+import dedo from '../../Audios/Palavras/dedo.mp3';
 import jacare from '../../Audios/Palavras/jacare.mp3';
 import leite from '../../Audios/Palavras/leite.mp3';
 import peixe from '../../Audios/Palavras/peixe.mp3';
@@ -45,7 +45,7 @@ import iconfaca from './../../icons/knife.svg';
 import iconlampada from './../../icons/lampada.svg';
 import iconcanela from './../../icons/cinnamon.svg';
 import iconcaneta from './../../icons/pen.svg';
-import iconabacate from './../../icons/avocado.svg';
+import icondedo from './../../icons/dedo.svg';
 import iconjacare from './../../icons/alligator.svg';
 import iconleite from './../../icons/milk.svg';
 import iconpeixe from './../../icons/fish.svg';
@@ -159,21 +159,21 @@ class AtividadeMontarPalavra extends Component {
             play: Sound.status.PAUSED,
             iconsUtilizados: [
                 [ iconbanana, iconmacaco, iconbatata, iconbala, iconfaca, iconlampada ],
-                [ iconcanela, iconcaneta, iconabacate, iconjacare, iconleite, iconpeixe ],
+                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
                 [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
                 [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
             ],
             sonsUtilizados: [
                 [ banana, macaco, batata, bala, faca, lampada ],
-                [ canela, caneta, abacate, jacare, leite, peixe ],
+                [ canela, caneta, dedo, jacare, leite, peixe ],
                 [ lixo, ioio, limao, meia, palito, papai ],
                 [ foca, fogo, gato, goiaba, copo, carro ],
                 [ luva, lupa, uva, suco, touro, urubu ]
             ],
             palavrasUtilizadas: [
                 [ 'BANANA', 'MACACO', 'BATATA', 'BALA', 'FACA', 'LÂMPADA' ],
-                [ 'CANELA', 'CANETA', 'ABACATE', 'JACARÉ', 'LEITE', 'PEIXE' ],
+                [ 'CANELA', 'CANETA', 'DEDO', 'JACARÉ', 'LEITE', 'PEIXE' ],
                 [ 'LIXO', 'IOIÔ', 'LIMÃO', 'MEIA', 'PALITO', 'PAPAI' ],
                 [ 'FOCA', 'FOGO', 'GATO', 'GOIABA', 'COPO', 'CARRO' ],
                 [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ]
@@ -181,7 +181,7 @@ class AtividadeMontarPalavra extends Component {
             qtSilabas: 0,
             silabas: [],
             qtSilabasOne: [2, 2, 2, 1, 1, 2],
-            qtSilabasTwo: [2, 2, 2, 2, 1, 1],
+            qtSilabasTwo: [2, 2, 1, 1, 1, 1],
             qtSilabasThree: [1, 1, 1, 1, 2, 1],
             qtSilabasFour: [1, 1, 1, 2, 1, 1],
             qtSilabasFive: [1, 1, 1, 1, 1, 2],
@@ -399,7 +399,7 @@ class AtividadeMontarPalavra extends Component {
                 [
                     {
                         key: 0,
-                        name: 'LA',
+                        name: 'BE',
                         select: false,
                     },
                     {
@@ -479,13 +479,13 @@ class AtividadeMontarPalavra extends Component {
                     },
                     {
                         key: 2,
-                        name: 'A',
+                        name: 'DE',
                         select: false,
                         indexSelect: 0
                     },
                     {
                         key: 3,
-                        name: 'BA',
+                        name: 'DO',
                         select: false,
                         indexSelect: 1
                     },
@@ -498,7 +498,6 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'CA',
                         select: false,
-                        indexSelect: 2
                     },
                 ],
                 [

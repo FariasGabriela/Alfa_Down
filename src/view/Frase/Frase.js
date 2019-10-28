@@ -6,7 +6,7 @@ import aBolaDaFoca from './../../Audios/Frases/aBolaDaFoca.mp3';
 import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
 import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
 import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
-import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
+import oRadioTocaAMusica from './../../Audios/Frases/oRadioTocaAMusica.mp3';
 import Swal from 'sweetalert2';
 
 const style = ({
@@ -34,14 +34,14 @@ class Frase extends Component {
             frasesUtilizadas: [
                 ['A GATA NA MALA'],
                 ['A BOLA DA FOCA'],
-                ['A PIPOCA PULA NA PANELA'],
+                ['O RÁDIO TOCA A MÚSICA'],
                 ['O TATU CAVA O BURACO'],
                 ['O TELEFONE TOCOU'],
             ],
             audiosUtilizados: [
                 aGataNaMala,
                 aBolaDaFoca,
-                pipocaPulaNaPanela,
+                oRadioTocaAMusica,
                 oTatuCavaoBuraco,
                 oTelefoneTocou
             ],

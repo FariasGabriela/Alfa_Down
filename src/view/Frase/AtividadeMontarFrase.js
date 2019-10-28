@@ -6,7 +6,7 @@ import aBolaDaFoca from './../../Audios/Frases/aBolaDaFoca.mp3';
 import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
 import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
 import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
-import pipocaPulaNaPanela from './../../Audios/Frases/pipocaPulaNaPanela.mp3';
+import oRadioTocaAMusica from './../../Audios/Frases/oRadioTocaAMusica.mp3';
 import TenteNovamente from '../../Audios/TenteNovamente.mp3';
 import firebase from 'firebase';
 import 'firebase/app';
@@ -61,7 +61,7 @@ class AtividadeVogalFrase extends Component {
             frasesUtilizadas: [
                 ['A GATA NA MALA'],
                 ['A BOLA DA FOCA'],
-                ['A PIPOCA PULA NA PANELA'],
+                ['O RÁDIO TOCA A MÚSICA'],
                 ['O TATU CAVA O BURACO'],
                 ['O TELEFONE TOCOU'],
             ],
@@ -75,7 +75,7 @@ class AtividadeVogalFrase extends Component {
             audiosUtilizados: [
                 aGataNaMala,
                 aBolaDaFoca,
-                pipocaPulaNaPanela,
+                oRadioTocaAMusica,
                 oTatuCavaoBuraco,
                 oTelefoneTocou
             ],
@@ -135,31 +135,31 @@ class AtividadeVogalFrase extends Component {
             ],
             itensPalavraThree: [
                 {
-                    name: 'PULA',
+                    name: 'TOCA',
                     key: 0,
                     select: false,
                     index: 2
                 }, 
                 {
-                    name:'PANELA',
+                    name:'MÚSICA',
                     key: 1,
                     select: false,
                     index: 4
                 }, 
                 {
-                    name:'PIPOCA',
+                    name:'RÁDIO',
                     key: 2,
                     select: false,
                     index: 1
                 }, 
                 {
-                    name:'A',
+                    name:'O',
                     key: 3,
                     select: false,
                     index: 0
                 },
                 {
-                    name:'NA',
+                    name:'A',
                     key: 4,
                     select: false,
                     index: 3

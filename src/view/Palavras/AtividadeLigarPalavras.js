@@ -13,7 +13,7 @@ import iconfaca from './../../icons/knife.svg';
 import iconlampada from './../../icons/lampada.svg';
 import iconcanela from './../../icons/cinnamon.svg';
 import iconcaneta from './../../icons/pen.svg';
-import iconabacate from './../../icons/avocado.svg';
+import icondedo from './../../icons/dedo.svg';
 import iconjacare from './../../icons/alligator.svg';
 import iconleite from './../../icons/milk.svg';
 import iconpeixe from './../../icons/fish.svg';
@@ -135,7 +135,7 @@ class AtividadeLigarPalavras extends Component {
             indexSoundSelect: 0,
             iconsUtilizados: [
                 [ iconbanana, iconmacaco, iconbatata, iconbala, iconfaca, iconlampada ],
-                [ iconcanela, iconcaneta, iconabacate, iconjacare, iconleite, iconpeixe ],
+                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
                 [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
                 [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
@@ -279,7 +279,7 @@ class AtividadeLigarPalavras extends Component {
                             disable: false
                         },
                         secondItem: {
-                            item: 'BACA',
+                            item: 'DO',
                             index: 1,
                             select: false,
                             disable: false
@@ -433,9 +433,9 @@ class AtividadeLigarPalavras extends Component {
                 ],
                 [
                     {
-                        icon: iconabacate,
+                        icon: icondedo,
                         firstItem: {
-                            item: 'A',
+                            item: 'DE',
                             index: 1,
                             select: false,
                             disable: false

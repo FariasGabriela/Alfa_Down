@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/styles';
 import alligator from './../../icons/alligator.svg';
-import avocado from './../../icons/avocado.svg';
+import dedo from './../../icons/dedo.svg';
 import bala from './../../icons/bala.svg';
 import banana from './../../icons/banana.svg';
 import bull from './../../icons/bull.svg';
@@ -104,10 +104,10 @@ class ListIcons extends Component {
                         <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
                     </Grid>
                     <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
-                        <img   src={avocado} 
+                        <img   src={dedo} 
                             className={classes.img}
                             alt="Quadro"/> {/*Referenciar criador*/}
-                            <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
                     </Grid>
                     <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
                         <img   src={bala} 

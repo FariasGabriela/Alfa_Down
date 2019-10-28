@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="40" height="40" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Repetição_de_grade_1" data-name="Repetição de grade 1" clip-path="url(#clip-path)">
+    <g transform="translate(-969 -57)">
+      <g id="Play-button" transform="translate(969 57)">
+        <path id="Play-button-2" data-name="Play-button" d="M20,0A20,20,0,1,0,40,20,20.023,20.023,0,0,0,20,0ZM30.375,20.551l-14.667,10a.668.668,0,0,1-.375.116A.667.667,0,0,1,14.667,30V10a.667.667,0,0,1,1.043-.551l14.667,10a.667.667,0,0,1,0,1.1Z" fill="#2a9d8f"/>
+      </g>
+    </g>
+  </g>
+</svg>
