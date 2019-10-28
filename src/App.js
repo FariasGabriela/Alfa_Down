@@ -20,7 +20,6 @@ import IniciarMapa from './view/Inicio/InicioMapa';
 
 var firebaseConfig = {
 
-  
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
