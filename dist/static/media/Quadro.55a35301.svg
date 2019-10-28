@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="664" height="528" viewBox="0 0 664 528">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="664" height="528" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Surface" clip-path="url(#clip-path)">
+    <g id="Surface-2" data-name="Surface" transform="translate(0 9)">
+      <path id="Caminho_35" data-name="Caminho 35" d="M652.936,367.451H11.064C4.954,367.451,0,363.515,0,358.657s4.954-8.79,11.064-8.79H652.936c6.109,0,11.064,3.936,11.064,8.79S659.045,367.451,652.936,367.451Zm0,0" transform="translate(0 10.869)" fill="#6d6e71"/>
+      <path id="Caminho_36" data-name="Caminho 36" d="M462.535,508.121c-4.615,0-8.749-2.274-10.37-5.707l-63.7-134.963H204.6L140.9,502.414c-2.138,4.548-8.516,6.858-14.245,5.16s-8.632-6.765-6.494-11.313l66.4-140.67c1.611-3.441,5.75-5.723,10.37-5.723h199.2c4.615,0,8.749,2.27,10.365,5.707L472.9,496.24c2.148,4.548-.75,9.615-6.469,11.325h0A14.358,14.358,0,0,1,462.535,508.121Zm0,0" transform="translate(35.465 10.869)" fill="#6d6e71"/>
+      <path id="Caminho_37" data-name="Caminho 37" d="M153.6,418.133H416.989v17.583H153.6Zm0,0" transform="translate(45.601 12.936)" fill="#6d6e71"/>
+      <rect id="Retângulo_1" data-name="Retângulo 1" width="596.563" height="369.255" transform="translate(33.2 -9)" fill="#e6e7e8"/>
+    </g>
+  </g>
+</svg>
