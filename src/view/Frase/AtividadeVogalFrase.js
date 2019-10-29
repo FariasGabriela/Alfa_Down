@@ -60,6 +60,7 @@ class AtividadeVogalFrase extends Component {
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
+        this.clickBack = this.clickBack.bind(this);
     }
 
     componentDidMount(){
@@ -92,11 +93,18 @@ class AtividadeVogalFrase extends Component {
         )
     }
 
+    clickBack(){
+        this.props.history.push(
+            '/palavra/' + parseFloat(this.props.match.params.index) + '/' + 0
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro
+                clickBack={this.clickBack}
                 clickInfo={this.clickInfo} 
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}

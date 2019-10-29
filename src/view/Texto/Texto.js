@@ -132,6 +132,7 @@ class Texto extends Component {
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
+        this.clickBack = this.clickBack.bind(this);
     }
 
     componentDidMount(){
@@ -205,11 +206,18 @@ class Texto extends Component {
         )
     }
 
+    clickBack(){
+        this.props.history.push(
+            '/frase/' + this.props.match.params.index
+        )
+    }
+
     render() {
         const {classes} = this.props;
         
         return (
             <ViewQuadro 
+                clickBack={this.clickBack}
                 clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}

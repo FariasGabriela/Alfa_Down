@@ -66,11 +66,11 @@ const styles = ({
     cursor: 'pointer'
   },
   buttonBack: {
-    height: 0,
+    height: 30,
     width: 55,
     position: 'absolute',
     top: 0,
-    left: 30,
+    left: 0,
     padding: 20,
     cursor: 'pointer',
     paddingLeft: 10
@@ -116,7 +116,7 @@ class ViewQuadro extends Component {
               className={classes.buttonInfo}
               alt="Fechar" /> 
         <img src={back} 
-              onClick={this.props.clicBack}
+              onClick={this.props.clickBack}
               className={classes.buttonBack}
               alt="Fechar" /> 
 

@@ -1234,6 +1234,7 @@ class AtividadeMontarPalavra extends Component {
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
+        this.clickBack = this.clickBack.bind(this);
 
     }
 
@@ -1404,11 +1405,18 @@ class AtividadeMontarPalavra extends Component {
         )
     }
 
+    clickBack(){
+        this.props.history.push(
+            '/silaba/' + this.props.match.params.vogal + '/' + this.props.match.params.index
+        )
+    }
+
     render() {
         const {classes} = this.props;
 
         return (
             <ViewQuadro 
+                clickBack={this.clickBack}
                 clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}

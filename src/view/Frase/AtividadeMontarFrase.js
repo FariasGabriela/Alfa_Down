@@ -226,7 +226,7 @@ class AtividadeVogalFrase extends Component {
         this.clickItem = this.clickItem.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
-        this.clicBack = this.clicBack.bind(this);
+        this.clickBack = this.clickBack.bind(this);
     }
 
     componentDidMount(){
@@ -373,9 +373,9 @@ class AtividadeVogalFrase extends Component {
         )
     }
 
-    clicBack(){
+    clickBack(){
         this.props.history.push(
-            '/palavra/' + parseFloat(this.props.match.params.index) + '/' 0
+            '/palavra/' + parseFloat(this.props.match.params.index) + '/' + 0
         )
     }
 
@@ -384,6 +384,7 @@ class AtividadeVogalFrase extends Component {
         
         return (
             <ViewQuadro 
+                clickBack={this.clicBack}
                 clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}

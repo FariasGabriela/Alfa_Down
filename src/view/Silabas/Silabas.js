@@ -164,6 +164,7 @@ class Silabas extends Component {
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
+        this.clickBack = this.clickBack.bind(this);
     }
 
     componentDidMount(){
@@ -231,6 +232,10 @@ class Silabas extends Component {
             'Veja a sílaba e escute a sua pronúncia clicando no botão ouvir',
             'question'
         )
+    }
+
+    clickBack(){
+        this.props.history.push('/')
     }
 
     render() {

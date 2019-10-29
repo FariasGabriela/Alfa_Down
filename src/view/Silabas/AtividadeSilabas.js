@@ -783,6 +783,7 @@ class AtividadeSilabas extends Component {
         this.clickOuvir = this.clickOuvir.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
+        this.clickBack = this.clickBack.bind(this);
     }
 
     componentDidMount(){
@@ -934,12 +935,17 @@ class AtividadeSilabas extends Component {
         )
     }
 
+    clickBack(){
+        this.props.history.push('/')
+    }
+
     render() {
         const {classes} = this.props;
 
         return (
             <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center'}} >
                 <ViewQuadro 
+                    clickBack={this.clickBack}
                     clickInfo={this.clickInfo}
                     clickClose={this.clickClose}
                     onClickOuvir={this.clickOuvir}
