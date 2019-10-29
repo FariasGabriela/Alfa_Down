@@ -94,35 +94,35 @@ import XU from '../../Audios/xu.mp3';
 import ZU from '../../Audios/zu.mp3';
 import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
-import Trofeu from './../../icons/trofeu.svg';
 import FootPrint from './../../icons/footprint.svg';
 import SilabaCorrespondente from './../../Audios/silabaCorrespondente.mp3';
 import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
 import Swal from 'sweetalert2';
-
+import Lottie from 'react-lottie';
+import * as animationData from './../../icons/winNivel.json';
 
 const styles = ({
     divButton: {
         cursor: 'pointer',
         font: 20,
-        height: 50,
+        height: 70,
         width: 100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgb(42, 157, 143)',
         borderRadius: 10,
-        marginTop: 70
+        marginBottom: 15
     },
     divModal: {
         transition: 'opacity 1s linear',
         flexDirection: 'column',
         width: '50%', 
         height: '50%', 
-        backgroundColor: '#e1eec3',
+        backgroundColor: '#FFFFFF',
         borderRadius: 10,
         display: 'flex',
         alignItems: 'center',
@@ -892,8 +892,11 @@ class AtividadeSilabas extends Component {
                     index: parseFloat(this.props.match.params.index)
                 })
 
-                swal("Bom trabalho!", "", "success").then(() => {
+                /*swal("Bom trabalho!", "", "success").then(() => {
                     this.clickProximo();
+                })*/
+                this.setState({
+                    open: true
                 })
             } else {
                 setTimeout(() => { 
@@ -940,6 +943,14 @@ class AtividadeSilabas extends Component {
     }
 
     render() {
+        const defaultOptions = {
+            loop: true,
+            autoplay: true, 
+            animationData: animationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          };
         const {classes} = this.props;
 
         return (
@@ -1006,9 +1017,11 @@ class AtividadeSilabas extends Component {
                                 open={this.state.open}
                             >
                             <div style={{ opacity: this.state.open ? 1 : 0 }} className={classes.divModal}>
-                                <img  src={Trofeu} 
-                                    className={classes.img}
-                                    alt="Trofeu"/> {/*Referenciar criador*/}
+                                <Lottie options={defaultOptions}
+                                        height={400}
+                                        width={400}
+                                        isStopped={false}
+                                        isPaused={false}/>
                                 <div className={classes.divButton}
                                     onClick={this.clickProximo}> 
                                         Continuar 
