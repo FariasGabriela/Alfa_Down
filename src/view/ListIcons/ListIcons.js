@@ -43,6 +43,7 @@ import yoyo from './../../icons/yoyo.svg';
 import crown from './../../icons/crown.svg';
 import cross from './../../icons/cross.svg';
 import info from './../../icons/info.svg';
+import back from './../../icons/back.svg';
 import Grid from '@material-ui/core/Grid';
 
 const styles = ({
@@ -384,7 +385,14 @@ class ListIcons extends Component {
                         <img   src={info} 
                             className={classes.img}
                             alt="Quadro"/> {/*Referenciar criador*/}
-                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>                    </Grid>
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>                    
+                    </Grid>
+                    <Grid item xs={3} className={classes.grid} style={{marginTop: 15 }}>
+                        <img   src={back} 
+                            className={classes.img}
+                            alt="Quadro"/> {/*Referenciar criador*/}
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/lyolya" title="Lyolya">Lyolya</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
+                    </Grid>
                 </Grid>
             </div>
         )

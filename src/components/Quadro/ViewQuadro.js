@@ -6,6 +6,7 @@ import Proximo from './../../icons/right-arrow.svg';
 import { withStyles } from '@material-ui/core/styles';
 import cross from './../../icons/cross.svg';
 import info from './../../icons/info.svg';
+import back from './../../icons/back.svg';
 
 const styles = ({
   card: { 
@@ -63,6 +64,16 @@ const styles = ({
     right: 30,
     padding: 20,
     cursor: 'pointer'
+  },
+  buttonBack: {
+    height: 0,
+    width: 55,
+    position: 'absolute',
+    top: 0,
+    left: 30,
+    padding: 20,
+    cursor: 'pointer',
+    paddingLeft: 10
   }
 })
 
@@ -103,6 +114,10 @@ class ViewQuadro extends Component {
         <img src={info} 
               onClick={this.props.clickInfo}
               className={classes.buttonInfo}
+              alt="Fechar" /> 
+        <img src={back} 
+              onClick={this.props.clicBack}
+              className={classes.buttonBack}
               alt="Fechar" /> 
 
         <div className={classes.image} >

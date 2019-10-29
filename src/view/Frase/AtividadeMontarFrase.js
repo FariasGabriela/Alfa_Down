@@ -226,6 +226,7 @@ class AtividadeVogalFrase extends Component {
         this.clickItem = this.clickItem.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.clickInfo = this.clickInfo.bind(this);
+        this.clicBack = this.clicBack.bind(this);
     }
 
     componentDidMount(){
@@ -369,6 +370,12 @@ class AtividadeVogalFrase extends Component {
             'Frase',
             'Escute a frase e monte-a clicando nas palavras',
             'question'
+        )
+    }
+
+    clicBack(){
+        this.props.history.push(
+            '/palavra/' + parseFloat(this.props.match.params.index) + '/' 0
         )
     }
 
