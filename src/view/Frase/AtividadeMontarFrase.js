@@ -12,8 +12,42 @@ import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
 import Swal from 'sweetalert2';
+import Lottie from 'react-lottie';
+import * as animationData from './../../icons/winNivel.json';
+import Modal from '@material-ui/core/Modal';
 
 const style = ({
+    divButton: {
+        cursor: 'pointer',
+        font: 20,
+        height: 70,
+        width: 100,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgb(42, 157, 143)',
+        borderRadius: 10,
+        marginBottom: 15
+    },
+    divModal: {
+        transition: 'opacity 1s linear',
+        flexDirection: 'column',
+        width: '50%', 
+        height: '50%', 
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modal: {
+        transition: 'opacity 1s linear',
+        width: '100%', 
+        height: '100%', 
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     view: {
         position: 'absolute',
         top: 0,
@@ -56,6 +90,8 @@ class AtividadeVogalFrase extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            animation: false,
+            open: false,
             playTenteNovamente: Sound.status.PAUSED,
             frase: [],
             frasesUtilizadas: [
@@ -304,11 +340,22 @@ class AtividadeVogalFrase extends Component {
                         index: 0
                     })
 
-                    setTimeout(() => { 
+                    this.setState({
+                        open: true,
+                        animation: false
+                    }, () => {
+                        setTimeout(() => { 
+                            this.setState({
+                                animation: true
+                            })
+                        }, 1200)
+                    })
+
+                   /* setTimeout(() => { 
                         this.props.history.push(
                             '/texto/' + parseFloat(this.props.match.params.index)
                         )
-                    }, 100);
+                    }, 100);*/
                 }
             } else if (this.state.currentIndex === 3 ){
                 this.setState({
@@ -323,11 +370,21 @@ class AtividadeVogalFrase extends Component {
                         index: 0
                     })
 
-                    setTimeout(() => { 
+                   /* setTimeout(() => { 
                         this.props.history.push(
                             '/texto/' + parseFloat(this.props.match.params.index)
                         )
-                    }, 100);
+                    }, 100);*/
+                    this.setState({
+                        open: true,
+                        animation: false
+                    }, () => {
+                        setTimeout(() => { 
+                            this.setState({
+                                animation: true
+                            })
+                        }, 1200)
+                    })
                 }
             } else if (this.state.currentIndex === 4 ){
                 this.setState({
@@ -342,11 +399,22 @@ class AtividadeVogalFrase extends Component {
                     index: 0
                 })
 
-                setTimeout(() => { 
+                this.setState({
+                    open: true,
+                    animation: false
+                }, () => {
+                    setTimeout(() => { 
+                        this.setState({
+                            animation: true
+                        })
+                    }, 1200)
+                })
+
+                /*setTimeout(() => { 
                     this.props.history.push(
                         '/texto/' + parseFloat(this.props.match.params.index)
                     )
-                }, 100);
+                }, 100);*/
             }
 
             this.setState({
@@ -381,6 +449,14 @@ class AtividadeVogalFrase extends Component {
 
     render() {
         const {classes} = this.props;
+        const defaultOptions = {
+            loop: true,
+            autoplay: true, 
+            animationData: animationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }
         
         return (
             <ViewQuadro 
@@ -419,6 +495,23 @@ class AtividadeVogalFrase extends Component {
                     })}
                 </div>
                 </div>
+                <Modal
+                    className={classes.modal}
+                    open={this.state.open}
+                >
+                <div className={classes.divModal}>
+                        <Lottie options={defaultOptions}
+                                height={400}
+                                width={400}
+                                isStopped={false}
+                                isPaused={this.state.animation}/>
+                    <div className={classes.divButton}
+                            onClick={this.clickProximo}> 
+                            Continuar 
+                    </div>
+                </div>
+                    
+                </Modal>
                 <Sound
                     url={this.state.sound}
                     playStatus={this.state.play}

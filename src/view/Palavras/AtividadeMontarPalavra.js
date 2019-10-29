@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Sound from 'react-sound';
 import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
-import Trofeu from './../../icons/trofeu.svg';
 
 import banana from '../../Audios/Palavras/banana.mp3';
 import macaco from '../../Audios/Palavras/macaco.mp3';
@@ -71,21 +70,24 @@ import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
 import Swal from 'sweetalert2';
+import Lottie from 'react-lottie';
+import * as animationData from './../../icons/winNivel.json';
 
 const styles = ({
     divButton: {
         cursor: 'pointer',
         font: 20,
-        height: 50,
+        height: 70,
         width: 100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgb(42, 157, 143)',
         borderRadius: 10,
-        marginTop: 70
+        marginBottom: 15
     },
     divModal: {
+        transition: 'opacity 1s linear',
         flexDirection: 'column',
         width: '50%', 
         height: '50%', 
@@ -96,6 +98,7 @@ const styles = ({
         justifyContent: 'center',
     },
     modal: {
+        transition: 'opacity 1s linear',
         width: '100%', 
         height: '100%', 
         display: 'flex',
@@ -149,6 +152,7 @@ class AtividadeMontarPalavra extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            animation: false,
             firstSilaba: '',
             secondSilaba: '',
             threeSilaba: '',
@@ -181,7 +185,7 @@ class AtividadeMontarPalavra extends Component {
             qtSilabas: 0,
             silabas: [],
             qtSilabasOne: [2, 2, 2, 1, 1, 2],
-            qtSilabasTwo: [2, 2, 1, 1, 1, 1],
+            qtSilabasTwo: [2, 2, 1, 2, 1, 1],
             qtSilabasThree: [1, 1, 1, 1, 2, 1],
             qtSilabasFour: [1, 1, 1, 2, 1, 1],
             qtSilabasFive: [1, 1, 1, 1, 1, 2],
@@ -1244,6 +1248,7 @@ class AtividadeMontarPalavra extends Component {
         var qtSilabas = [];
 
         if ( rodada === 0 ) {
+            console.log(this.state.qtSilabasOne)
             silabas = this.state.silabasOne;
             qtSilabas = this.state.qtSilabasOne;
         } else if ( rodada === 1 ) {
@@ -1299,8 +1304,28 @@ class AtividadeMontarPalavra extends Component {
             })
         })
        } else {
-        this.props.history.push('/atividade-ligar/'+ this.props.match.params.vogal + "/" + this.props.match.params.index )
-       }
+           if (this.state.open){
+                this.props.history.push('/atividade-ligar/'+ this.props.match.params.vogal + "/" + this.props.match.params.index )
+           } else {
+                this.setState({
+                    open: true,
+                    animation: false
+                }, () => {
+                    this.setState({
+                        firstSilaba: '',
+                        secondSilaba: '',
+                        threeSilaba: '',
+                        indexItemSelect: 0
+                    })
+
+                    setTimeout(() => { 
+                        this.setState({
+                            animation: true
+                        })
+                    }, 1200)
+                })
+            }
+        }
     }
 
     clickItem(item){
@@ -1413,6 +1438,14 @@ class AtividadeMontarPalavra extends Component {
 
     render() {
         const {classes} = this.props;
+        const defaultOptions = {
+            loop: true,
+            autoplay: true, 
+            animationData: animationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }
 
         return (
             <ViewQuadro 
@@ -1474,9 +1507,11 @@ class AtividadeMontarPalavra extends Component {
                             open={this.state.open}
                         >
                         <div className={classes.divModal}>
-                            <img  src={Trofeu} 
-                                className={classes.img}
-                                alt="Trofeu"/> {/*Referenciar criador*/}
+                                <Lottie options={defaultOptions}
+                                        height={400}
+                                        width={400}
+                                        isStopped={false}
+                                        isPaused={this.state.animation}/>
                             <div className={classes.divButton}
                                  onClick={this.clickProximo}> 
                                     Continuar 

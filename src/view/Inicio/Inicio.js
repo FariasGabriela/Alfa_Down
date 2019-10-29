@@ -10,6 +10,7 @@ const style = ({
     alignItems: 'center'
   },
   iniciar: {
+    boxShadow: '0px 6px 9px rgb(0, 0, 0, 0.2)',
     fontSize: 40,
     height: 100,
     width: 200,
@@ -36,8 +37,17 @@ const style = ({
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'flex-end',
-      width: '100%', 
+      width: '50%', 
   },
+  title: {
+    marginLeft: 20,
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'flex-start',
+    color: '#2A9D8F',
+    fontSize: 50,
+    width: '50%', 
+},
   itemBarra: {
     width: 150,
     display: 'flex',
@@ -53,6 +63,7 @@ class App extends Component {
 
     this.clickIcones = this.clickIcones.bind(this);
     this.clickMetodo = this.clickMetodo.bind(this);
+    this.clickConta = this.clickConta.bind(this)
   }
 
   clickIcones(){
@@ -63,15 +74,23 @@ class App extends Component {
 
   }
 
+  clickConta(){
+    this.props.history.push('/icons')
+  }
+
   render() {
     const {classes} = this.props;
 
     return (
         <div style={{width: '100%'}}>
           <div className={classes.head} > 
+              <div className={classes.title} >
+                AlfaDown
+              </div>
               <div className={classes.barra} >
                   <div className={classes.itemBarra} onClick={this.clickIcones}>Ícones</div>
                   <div className={classes.itemBarra} onClick={this.clickMetodo}>Abacada</div>
+                  <div className={classes.itemBarra} onClick={this.clickConta}>Criar conta</div>
               </div>
           </div>
 

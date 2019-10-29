@@ -173,6 +173,7 @@ class AtividadeSilabas extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            animation: true,
             playSilabaCorrespondente: Sound.status.PAUSED,
             open: false,
             playTenteNovamente: Sound.status.PAUSED,
@@ -896,7 +897,14 @@ class AtividadeSilabas extends Component {
                     this.clickProximo();
                 })*/
                 this.setState({
-                    open: true
+                    open: true,
+                    animation: false
+                }, () => {
+                    setTimeout(() => { 
+                        this.setState({
+                            animation: true
+                        })
+                    }, 1100)
                 })
             } else {
                 setTimeout(() => { 
@@ -1021,7 +1029,7 @@ class AtividadeSilabas extends Component {
                                         height={400}
                                         width={400}
                                         isStopped={false}
-                                        isPaused={false}/>
+                                        isPaused={this.state.animation}/>
                                 <div className={classes.divButton}
                                     onClick={this.clickProximo}> 
                                         Continuar 

@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Sound from 'react-sound';
 import TenteNovamente from '../../Audios/TenteNovamente.mp3'
 import Modal from '@material-ui/core/Modal';
-import Trofeu from './../../icons/trofeu.svg';
 import iconbanana from './../../icons/banana.svg';
 import iconmacaco from './../../icons/monkey.svg';
 import iconbatata from './../../icons/potato.svg';
@@ -36,21 +35,24 @@ import iconsuco from './../../icons/orange-juice.svg';
 import icontouro from './../../icons/bull.svg';
 import iconurubu from './../../icons/vulture.svg';
 import Swal from 'sweetalert2';
+import Lottie from 'react-lottie';
+import * as animationData from './../../icons/winNivel.json';
 
 const styles = ({
     divButton: {
         cursor: 'pointer',
         font: 20,
-        height: 50,
+        height: 70,
         width: 100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgb(42, 157, 143)',
         borderRadius: 10,
-        marginTop: 70
+        marginBottom: 15
     },
     divModal: {
+        transition: 'opacity 1s linear',
         flexDirection: 'column',
         width: '50%', 
         height: '50%', 
@@ -61,12 +63,14 @@ const styles = ({
         justifyContent: 'center',
     },
     modal: {
+        transition: 'opacity 1s linear',
         width: '100%', 
         height: '100%', 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     },
+
     img: {
         width: 100,
         height: 100
@@ -124,6 +128,7 @@ class AtividadeLigarPalavras extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            animation: false,
             cont: 0,
             indexItemSelect: [],
             itemSelect: [],
@@ -745,9 +750,19 @@ class AtividadeLigarPalavras extends Component {
                                 )
                                 
                             } else {
-                                this.props.history.push(
+                                this.setState({
+                                    open: true,
+                                    animation: false
+                                }, () => {
+                                    setTimeout(() => { 
+                                        this.setState({
+                                            animation: true
+                                        })
+                                    }, 1200)
+                                })
+                                /*this.props.history.push(
                                     '/frase/' + this.props.match.params.vogal
-                                )
+                                )*/
                             }
                             
                         }
@@ -764,7 +779,7 @@ class AtividadeLigarPalavras extends Component {
                             indexItemSelect: [],
                             itemSelect: []
                         })
-                    }, 1000);
+                    }, 1200);
 
                     this.setState({
                         playTenteNovamente: Sound.status.PLAYING,
@@ -801,6 +816,14 @@ class AtividadeLigarPalavras extends Component {
 
     render() {
         const {classes} = this.props;
+        const defaultOptions = {
+            loop: true,
+            autoplay: true, 
+            animationData: animationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }
 
         return (
             <ViewQuadro 
@@ -903,6 +926,24 @@ class AtividadeLigarPalavras extends Component {
                                     })
                             }}
                         /> */}
+                        <Modal
+                                style={{ opacity: this.state.open ? 1 : 0 }}
+                                className={classes.modal}
+                                open={this.state.open}
+                            >
+                            <div style={{ opacity: this.state.open ? 1 : 0 }} className={classes.divModal}>
+                                <Lottie options={defaultOptions}
+                                        height={400}
+                                        width={400}
+                                        isStopped={false}
+                                        isPaused={this.state.animation}/>
+                                <div className={classes.divButton}
+                                    onClick={this.clickProximo}> 
+                                        Continuar 
+                                </div>
+                            </div>
+                                
+                            </Modal>
                         <Sound
                             url={TenteNovamente}
                             playStatus={this.state.playTenteNovamente}
@@ -914,21 +955,6 @@ class AtividadeLigarPalavras extends Component {
                                     })
                             }}
                         />
-                        <Modal
-                            className={classes.modal}
-                            open={this.state.open}
-                        >
-                        <div className={classes.divModal}>
-                            <img  src={Trofeu} 
-                                className={classes.img}
-                                alt="Trofeu"/> {/*Referenciar criador*/}
-                            <div className={classes.divButton}
-                                 onClick={this.clickProximo}> 
-                                    Continuar 
-                            </div>
-                        </div>
-                            
-                        </Modal>
                     </div>
                 </div>
             </ViewQuadro>

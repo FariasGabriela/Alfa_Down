@@ -90,7 +90,7 @@ class Frase extends Component {
         )
     }
 
-    clicBack(){
+    clickBack(){
         this.props.history.push(
             '/palavra/' + parseFloat(this.props.match.params.index) + '/' + 0
         )
@@ -101,7 +101,7 @@ class Frase extends Component {
         
         return (
             <ViewQuadro 
-                clicBack={this.clickBack}
+                clickBack={this.clickBack}
                 clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
