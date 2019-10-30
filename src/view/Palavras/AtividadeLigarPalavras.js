@@ -212,38 +212,6 @@ class AtividadeLigarPalavras extends Component {
                 ],
                 [
                     {
-                        icon: iconlixo,
-                        firstItem: {
-                            item: 'LI',
-                            index: 0,
-                            select: false,
-                            disable: false
-                        },
-                        secondItem: {
-                            item: 'IO',
-                            index: 1,
-                            select: false,
-                            disable: false
-                        }
-                    },
-                    {
-                        icon: iconmeia,
-                        firstItem: {
-                            item: 'ME',
-                            index: 0,
-                            select: false,
-                            disable: false
-                        },
-                        secondItem: {
-                            item: 'PAI',
-                            index: 2,
-                            select: false,
-                            disable: false
-                        }
-                    },
-                ],
-                [
-                    {
                         icon: iconluva,
                         firstItem: {
                             item: 'LU',
@@ -269,6 +237,38 @@ class AtividadeLigarPalavras extends Component {
                         secondItem: {
                             item: 'RO',
                             index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconlixo,
+                        firstItem: {
+                            item: 'LI',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'IO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconmeia,
+                        firstItem: {
+                            item: 'ME',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'PAI',
+                            index: 2,
                             select: false,
                             disable: false
                         }
@@ -374,38 +374,6 @@ class AtividadeLigarPalavras extends Component {
                 ],
                 [
                     {
-                        icon: iconioio,
-                        firstItem: {
-                            item: 'IO',
-                            index: 1,
-                            select: false,
-                            disable: false
-                        },
-                        secondItem: {
-                            item: 'MÃO',
-                            index: 2,
-                            select: false,
-                            disable: false
-                        }
-                    },
-                    {
-                        icon: iconpalito,
-                        firstItem: {
-                            item: 'PA',
-                            index: 1,
-                            select: false,
-                            disable: false
-                        },
-                        secondItem: {
-                            item: 'IA',
-                            index: 0,
-                            select: false,
-                            disable: false
-                        }
-                    },
-                ],
-                [
-                    {
                         icon: iconlupa,
                         firstItem: {
                             item: 'LU',
@@ -431,6 +399,38 @@ class AtividadeLigarPalavras extends Component {
                         secondItem: {
                             item: 'RUBU',
                             index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+                [
+                    {
+                        icon: iconioio,
+                        firstItem: {
+                            item: 'IO',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'MÃO',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconpalito,
+                        firstItem: {
+                            item: 'PA',
+                            index: 1,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'IA',
+                            index: 0,
                             select: false,
                             disable: false
                         }
@@ -536,38 +536,6 @@ class AtividadeLigarPalavras extends Component {
                 ],
                 [
                     {
-                        icon: iconlimao,
-                        firstItem: {
-                            item: 'LI',
-                            index: 2,
-                            select: false,
-                            disable: false
-                        },
-                        secondItem: {
-                            item: 'XO',
-                            index: 0,
-                            select: false,
-                            disable: false
-                        }
-                    },
-                    {
-                        icon: iconpapai,
-                        firstItem: {
-                            item: 'PA',
-                            index: 2,
-                            select: false,
-                            disable: false
-                        },
-                        secondItem: {
-                            item: 'LITO',
-                            index: 1,
-                            select: false,
-                            disable: false
-                        }
-                    },
-                ],
-                [
-                    {
                         icon: iconuva,
                         firstItem: {
                             item: 'U',
@@ -593,6 +561,39 @@ class AtividadeLigarPalavras extends Component {
                         secondItem: {
                             item: 'CO',
                             index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                ],
+
+                [
+                    {
+                        icon: iconlimao,
+                        firstItem: {
+                            item: 'LI',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'XO',
+                            index: 0,
+                            select: false,
+                            disable: false
+                        }
+                    },
+                    {
+                        icon: iconpapai,
+                        firstItem: {
+                            item: 'PA',
+                            index: 2,
+                            select: false,
+                            disable: false
+                        },
+                        secondItem: {
+                            item: 'LITO',
+                            index: 1,
                             select: false,
                             disable: false
                         }
@@ -686,7 +687,7 @@ class AtividadeLigarPalavras extends Component {
         this.clickBack = this.clickBack.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount(){ 
         this.setState({
             iconOne: this.state.allIconsOne[parseFloat(this.props.match.params.vogal)][parseFloat(this.props.match.params.index)],
             iconTwo: this.state.allIconsTwo[parseFloat(this.props.match.params.vogal)][parseFloat(this.props.match.params.index)],
@@ -927,9 +928,11 @@ class AtividadeLigarPalavras extends Component {
                             }}
                         /> */}
                         <Modal
-                                style={{ opacity: this.state.open ? 1 : 0 }}
-                                className={classes.modal}
-                                open={this.state.open}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            style={{ opacity: this.state.open ? 1 : 0 }}
+                            className={classes.modal}
+                            open={this.state.open}
                             >
                             <div style={{ opacity: this.state.open ? 1 : 0 }} className={classes.divModal}>
                                 <Lottie options={defaultOptions}

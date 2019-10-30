@@ -48,32 +48,32 @@ const styles = ({
     alignItems: 'flex-start'
   },
   buttonClose: {
-    height: 30,
-    width: 30,
+    height: 20,
+    width: 20,
     position: 'absolute',
     top: 0,
     right: 0,
-    padding: 20,
+    padding: 12,
     cursor: 'pointer'
   },
   buttonInfo: {
     height: 30,
-    width: 55,
+    width: 22,
     position: 'absolute',
     top: 0,
     right: 30,
-    padding: 20,
+    marginRight: 20,
+    paddingTop: 6,
     cursor: 'pointer'
   },
   buttonBack: {
-    height: 30,
+    height: 23,
     width: 55,
     position: 'absolute',
     top: 0,
     left: 0,
-    padding: 20,
     cursor: 'pointer',
-    paddingLeft: 10
+    paddingTop: 10
   }
 })
 

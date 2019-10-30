@@ -183,6 +183,7 @@ class AtividadeMontarPalavra extends Component {
                 [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ]
             ], 
             qtSilabas: 0,
+            silabasAtual: [],
             silabas: [],
             qtSilabasOne: [2, 2, 2, 1, 1, 2],
             qtSilabasTwo: [2, 2, 1, 2, 1, 1],
@@ -1248,7 +1249,6 @@ class AtividadeMontarPalavra extends Component {
         var qtSilabas = [];
 
         if ( rodada === 0 ) {
-            console.log(this.state.qtSilabasOne)
             silabas = this.state.silabasOne;
             qtSilabas = this.state.qtSilabasOne;
         } else if ( rodada === 1 ) {
@@ -1266,6 +1266,7 @@ class AtividadeMontarPalavra extends Component {
         } 
 
         this.setState({
+            silabasAtual: silabas,
             qtSilabas: qtSilabas[this.props.match.params.index],
             play: Sound.status.PLAYING,
             silabas: silabas[this.props.match.params.index],
@@ -1278,22 +1279,29 @@ class AtividadeMontarPalavra extends Component {
         var rodada = parseFloat(this.props.match.params.vogal);
 
         var silabas = [];
+        var qtSilabas = [];
 
         if ( rodada === 0 ) {
-            silabas = this.state.silabasOne
+            silabas = this.state.silabasOne;
+            qtSilabas = this.state.qtSilabasOne;
         } else if ( rodada === 1 ) {
-            silabas = this.state.silabasTwo
+            silabas = this.state.silabasFour;
+            qtSilabas = this.state.qtSilabasFour;
         } else if ( rodada === 2 ) {
-            silabas = this.state.silabasThree
+            silabas = this.state.silabasFive;
+            qtSilabas = this.state.qtSilabasFive;
         } else if ( rodada === 3 ) {
-            silabas = this.state.silabasFour
+            silabas = this.state.silabasThree;
+            qtSilabas = this.state.qtSilabasThree;
         } else if ( rodada === 4 ) {
-            silabas = this.state.silabasFive
-        } 
+            silabas = this.state.silabasTwo;
+            qtSilabas = this.state.qtSilabasTwo;
+        }
 
        if ( this.state.index < 5){
         this.setState({
-            qtSilabas: this.state.qtSilabasOne[this.state.index + 1],
+            qtSilabas: qtSilabas[this.state.index + 1],
+            //qtSilabas: this.state.silabasAtual[this.state.index + 1],
             silabas: silabas[this.state.index + 1],
             icon: this.state.iconsUtilizados[rodada][this.state.index + 1],
             soundSelect: this.state.sonsUtilizados[rodada][this.state.index + 1],
@@ -1471,11 +1479,13 @@ class AtividadeMontarPalavra extends Component {
                                 onClick={() => this.clickItem(doc)}
                                 className={classes.name}
                                 style={{
+                                    fontSize: doc.name.length > 2 ? 58 : 70,
                                     backgroundColor: doc.select ? 'rgb(231, 111, 81)' : '',
                                     borderRadius: doc.select ? 20 : '',
                                     color: doc.select ? '#FFFFFF' : '',
                                     boxShadow: doc.select ?'0px 6px 9px rgb(0, 0, 0, 0.2)' : '',
-                                }}>
+                                }}> 
+                                {console.log(doc.name.length)}
                                     {doc.name}
                                 </div>
                             )
@@ -1503,6 +1513,8 @@ class AtividadeMontarPalavra extends Component {
                             }}
                         />
                         <Modal
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
                             className={classes.modal}
                             open={this.state.open}
                         >

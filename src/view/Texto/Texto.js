@@ -11,8 +11,42 @@ import firebase from 'firebase';
 import 'firebase/app';
 import "firebase/firestore";
 import Swal from 'sweetalert2';
+import Lottie from 'react-lottie';
+import * as animationData from './../../icons/winFase.json';
+import Modal from '@material-ui/core/Modal';
 
 const style = ({
+    divButton: {
+        cursor: 'pointer',
+        font: 20,
+        height: 70,
+        width: 100,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgb(42, 157, 143)',
+        borderRadius: 10,
+        marginBottom: 15
+    },
+    divModal: {
+        transition: 'opacity 1s linear',
+        flexDirection: 'column',
+        width: '50%', 
+        height: '50%', 
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modal: {
+        transition: 'opacity 1s linear',
+        width: '100%', 
+        height: '100%', 
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     view: {
         position: 'absolute',
         top: -10,
@@ -33,6 +67,8 @@ class Texto extends Component {
         window.soundManager.setup({ debugMode: false });
 
         this.state = {
+            animation: false,
+            open: false,
             frase: [],
             frasesUtilizadas0: [
                 {
@@ -55,6 +91,23 @@ class Texto extends Component {
             sound: Texto01,
             frasesUtilizadas1: [
                 {
+                    name: 'O SAPATO DO RATO',
+                    index: 0
+                },
+                {
+                    name: 'O ROBÔ DO SAPO',
+                    index: 1
+                },
+                {
+                    name: 'O SOFÁ DO GATO',
+                    index: 2
+                },
+                {   name: 'O DADO DO CAVALO',
+                    index: 3
+                },
+            ],
+            frasesUtilizadas2: [
+                {
                     name: 'JOÃO CORTA PAU',
                     index: 0
                 },
@@ -71,23 +124,6 @@ class Texto extends Component {
                     name: 'PARA A FESTA DO TATU',
                     index: 3
                 }
-            ],
-            frasesUtilizadas2: [
-                {
-                    name: 'O SAPATO DO RATO',
-                    index: 0
-                },
-                {
-                    name: 'O ROBÔ DO SAPO',
-                    index: 1
-                },
-                {
-                    name: 'O SOFÁ DO GATO',
-                    index: 2
-                },
-                {   name: 'O DADO DO CAVALO',
-                    index: 3
-                },
             ],
             frasesUtilizadas3: [
                 {
@@ -139,8 +175,8 @@ class Texto extends Component {
 
         var frases = [
             this.state.frasesUtilizadas0,
-            this.state.frasesUtilizadas1,
             this.state.frasesUtilizadas2,
+            this.state.frasesUtilizadas1,
             this.state.frasesUtilizadas3,
             this.state.frasesUtilizadas4
         ]
@@ -181,11 +217,17 @@ class Texto extends Component {
                 })
             }
 
-            this.props.history.push('/')
+            this.setState({
+                open: true,
+                animation: false
+            }, () => {
+                setTimeout(() => { 
+                    this.setState({
+                        animation: true
+                    })
+                }, 1800)
+            })
         })
-        
-
-        
     }
 
     clickOuvir(){
@@ -214,6 +256,14 @@ class Texto extends Component {
 
     render() {
         const {classes} = this.props;
+        const defaultOptions = {
+            loop: true,
+            autoplay: true, 
+            animationData: animationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }
         
         return (
             <ViewQuadro 
@@ -231,6 +281,26 @@ class Texto extends Component {
                         )
                     })}
                 </div>
+
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    className={classes.modal}
+                    open={this.state.open}
+                    >
+                    <div className={classes.divModal}>
+                            <Lottie options={defaultOptions}
+                                    height={300}
+                                    width={300}
+                                    isStopped={false}
+                                    isPaused={this.state.animation}/>
+                        <div className={classes.divButton}
+                                onClick={() => this.props.history.push('/iniciar/' + parseFloat(this.props.match.params.index))}> 
+                                Continuar 
+                        </div>
+                    </div>
+                    
+                </Modal>
                 
                 <Sound
                     url={this.state.sound}

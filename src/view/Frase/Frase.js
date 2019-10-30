@@ -34,8 +34,8 @@ class Frase extends Component {
             frasesUtilizadas: [
                 ['A GATA NA MALA'],
                 ['A BOLA DA FOCA'],
-                ['O RÁDIO TOCA A MÚSICA'],
                 ['O TATU CAVA O BURACO'],
+                ['O RÁDIO TOCA A MÚSICA'],
                 ['O TELEFONE TOCOU'],
             ],
             audiosUtilizados: [

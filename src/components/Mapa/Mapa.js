@@ -64,7 +64,7 @@ const styles = ({
     },
     meiaLuaRight: {
         position: 'absolute',
-        margin: 'auto',
+        marginTop: 261,
         top: -65,
         right: 40,
         bottom: 0,
@@ -78,13 +78,14 @@ const styles = ({
         position: 'absolute',
         margin: 'auto',
         left: 45,
-        bottom: 60,
+        top: 380,
         width: 126,
         height: 192,
         backgroundColor: 'transparent',
         borderRadius: '50%',
       },
       body: {
+        maxHeight: 580,
         width: '100%',
         height: '90%',
         display: 'flex',
@@ -167,6 +168,11 @@ class Mapa extends Component {
                 this.setState({
                     open: false
                 })
+            } else {
+                this.setState({
+                    vogal: parseFloat(this.props.match.params.index),
+                    nivel: parseFloat(this.props.match.params.index),
+                }) 
             }
             
         })
@@ -241,6 +247,7 @@ class Mapa extends Component {
   
     render(){
         const {classes} = this.props;
+        console.log(this.state.nivel)
 
         return (
             <div className={classes.card} >
@@ -283,11 +290,11 @@ class Mapa extends Component {
                     <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 0 ? '5px solid #3E5151' : '5px solid #bdc3c7',}} />
                     <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 1 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 1 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>O</div>
                     </div>
-                    <div className={classes.meiaLuaRight} style={{boxShadow: this.state.nivel > 1 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
+                    <div className={classes.meiaLuaRight} style={{boxShadow: this.state.nivel > 2 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
                     <div className={classes.cardMapa}>
-                    <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 2 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 2 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>U</div>
-                    <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 2 ? '5px solid #3E5151' : '5px solid #bdc3c7'}}/>
-                    <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 3 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 3 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>I</div>
+                    <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 3 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 3 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>I</div>
+                    <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 3 ? '5px solid #3E5151' : '5px solid #bdc3c7'}}/>
+                    <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 2 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 2 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>U</div>
                     </div>
                     <div className={classes.meiaLuaLeft} style={{boxShadow: this.state.nivel > 3 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
                     <div className={classes.cardMapa}>

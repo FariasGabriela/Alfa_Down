@@ -111,8 +111,8 @@ class AtividadeVogalFrase extends Component {
             audiosUtilizados: [
                 aGataNaMala,
                 aBolaDaFoca,
-                oRadioTocaAMusica,
                 oTatuCavaoBuraco,
+                oRadioTocaAMusica,
                 oTelefoneTocou
             ],
             currentIndex: 0,
@@ -273,9 +273,9 @@ class AtividadeVogalFrase extends Component {
         } else if(parseFloat(this.props.match.params.index) === 1){
             itensPalavra = this.state.itensPalavraSecond;
         } else if(parseFloat(this.props.match.params.index) === 2){
-            itensPalavra = this.state.itensPalavraThree;
-        } else if(parseFloat(this.props.match.params.index) === 3){
             itensPalavra = this.state.itensPalavraFour;
+        } else if(parseFloat(this.props.match.params.index) === 3){
+            itensPalavra = this.state.itensPalavraThree;
         } else if(parseFloat(this.props.match.params.index) === 4){
             itensPalavra = this.state.itensPalavraFive;
         }
@@ -496,6 +496,8 @@ class AtividadeVogalFrase extends Component {
                 </div>
                 </div>
                 <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
                     className={classes.modal}
                     open={this.state.open}
                 >

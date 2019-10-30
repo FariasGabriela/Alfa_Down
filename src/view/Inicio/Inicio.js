@@ -75,7 +75,7 @@ class App extends Component {
   }
 
   clickConta(){
-    this.props.history.push('/icons')
+    this.props.history.push('/login')
   }
 
   render() {
@@ -95,7 +95,7 @@ class App extends Component {
           </div>
 
           <div className={classes.card}>
-            <div className={classes.iniciar} onClick={() => this.props.history.push('/iniciar')}>INICIAR</div>
+            <div className={classes.iniciar} onClick={() => this.props.history.push('/iniciar/0')}>INICIAR</div>
           </div>
         </div>
     );

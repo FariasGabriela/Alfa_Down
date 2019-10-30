@@ -90,7 +90,6 @@ import LU from '../../Audios/lu.mp3';
 import MU from '../../Audios/mu.mp3';
 import NU from '../../Audios/nu.mp3';
 import PU from '../../Audios/pu.mp3';
-import QU from '../../Audios/qu.mp3';
 import RU from '../../Audios/ru.mp3';
 import SU from '../../Audios/su.mp3';
 import TU from '../../Audios/tu.mp3';
@@ -124,7 +123,7 @@ class Silabas extends Component {
             silaba: 'A',
             silabasUtilizadas: [
                 ['B', 'C', 'D', 'F', 'G', 'H'],
-                ['J', 'L', 'M', 'N', 'P', 'Q'],
+                ['J', 'L', 'M', 'N', 'P', 'QU'],
                 ['R', 'S', 'T', 'V', 'X', 'Z']
             ], 
             sound: A,
@@ -141,7 +140,7 @@ class Silabas extends Component {
             ],
             soundListU: [
                 [BU, CU, DU, FU, GU, HU],
-                [JU, LU, MU, NU, PU, QU],
+                [JU, LU, MU, NU, PU],
                 [RU, SU, TU, VU, XU, ZU]
             ],
             soundListI: [
@@ -200,12 +199,16 @@ class Silabas extends Component {
             soundList: soundList,
             letraNivel: vogalShow,
             indexNivelSilabas: parseFloat(this.props.match.params.index)
+        }, () => {
+            this.setState({
+                play: Sound.status.PLAYING
+            })
         })
         
     }
 
     clickProximo(){
-        if (this.state.index <= 5) {
+        if (this.state.index <= (this.state.soundList.length - 1)) {
             this.setState({
                 sound: this.state.soundList[this.state.indexNivelSilabas][this.state.index],
                 silaba: this.state.silabasUtilizadas[this.state.indexNivelSilabas][this.state.index] + this.state.letraNivel,
@@ -235,7 +238,7 @@ class Silabas extends Component {
     }
 
     clickBack(){
-        this.props.history.push('/')
+        this.props.history.push('/iniciar/' + this.props.match.params.vogal)
     }
 
     render() {
@@ -243,6 +246,7 @@ class Silabas extends Component {
         
         return (
             <ViewQuadro 
+                clickBack={this.clickBack}
                 clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}

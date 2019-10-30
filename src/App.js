@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Inicio from './view/Inicio/Inicio';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AtividadeSilabas from './view/Silabas/AtividadeSilabas';
 import Silaba from './view/Silabas/Silabas';
@@ -19,7 +19,13 @@ import Texto from './view/Texto/Texto';
 import IniciarMapa from './view/Inicio/InicioMapa';
 
 var firebaseConfig = {
-
+  apiKey: "AIzaSyBjXbuYW6HQqNrPsOiB1mNXxuIZcW8eqls",
+  authDomain: "alfa-down.firebaseapp.com",
+  databaseURL: "https://alfa-down.firebaseio.com",
+  projectId: "alfa-down",
+  storageBucket: "",
+  messagingSenderId: "796685600919",
+  appId: "1:796685600919:web:fda0859a27b59d19"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -46,7 +52,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
               <Route path="/" exact={true} component={Inicio} />
-              <Route path="/iniciar" component={IniciarMapa} />
+              <Route path="/iniciar/:index" component={IniciarMapa} />
               <Route path="/silaba/:vogal/:index" component={Silaba} />
               <Route path="/atividade/:vogal/:index" component={AtividadeSilabas} />
               <Route path="/palavra/:vogal/:index" component={Palavra} />

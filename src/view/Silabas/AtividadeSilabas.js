@@ -85,7 +85,6 @@ import LU from '../../Audios/lu.mp3';
 import MU from '../../Audios/mu.mp3';
 import NU from '../../Audios/nu.mp3';
 import PU from '../../Audios/pu.mp3';
-import QU from '../../Audios/qu.mp3';
 import RU from '../../Audios/ru.mp3';
 import SU from '../../Audios/su.mp3';
 import TU from '../../Audios/tu.mp3';
@@ -204,7 +203,7 @@ class AtividadeSilabas extends Component {
             ],
             soundListU: [
                 [ DU, BU, FU, GU, HU, CU ],
-                [ MU, PU, NU, LU, QU, JU ],
+                [ MU, PU, NU, LU, JU ],
                 [ SU, ZU, VU, TU, RU, XU ]
             ],
             silabasOneA: [
@@ -278,7 +277,7 @@ class AtividadeSilabas extends Component {
                 },
                 {   
                     key: 5,
-                    name: 'QA',
+                    name: 'QUA',
                     select: false,
                     audio: QUA,
                 },
@@ -506,7 +505,7 @@ class AtividadeSilabas extends Component {
                 },
                 {   
                     key: 5,
-                    name: 'QE',
+                    name: 'QUE',
                     select: false,
                     audio: QUE,
                 },
@@ -544,7 +543,7 @@ class AtividadeSilabas extends Component {
                 },
                 {   
                     key: 5,
-                    name: 'QI',
+                    name: 'QUI',
                     select: false,
                     audio: QUI,
                 },
@@ -582,7 +581,7 @@ class AtividadeSilabas extends Component {
                 },
                 {   
                     key: 5,
-                    name: 'QO',
+                    name: 'QUO',
                     select: false,
                     audio: QUO,
                 },
@@ -617,12 +616,6 @@ class AtividadeSilabas extends Component {
                     name: 'PU',
                     select: false,
                     audio: PU,
-                },
-                {   
-                    key: 5,
-                    name: 'QU',
-                    select: false,
-                    audio: QU,
                 },
             ],
             silabasThreeE: [
@@ -800,25 +793,25 @@ class AtividadeSilabas extends Component {
             silabasTwo = this.state.silabasTwoA;
             silabasThree = this.state.silabasThreeA;
         } else if (vogal === 1) {
-            soundList = this.state.soundListE;
-            silabasOne = this.state.silabasOneE;
-            silabasTwo = this.state.silabasTwoE;
-            silabasThree = this.state.silabasThreeE;
-        } else if (vogal === 2) {
-            soundList = this.state.soundListI;
-            silabasOne = this.state.silabasOneI;
-            silabasTwo = this.state.silabasTwoI;
-            silabasThree = this.state.silabasThreI;
-        } else if (vogal === 3) {
             soundList = this.state.soundListO;
             silabasOne = this.state.silabasOneO;
             silabasTwo = this.state.silabasTwoO;
             silabasThree = this.state.silabasThreeO;
-        } else if (vogal === 4) {
+        } else if (vogal === 2) {
             soundList = this.state.soundListU;
             silabasOne = this.state.silabasOneU;
             silabasTwo = this.state.silabasTwoU;
             silabasThree = this.state.silabasThreeU;
+        } else if (vogal === 3) {
+            soundList = this.state.soundListI;
+            silabasOne = this.state.silabasOneI;
+            silabasTwo = this.state.silabasTwoI;
+            silabasThree = this.state.silabasThreI;
+        } else if (vogal === 4) {
+            soundList = this.state.soundListE;
+            silabasOne = this.state.silabasOneE;
+            silabasTwo = this.state.silabasTwoE;
+            silabasThree = this.state.silabasThreeE;  
         } 
 
         const value = parseFloat(this.props.match.params.index)
@@ -884,7 +877,8 @@ class AtividadeSilabas extends Component {
         }) 
 
         if (soundSelect.audio === this.state.soundSelect) {
-            if ( this.state.indexSoundSelect > 4 ) {
+
+            if ( this.state.indexSoundSelect >= (this.state.silabas.length - 1) ) {
                 var user = firebase.auth().currentUser;
 
                 firebase.firestore().collection("Progresso").doc(user.uid).set({
@@ -904,7 +898,7 @@ class AtividadeSilabas extends Component {
                         this.setState({
                             animation: true
                         })
-                    }, 1100)
+                    }, 1200)
                 })
             } else {
                 setTimeout(() => { 
@@ -947,7 +941,7 @@ class AtividadeSilabas extends Component {
     }
 
     clickBack(){
-        this.props.history.push('/')
+        this.props.history.push('/iniciar/' + this.props.match.params.vogal)
     }
 
     render() {
@@ -963,6 +957,25 @@ class AtividadeSilabas extends Component {
 
         return (
             <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center'}} >
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    className={classes.modal}
+                    open={this.state.open}
+                >
+                <div style={{ opacity: this.state.open ? 1 : 0 }} className={classes.divModal}>
+                    <Lottie options={defaultOptions}
+                            height={400}
+                            width={400}
+                            isStopped={false}
+                            isPaused={this.state.animation}/>
+                    <div className={classes.divButton}
+                        onClick={this.clickProximo}> 
+                            Continuar
+                    </div>
+                </div>
+                    
+                </Modal>
                 <ViewQuadro 
                     clickBack={this.clickBack}
                     clickInfo={this.clickInfo}
@@ -976,6 +989,7 @@ class AtividadeSilabas extends Component {
                                     onClick={() => this.clickItem(doc)}
                                     className={classes.name}
                                     style={{
+                                        fontSize: doc.name.length > 2 ? 55 : 70,
                                         transition: doc.select ? 'opacity 1s linear' : 'none',
                                         backgroundColor: doc.select ? 'rgb(231, 111, 81)' : '',
                                         borderRadius: doc.select ? 20 : '',
@@ -1019,24 +1033,6 @@ class AtividadeSilabas extends Component {
                                         })
                                 }}
                             />
-                            <Modal
-                                style={{ opacity: this.state.open ? 1 : 0 }}
-                                className={classes.modal}
-                                open={this.state.open}
-                            >
-                            <div style={{ opacity: this.state.open ? 1 : 0 }} className={classes.divModal}>
-                                <Lottie options={defaultOptions}
-                                        height={400}
-                                        width={400}
-                                        isStopped={false}
-                                        isPaused={this.state.animation}/>
-                                <div className={classes.divButton}
-                                    onClick={this.clickProximo}> 
-                                        Continuar 
-                                </div>
-                            </div>
-                                
-                            </Modal>
                         </div>
                     </div>
                     
