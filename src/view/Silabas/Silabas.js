@@ -208,11 +208,15 @@ class Silabas extends Component {
     }
 
     clickProximo(){
-        if (this.state.index <= (this.state.soundList.length - 1)) {
+        if (this.state.index <= (this.state.soundList[this.state.indexNivelSilabas].length - 1)) {
             this.setState({
                 sound: this.state.soundList[this.state.indexNivelSilabas][this.state.index],
                 silaba: this.state.silabasUtilizadas[this.state.indexNivelSilabas][this.state.index] + this.state.letraNivel,
                 index: this.state.index + 1
+            }, ()  => {
+                this.setState({
+                    play: Sound.status.PLAYING
+                })
             })
         } else {
             this.props.history.push('/atividade/'+ parseFloat(this.props.match.params.vogal) + "/" + this.state.indexNivelSilabas )
