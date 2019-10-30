@@ -10,7 +10,7 @@ class App extends Component {
   render() {
 
     return (
-        <Mapa />
+        <Mapa index={parseFloat(this.props.match.params.index)} />
     );
   }
 }

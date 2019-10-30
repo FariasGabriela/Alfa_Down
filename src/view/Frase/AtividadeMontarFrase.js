@@ -333,11 +333,20 @@ class AtividadeVogalFrase extends Component {
                 })
 
                 if (this.state.qtFrases === 2){
-                    var user = firebase.auth().currentUser; 
+                    /*var user = firebase.auth().currentUser; 
                     firebase.firestore().collection("Progresso").doc(user.uid).set({
                         atividade: 'frase',
                         vogal: parseFloat(this.props.match.params.index),
                         index: 0
+                    })*/
+                    firebase.auth().onAuthStateChanged(doc => {
+                        if (doc) {
+                            firebase.firestore().collection("Progresso").doc(doc.uid).set({
+                                atividade: 'frase',
+                                vogal: parseFloat(this.props.match.params.index),
+                                index: 0
+                            })  
+                        }
                     })
 
                     this.setState({
@@ -363,11 +372,14 @@ class AtividadeVogalFrase extends Component {
                 })
 
                 if (this.state.qtFrases === 3){
-                    var userLogin = firebase.auth().currentUser;
+                   /* var userLogin = firebase.auth().currentUser;
                     firebase.firestore().collection("Progresso").doc(userLogin.uid).set({
                         atividade: 'frase',
                         vogal: parseFloat(this.props.match.params.index),
                         index: 0
+                    })*/
+                    firebase.auth().onAuthStateChanged(doc => {
+                        if (doc) {}
                     })
 
                    /* setTimeout(() => { 
@@ -391,13 +403,23 @@ class AtividadeVogalFrase extends Component {
                     itemFive: item.name,
                 })
 
-                var userLogado = firebase.auth().currentUser;
+                /*var userLogado = firebase.auth().currentUser;
                 
                 firebase.firestore().collection("Progresso").doc(userLogado.uid).set({
                     atividade: 'frase',
                     vogal: parseFloat(this.props.match.params.index),
                     index: 0
-                })
+                })*/
+
+                firebase.auth().onAuthStateChanged(doc => {
+                    if (doc) {
+                        firebase.firestore().collection("Progresso").doc(doc.uid).set({
+                            atividade: 'frase',
+                            vogal: parseFloat(this.props.match.params.index),
+                            index: 0
+                        })
+                    }
+                    })
 
                 this.setState({
                     open: true,

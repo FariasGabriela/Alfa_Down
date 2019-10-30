@@ -1367,12 +1367,21 @@ class AtividadeMontarPalavra extends Component {
                     secondSilaba: item.name
                 })
                 if (this.state.qtSilabas === 1) {
-                    var user = firebase.auth().currentUser;
+                    /*var user = firebase.auth().currentUser;
                 
                     firebase.firestore().collection("Progresso").doc(user.uid).set({
                         atividade: 'palavra',
                         vogal: parseFloat(this.props.match.params.vogal),
                         index: parseFloat(this.props.match.params.index)
+                    })*/
+                    firebase.auth().onAuthStateChanged(doc => {
+                        if (doc) {
+                            firebase.firestore().collection("Progresso").doc(doc.uid).set({
+                                atividade: 'palavra',
+                                vogal: parseFloat(this.props.match.params.vogal),
+                                index: parseFloat(this.props.match.params.index)
+                            })
+                        }
                     })
 
                     setTimeout(() => { 
@@ -1390,12 +1399,21 @@ class AtividadeMontarPalavra extends Component {
                 this.setState({
                     threeSilaba: item.name
                 }, () => {
-                    var user = firebase.auth().currentUser;
+                    /*var user = firebase.auth().currentUser;
                 
                     firebase.firestore().collection("Progresso").doc(user.uid).set({
                         atividade: 'palavra',
                         vogal: parseFloat(this.props.match.params.vogal),
                         index: parseFloat(this.props.match.params.index)
+                    })*/
+                    firebase.auth().onAuthStateChanged(doc => {
+                        if (doc) {
+                            firebase.firestore().collection("Progresso").doc(doc.uid).set({
+                                atividade: 'palavra',
+                                vogal: parseFloat(this.props.match.params.vogal),
+                                index: parseFloat(this.props.match.params.index)
+                            })
+                        }
                     })
                     
                     setTimeout(() => { 
@@ -1485,7 +1503,6 @@ class AtividadeMontarPalavra extends Component {
                                     color: doc.select ? '#FFFFFF' : '',
                                     boxShadow: doc.select ?'0px 6px 9px rgb(0, 0, 0, 0.2)' : '',
                                 }}> 
-                                {console.log(doc.name.length)}
                                     {doc.name}
                                 </div>
                             )

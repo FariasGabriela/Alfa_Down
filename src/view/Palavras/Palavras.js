@@ -134,6 +134,10 @@ class Palavras extends Component {
             palavraAtual: this.state.palavrasUtilizadas[rodada][parseFloat(this.props.match.params.index)],
             letraNivel: rodada,
             indexNivelPalavras: parseFloat(this.props.match.params.index)
+        }, () => {
+            this.setState({
+                play: Sound.status.PLAYING
+            })
         })
         
     }
@@ -145,6 +149,10 @@ class Palavras extends Component {
                 icon: this.state.iconsUtilizados[this.state.letraNivel][this.state.indexNivelPalavras + 1],
                 palavraAtual: this.state.palavrasUtilizadas[this.state.letraNivel][this.state.indexNivelPalavras + 1],
                 indexNivelPalavras: this.state.indexNivelPalavras + 1
+            }, () => {
+                this.setState({
+                    play: Sound.status.PLAYING
+                })
             })
         } else {
             this.props.history.push('/atividade-palavra/'+ this.state.letraNivel + "/" + this.state.letraNivel )

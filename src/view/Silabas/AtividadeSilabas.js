@@ -879,12 +879,21 @@ class AtividadeSilabas extends Component {
         if (soundSelect.audio === this.state.soundSelect) {
 
             if ( this.state.indexSoundSelect >= (this.state.silabas.length - 1) ) {
-                var user = firebase.auth().currentUser;
+                /*var user = firebase.auth().currentUser;
 
                 firebase.firestore().collection("Progresso").doc(user.uid).set({
                     atividade: 'silaba',
                     vogal: parseFloat(this.props.match.params.vogal),
                     index: parseFloat(this.props.match.params.index)
+                })*/
+                firebase.auth().onAuthStateChanged(doc => {
+                    if (doc) {
+                        firebase.firestore().collection("Progresso").doc(doc.uid).set({
+                            atividade: 'silaba',
+                            vogal: parseFloat(this.props.match.params.vogal),
+                            index: parseFloat(this.props.match.params.index)
+                        })
+                    }
                 })
 
                 /*swal("Bom trabalho!", "", "success").then(() => {

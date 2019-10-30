@@ -184,9 +184,15 @@ class Mapa extends Component {
         })
 
         if (name === undefined && senha === undefined) {
-            var user = firebase.auth().currentUser;
+            //var user = firebase.auth().currentUser;
 
-            this.getDados(user.uid);
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    this.getDados(user.uid);
+                }
+            })
+
+            
         } else {
             Swal.fire({
                 title: 'Carregando',
@@ -200,9 +206,13 @@ class Mapa extends Component {
                 firebase.firestore().collection("Usuario").doc(doc.user.uid).get().then((user) => {
                     Swal.close();
 
-                    var userLogin = firebase.auth().currentUser;
+                    //var userLogin = firebase.auth().currentUser;
 
-                    this.getDados(userLogin.uid);
+                    firebase.auth().onAuthStateChanged(user => {
+                        if (user) {
+                            this.getDados(user.uid);
+                        }
+                    })
                 }).catch((err) => {
                     Swal.fire('Ocorreu um erro ao realizar o login')
                 })
@@ -236,9 +246,11 @@ class Mapa extends Component {
             iconFarmer: this.state.allIconsFarmer[infoUser.indexItem]
         })
 
-        var user = firebase.auth().currentUser;
-
-        this.getDados(user.uid);
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.getDados(user.uid);
+            }
+        })
     }
 
     criarConta(){
@@ -247,7 +259,6 @@ class Mapa extends Component {
   
     render(){
         const {classes} = this.props;
-        console.log(this.state.nivel)
 
         return (
             <div className={classes.card} >
@@ -287,7 +298,7 @@ class Mapa extends Component {
                 <div className={classes.body}>
                     <div className={classes.cardMapa}>
                     <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 0 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 0 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>A</div>
-                    <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 0 ? '5px solid #3E5151' : '5px solid #bdc3c7',}} />
+                    <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 1 ? '5px solid #3E5151' : '5px solid #bdc3c7',}} />
                     <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 1 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 1 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>O</div>
                     </div>
                     <div className={classes.meiaLuaRight} style={{boxShadow: this.state.nivel > 2 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
@@ -296,10 +307,10 @@ class Mapa extends Component {
                     <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 3 ? '5px solid #3E5151' : '5px solid #bdc3c7'}}/>
                     <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 2 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 2 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>U</div>
                     </div>
-                    <div className={classes.meiaLuaLeft} style={{boxShadow: this.state.nivel > 3 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
+                    <div className={classes.meiaLuaLeft} style={{boxShadow: this.state.nivel > 4 ? '7px 0px 0 0 #3E5151' : '7px 0px 0 0 #bdc3c7'}} />
                     <div className={classes.cardMapa}>
                     <div className={classes.letras} style={{marginLeft: 80, backgroundColor: this.state.nivel > 4 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 4 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>E</div>
-                    <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 4 ? '5px solid #3E5151' : '5px solid #bdc3c7'}} />
+                    <div style={{width: 'calc(100% - 320px)', borderBottom: this.state.nivel > 5 ? '5px solid #3E5151' : '5px solid #bdc3c7'}} />
                     <div className={classes.letras} style={{marginRight: 80, backgroundColor: this.state.nivel > 5 ? '#1f4037' : '#11998e', boxShadow: this.state.nivel > 5 ? '2px 0px 10px 0px #3C3B3F' : 'none'}}>
                         <img   src={crown} 
                             className={classes.img}
