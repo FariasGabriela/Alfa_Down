@@ -18,17 +18,7 @@ import "firebase/firestore";
 import Texto from './view/Texto/Texto';
 import IniciarMapa from './view/Inicio/InicioMapa';
 
-var firebaseConfig = {
-  apiKey: "AIzaSyBjXbuYW6HQqNrPsOiB1mNXxuIZcW8eqls",
-  authDomain: "alfa-down.firebaseapp.com",
-  databaseURL: "https://alfa-down.firebaseio.com",
-  projectId: "alfa-down",
-  storageBucket: "",
-  messagingSenderId: "796685600919",
-  appId: "1:796685600919:web:fda0859a27b59d19"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+
 
 const style = ({
   card: {
