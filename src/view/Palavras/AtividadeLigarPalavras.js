@@ -140,10 +140,10 @@ class AtividadeLigarPalavras extends Component {
             indexSoundSelect: 0,
             iconsUtilizados: [
                 [ iconbanana, iconmacaco, iconbatata, iconbala, iconfaca, iconlampada ],
-                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
-                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
-                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
+                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ],
+                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
+                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
             ],
             allIconsOne: [
                 [

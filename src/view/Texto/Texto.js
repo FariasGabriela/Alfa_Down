@@ -175,8 +175,8 @@ class Texto extends Component {
 
         var frases = [
             this.state.frasesUtilizadas0,
-            this.state.frasesUtilizadas2,
             this.state.frasesUtilizadas1,
+            this.state.frasesUtilizadas2,
             this.state.frasesUtilizadas3,
             this.state.frasesUtilizadas4
         ]
@@ -186,9 +186,9 @@ class Texto extends Component {
         if (parseFloat(this.props.match.params.index) === 0) {
             audio = Texto01;
         } else if (parseFloat(this.props.match.params.index) === 1) {
-            audio = Texto02;
-        } else if (parseFloat(this.props.match.params.index) === 2) {
             audio = Texto03;
+        } else if (parseFloat(this.props.match.params.index) === 2) {
+            audio = Texto02;
         } else if (parseFloat(this.props.match.params.index) === 3) {
             audio = Texto04;
         } else if (parseFloat(this.props.match.params.index) === 4) {
@@ -295,7 +295,7 @@ class Texto extends Component {
                                     isStopped={false}
                                     isPaused={this.state.animation}/>
                         <div className={classes.divButton}
-                                onClick={() => this.props.history.push('/iniciar/' + parseFloat(this.props.match.params.index))}> 
+                                onClick={() => this.props.history.push('/iniciar/' + (parseFloat(this.props.match.params.index)+1))}> 
                                 Continuar 
                         </div>
                     </div>

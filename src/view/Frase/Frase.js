@@ -41,8 +41,8 @@ class Frase extends Component {
             audiosUtilizados: [
                 aGataNaMala,
                 aBolaDaFoca,
-                oRadioTocaAMusica,
                 oTatuCavaoBuraco,
+                oRadioTocaAMusica,
                 oTelefoneTocou
             ],
             sound: aGataNaMala,

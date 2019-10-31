@@ -156,7 +156,11 @@ class Mapa extends Component {
     }
 
     clickIniciar() {
-        this.props.history.push('/' + this.state.item +'/'+ this.state.vogal +'/' + this.state.index)
+        if (this.props.index > 4){
+            this.props.history.push('/atividade-palavra/'+ this.state.vogal + '/0' )
+        } else {
+            this.props.history.push('/' + this.state.item +'/'+ this.state.vogal +'/' + this.state.index)
+        }
     }
 
     componentDidMount(){
@@ -285,7 +289,7 @@ class Mapa extends Component {
                         </p>
                     </div>
 
-                    <div className={classes.button} onClick={this.clickIniciar} >
+                    <div className={classes.button} onClick={this.props.index > 5 ? () => {} :this.clickIniciar} >
                         <img src={Play} 
                             className={classes.icon}
                             alt="Play" /> {/*Referenciar criador*/}

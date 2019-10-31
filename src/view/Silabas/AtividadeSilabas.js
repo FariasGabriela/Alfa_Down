@@ -347,7 +347,7 @@ class AtividadeSilabas extends Component {
                 },
                 {
                     key: 4,
-                    name: 'GE',
+                    name: 'GUE',
                     audio: GE,
                     select: false
                 },
@@ -385,7 +385,7 @@ class AtividadeSilabas extends Component {
                 },
                 {
                     key: 4,
-                    name: 'GI',
+                    name: 'GUI',
                     audio: GI,
                     select: false
                 },
@@ -423,7 +423,7 @@ class AtividadeSilabas extends Component {
                 },
                 {
                     key: 4,
-                    name: 'GO',
+                    name: 'GUO',
                     audio: GO,
                     select: false
                 },

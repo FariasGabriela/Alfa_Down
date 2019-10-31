@@ -97,8 +97,8 @@ class AtividadeVogalFrase extends Component {
             frasesUtilizadas: [
                 ['A GATA NA MALA'],
                 ['A BOLA DA FOCA'],
-                ['O RÁDIO TOCA A MÚSICA'],
                 ['O TATU CAVA O BURACO'],
+                ['O RÁDIO TOCA A MÚSICA'],
                 ['O TELEFONE TOCOU'],
             ],
             allQtFrases: [3, 3, 4, 4, 2],

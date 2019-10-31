@@ -91,24 +91,24 @@ class Palavras extends Component {
             icon: iconbanana,
             palavrasUtilizadas: [
                 [ 'BANANA', 'MACACO', 'BATATA', 'BALA', 'FACA', 'LÂMPADA' ],
-                [ 'CANELA', 'CANETA', 'DEDO', 'JACARÉ', 'LEITE', 'PEIXE' ],
-                [ 'LIXO', 'IOIÔ', 'LIMÃO', 'MEIA', 'PALITO', 'PAPAI' ],
                 [ 'FOCA', 'FOGO', 'GATO', 'GOIABA', 'COPO', 'CARRO' ],
-                [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ]
+                [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ],
+                [ 'LIXO', 'IOIÔ', 'LIMÃO', 'MEIA', 'PALITO', 'PAPAI' ],
+                [ 'CANELA', 'CANETA', 'DEDO', 'JACARÉ', 'LEITE', 'PEIXE' ],
             ], 
             iconsUtilizados: [
                 [ iconbanana, iconmacaco, iconbatata, iconbala, iconfaca, iconlampada ],
-                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
-                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
-                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
+                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ],
+                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
+                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
             ],
             sonsUtilizados: [
                 [ banana, macaco, batata, bala, faca, lampada ],
-                [ canela, caneta, dedo, jacare, leite, peixe ],
-                [ lixo, ioio, limao, meia, palito, papai ],
                 [ foca, fogo, gato, goiaba, copo, carro ],
-                [ luva, lupa, uva, suco, touro, urubu ]
+                [ luva, lupa, uva, suco, touro, urubu ],
+                [ lixo, ioio, limao, meia, palito, papai ],
+                [ canela, caneta, dedo, jacare, leite, peixe ],
             ],
             palavraAtual: '',
             indexNivelPalavras: 0,
@@ -155,7 +155,7 @@ class Palavras extends Component {
                 })
             })
         } else {
-            this.props.history.push('/atividade-palavra/'+ this.state.letraNivel + "/" + this.state.letraNivel )
+            this.props.history.push('/atividade-palavra/'+ this.state.letraNivel + "/" + 0 )
         }
     }
 

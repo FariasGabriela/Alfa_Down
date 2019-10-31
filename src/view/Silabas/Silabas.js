@@ -209,9 +209,18 @@ class Silabas extends Component {
 
     clickProximo(){
         if (this.state.index <= (this.state.soundList[this.state.indexNivelSilabas].length - 1)) {
+            var silaba = this.state.silabasUtilizadas[this.state.indexNivelSilabas][this.state.index] + this.state.letraNivel;
+            if (silaba === 'GE'){
+                silaba = 'GUE'
+            } else if (silaba === 'GI'){
+                silaba = 'GUI'
+            } else if (silaba === 'GUO'){
+                silaba = 'GUO'
+            }
+
             this.setState({
                 sound: this.state.soundList[this.state.indexNivelSilabas][this.state.index],
-                silaba: this.state.silabasUtilizadas[this.state.indexNivelSilabas][this.state.index] + this.state.letraNivel,
+                silaba: silaba,
                 index: this.state.index + 1
             }, ()  => {
                 this.setState({

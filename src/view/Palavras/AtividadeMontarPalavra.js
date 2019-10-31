@@ -161,35 +161,39 @@ class AtividadeMontarPalavra extends Component {
             open: false,
             playTenteNovamente: Sound.status.PAUSED,
             play: Sound.status.PAUSED,
+            palavrasUtilizadas: [
+                [ 'BANANA', 'MACACO', 'BATATA', 'BALA', 'FACA', 'LÂMPADA' ],
+                [ 'FOCA', 'FOGO', 'GATO', 'GOIABA', 'COPO', 'CARRO' ],
+                [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ],
+                [ 'LIXO', 'IOIÔ', 'LIMÃO', 'MEIA', 'PALITO', 'PAPAI' ],
+                [ 'CANELA', 'CANETA', 'DEDO', 'JACARÉ', 'LEITE', 'PEIXE' ],
+                [ 'MACACO', 'COPO', 'PALITO', 'MEIA', 'SUCO', 'DEDO']
+            ], 
             iconsUtilizados: [
                 [ iconbanana, iconmacaco, iconbatata, iconbala, iconfaca, iconlampada ],
-                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
-                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
                 [ iconfoca, iconfogo, icongato, icongoiaba, iconcopo, iconcarro ],
-                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ]
+                [ iconluva, iconlupa, iconuva, iconsuco, icontouro, iconurubu ],
+                [ iconlixo, iconioio, iconlimao, iconmeia, iconpalito, iconpapai ],
+                [ iconcanela, iconcaneta, icondedo, iconjacare, iconleite, iconpeixe ],
+                [ iconmacaco, iconcopo, iconpalito, iconmeia, iconsuco, icondedo]
             ],
             sonsUtilizados: [
                 [ banana, macaco, batata, bala, faca, lampada ],
-                [ canela, caneta, dedo, jacare, leite, peixe ],
-                [ lixo, ioio, limao, meia, palito, papai ],
                 [ foca, fogo, gato, goiaba, copo, carro ],
-                [ luva, lupa, uva, suco, touro, urubu ]
-            ],
-            palavrasUtilizadas: [
-                [ 'BANANA', 'MACACO', 'BATATA', 'BALA', 'FACA', 'LÂMPADA' ],
-                [ 'CANELA', 'CANETA', 'DEDO', 'JACARÉ', 'LEITE', 'PEIXE' ],
-                [ 'LIXO', 'IOIÔ', 'LIMÃO', 'MEIA', 'PALITO', 'PAPAI' ],
-                [ 'FOCA', 'FOGO', 'GATO', 'GOIABA', 'COPO', 'CARRO' ],
-                [ 'LUVA', 'LUPA', 'UVA', 'SUCO', 'TOURO', 'URUBU' ]
+                [ luva, lupa, uva, suco, touro, urubu ],
+                [ lixo, ioio, limao, meia, palito, papai ],
+                [ canela, caneta, dedo, jacare, leite, peixe ],
+                [ macaco, copo, palito, meia, suco, dedo]
             ], 
             qtSilabas: 0,
             silabasAtual: [],
             silabas: [],
             qtSilabasOne: [2, 2, 2, 1, 1, 2],
-            qtSilabasTwo: [2, 2, 1, 2, 1, 1],
-            qtSilabasThree: [1, 1, 1, 1, 2, 1],
-            qtSilabasFour: [1, 1, 1, 2, 1, 1],
-            qtSilabasFive: [1, 1, 1, 1, 1, 2],
+            qtSilabasTwo: [1, 1, 1, 2, 1, 1],
+            qtSilabasThree: [1, 1, 1, 1, 1, 2],
+            qtSilabasFour: [1, 1, 1, 1, 2, 1],
+            qtSilabasFive: [2, 2, 1, 2, 1, 1],
+            qtSilabasSix: [2, 1, 2, 1, 1, 1],
             silabasOne: [
                 [
                     {
@@ -400,7 +404,7 @@ class AtividadeMontarPalavra extends Component {
                     },
                 ],
             ],
-            silabasTwo: [
+            silabasFour: [
                 [
                     {
                         key: 0,
@@ -609,7 +613,7 @@ class AtividadeMontarPalavra extends Component {
                     },
                 ],
             ],
-            silabasThree: [
+            silabasFive: [
                 [
                     {
                         key: 0,
@@ -816,7 +820,7 @@ class AtividadeMontarPalavra extends Component {
                     },
                 ],
             ],
-            silabasFour: [
+            silabasTwo: [
                 [
                     {
                         key: 0,
@@ -1023,7 +1027,7 @@ class AtividadeMontarPalavra extends Component {
                     },
                 ],
             ],
-            silabasFive: [
+            silabasThree: [
                 [
                     {
                         key: 0,
@@ -1230,6 +1234,214 @@ class AtividadeMontarPalavra extends Component {
                     },
                 ],
             ],
+            silabasSix: [
+                [
+                    {
+                        key: 0,
+                        name: 'MA',
+                        select: false,
+                        indexSelect: 0,
+                    },
+                    {
+                        key: 1,
+                        name: 'LA',
+                        select: false,
+                    },
+                    {
+                        key: 2,
+                        name: 'CO',
+                        select: false,
+                        indexSelect: 2
+                    },
+                    {
+                        key: 3,
+                        name: 'TA',
+                        select: false,
+                    },
+                    {
+                        key: 4,
+                        name: 'CA',
+                        select: false,
+                        indexSelect: 1
+                    },
+                    {
+                        key: 5,
+                        name: 'NA',
+                        select: false,
+                    },
+                ],
+                [
+                    {
+                        key: 0,
+                        name: 'TA',
+                        select: false,
+                    },
+                    {
+                        key: 1,
+                        name: 'CO',
+                        select: false,
+                        indexSelect: 0
+                    },
+                    {
+                        key: 2,
+                        name: 'CI',
+                        select: false,
+                    },
+                    {
+                        key: 3,
+                        name: 'RE',
+                        select: false,
+                    },
+                    {
+                        key: 4,
+                        name: 'XI',
+                        select: false,
+                    },
+                    {
+                        key: 5,
+                        name: 'PO',
+                        select: false,
+                        indexSelect: 1
+                    },
+                ],
+                [
+                    {
+                        key: 0,
+                        name: 'PI',
+                        select: false,
+                    },
+                    {
+                        key: 1,
+                        name: 'LI',
+                        select: false,
+                        indexSelect: 1
+                    },
+                    {
+                        key: 2,
+                        name: 'PA',
+                        select: false,
+                        indexSelect: 0
+                    },
+                    {
+                        key: 3,
+                        name: 'RI',
+                        select: false,
+                    },
+                    {
+                        key: 4,
+                        name: 'XE',
+                        select: false,
+                    },
+                    {
+                        key: 5,
+                        name: 'TO',
+                        select: false,
+                        indexSelect: 2
+                    },
+                ],
+                [
+                    {
+                        key: 0,
+                        name: 'ME',
+                        select: false,
+                        indexSelect: 0
+                    },
+                    {
+                        key: 1,
+                        name: 'IO',
+                        select: false,
+                    },
+                    {
+                        key: 2,
+                        name: 'PE',
+                        select: false,
+                    },
+                    {
+                        key: 3,
+                        name: 'IA',
+                        select: false,
+                        indexSelect: 1
+                    },
+                    {
+                        key: 4,
+                        name: 'JI',
+                        select: false,
+                    },
+                    {
+                        key: 5,
+                        name: 'BA',
+                        select: false,
+                    },
+                ],
+                [
+                    {
+                        key: 0,
+                        name: 'BA',
+                        select: false,
+                    },
+                    {
+                        key: 1,
+                        name: 'RE',
+                        select: false,
+                    },
+                    {
+                        key: 2,
+                        name: 'SU',
+                        select: false,
+                        indexSelect: 0
+                    },
+                    {
+                        key: 3,
+                        name: 'VA',
+                        select: false,
+                    },
+                    {
+                        key: 4,
+                        name: 'JU',
+                        select: false,
+                    },
+                    {
+                        key: 5,
+                        name: 'CO',
+                        select: false,
+                        indexSelect: 1
+                    },
+                ],
+                [
+                    {
+                        key: 0,
+                        name: 'TE',
+                        select: false,
+                    },
+                    {
+                        key: 1,
+                        name: 'PA',
+                        select: false,
+                    },
+                    {
+                        key: 2,
+                        name: 'DE',
+                        select: false,
+                        indexSelect: 0
+                    },
+                    {
+                        key: 3,
+                        name: 'DO',
+                        select: false,
+                        indexSelect: 1
+                    },
+                    {
+                        key: 4,
+                        name: 'TA',
+                        select: false,
+                    },
+                    {
+                        key: 5,
+                        name: 'CA',
+                        select: false,
+                    },
+                ],
+            ],
             icon: iconbanana,
             soundSelect: banana,
         }
@@ -1263,7 +1475,10 @@ class AtividadeMontarPalavra extends Component {
         } else if ( rodada === 4 ) {
             silabas = this.state.silabasFive;
             qtSilabas = this.state.qtSilabasFive;
-        } 
+        } else if ( rodada === 5 ){
+            silabas = this.state.silabasSix;
+            qtSilabas = this.state.qtSilabasSix;
+        }
 
         this.setState({
             silabasAtual: silabas,
@@ -1285,17 +1500,20 @@ class AtividadeMontarPalavra extends Component {
             silabas = this.state.silabasOne;
             qtSilabas = this.state.qtSilabasOne;
         } else if ( rodada === 1 ) {
-            silabas = this.state.silabasFour;
-            qtSilabas = this.state.qtSilabasFour;
-        } else if ( rodada === 2 ) {
-            silabas = this.state.silabasFive;
-            qtSilabas = this.state.qtSilabasFive;
-        } else if ( rodada === 3 ) {
-            silabas = this.state.silabasThree;
-            qtSilabas = this.state.qtSilabasThree;
-        } else if ( rodada === 4 ) {
             silabas = this.state.silabasTwo;
             qtSilabas = this.state.qtSilabasTwo;
+        } else if ( rodada === 2 ) {
+            silabas = this.state.silabasThree;
+            qtSilabas = this.state.qtSilabasThree;
+        } else if ( rodada === 3 ) {
+            silabas = this.state.silabasFour;
+            qtSilabas = this.state.qtSilabasFour;
+        } else if ( rodada === 4 ) {
+            silabas = this.state.silabasFive;
+            qtSilabas = this.state.qtSilabasFive;
+        }  else if ( rodada === 5 ){
+            silabas = this.state.silabasSix;
+            qtSilabas = this.state.qtSilabasSix;
         }
 
        if ( this.state.index < 5){
@@ -1313,7 +1531,12 @@ class AtividadeMontarPalavra extends Component {
         })
        } else {
            if (this.state.open){
-                this.props.history.push('/atividade-ligar/'+ this.props.match.params.vogal + "/" + this.props.match.params.index )
+                if (rodada === 5){
+                    this.props.history.push('/iniciar/6');
+                } else {
+                    this.props.history.push('/atividade-ligar/'+ this.props.match.params.vogal + "/" + this.props.match.params.index )
+ 
+                }
            } else {
                 this.setState({
                     open: true,
