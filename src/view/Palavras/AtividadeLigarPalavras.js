@@ -78,12 +78,13 @@ const styles = ({
     view: {
         flexDirection: 'column',
         position: 'absolute',
-        top: 45,
+        top: -35,
         left: 0,
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
         fontSize: 100,
+        height: '85%',
         width: '100%'
     },
     silabas: {
@@ -910,11 +911,6 @@ class AtividadeLigarPalavras extends Component {
                                 {this.state.iconThree.secondItem.item}
                         </div>
                     </div>
-
-
-                    
-
-                    <div className={classes.silabas}>
                         
                         {/*<Sound
                             url={this.state.soundSelect}
@@ -958,7 +954,7 @@ class AtividadeLigarPalavras extends Component {
                                     })
                             }}
                         />
-                    </div>
+                    
                 </div>
             </ViewQuadro>
         );
