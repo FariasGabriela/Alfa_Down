@@ -89,7 +89,6 @@ class App extends Component {
               </div>
               <div className={classes.barra} >
                   <div className={classes.itemBarra} onClick={this.clickIcones}>Ícones</div>
-                  <div className={classes.itemBarra} onClick={this.clickMetodo}>Abacada</div>
                   <div className={classes.itemBarra} onClick={this.clickConta}>Criar conta</div>
               </div>
           </div>

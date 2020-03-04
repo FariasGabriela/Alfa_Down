@@ -191,8 +191,8 @@ class AtividadeMontarPalavra extends Component {
             qtSilabasOne: [2, 2, 2, 1, 1, 2],
             qtSilabasTwo: [1, 1, 1, 2, 1, 1],
             qtSilabasThree: [1, 1, 1, 1, 1, 2],
-            qtSilabasFour: [1, 1, 1, 1, 2, 1],
-            qtSilabasFive: [2, 2, 1, 2, 1, 1],
+            qtSilabasFive: [1, 1, 1, 1, 2, 1],
+            qtSilabasFour: [2, 2, 1, 2, 1, 1],
             qtSilabasSix: [2, 1, 2, 1, 1, 1],
             silabasOne: [
                 [
@@ -205,7 +205,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 1,
                         name: 'NA',
                         select: false,
-                        indexSelect: 1,
+                        indexSelect: [1, 2],
                     },
                     {
                         key: 2,
@@ -227,7 +227,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 5,
                         name: 'NA',
                         select: false,
-                        indexSelect: 2,
+                        indexSelect: [2, 1],
                     },
                 ],
                 [
@@ -280,7 +280,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 2,
                         name: 'TA',
                         select: false,
-                        indexSelect: 1
+                        indexSelect: [1, 2]
                     },
                     {
                         key: 3,
@@ -292,7 +292,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'TA',
                         select: false,
-                        indexSelect: 2
+                        indexSelect: [2, 1]
                     },
                     {
                         key: 5,
@@ -633,7 +633,7 @@ class AtividadeMontarPalavra extends Component {
                     },
                     {
                         key: 3,
-                        name: 'LI',
+                        name: 'MA',
                         select: false,
                     },
                     {
@@ -653,7 +653,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 0,
                         name: 'IO',
                         select: false,
-                        indexSelect: 0
+                        indexSelect: [0, 1]
                     },
                     {
                         key: 1,
@@ -674,7 +674,7 @@ class AtividadeMontarPalavra extends Component {
                         key: 4,
                         name: 'IO',
                         select: false,
-                        indexSelect: 0
+                        indexSelect: [0, 1]
                     },
                     {
                         key: 5,
@@ -1470,11 +1470,11 @@ class AtividadeMontarPalavra extends Component {
             silabas = this.state.silabasThree;
             qtSilabas = this.state.qtSilabasThree;
         } else if ( rodada === 3 ) {
-            silabas = this.state.silabasFour;
-            qtSilabas = this.state.qtSilabasFour;
-        } else if ( rodada === 4 ) {
             silabas = this.state.silabasFive;
             qtSilabas = this.state.qtSilabasFive;
+        } else if ( rodada === 4 ) {
+            silabas = this.state.silabasFour;
+            qtSilabas = this.state.qtSilabasFour;
         } else if ( rodada === 5 ){
             silabas = this.state.silabasSix;
             qtSilabas = this.state.qtSilabasSix;
@@ -1506,11 +1506,11 @@ class AtividadeMontarPalavra extends Component {
             silabas = this.state.silabasThree;
             qtSilabas = this.state.qtSilabasThree;
         } else if ( rodada === 3 ) {
-            silabas = this.state.silabasFour;
-            qtSilabas = this.state.qtSilabasFour;
-        } else if ( rodada === 4 ) {
             silabas = this.state.silabasFive;
             qtSilabas = this.state.qtSilabasFive;
+        } else if ( rodada === 4 ) {
+            silabas = this.state.silabasFour;
+            qtSilabas = this.state.qtSilabasFour;
         }  else if ( rodada === 5 ){
             silabas = this.state.silabasSix;
             qtSilabas = this.state.qtSilabasSix;
@@ -1519,7 +1519,6 @@ class AtividadeMontarPalavra extends Component {
        if ( this.state.index < 5){
         this.setState({
             qtSilabas: qtSilabas[this.state.index + 1],
-            //qtSilabas: this.state.silabasAtual[this.state.index + 1],
             silabas: silabas[this.state.index + 1],
             icon: this.state.iconsUtilizados[rodada][this.state.index + 1],
             soundSelect: this.state.sonsUtilizados[rodada][this.state.index + 1],
@@ -1569,6 +1568,21 @@ class AtividadeMontarPalavra extends Component {
             }
         }) 
 
+        var indexItemSelect = item.indexSelect;
+        if ( indexItemSelect !== undefined && indexItemSelect.length > 0 ){
+            let cont = 0;
+            indexItemSelect.forEach(doc => {
+                cont =+ 1;
+                var value = item;
+                value.indexSelect = doc;
+                this.findIndex(value, list, indexItemSelect.length <= cont);
+            })
+        } else {
+            this.findIndex(item, list, true)
+        }
+    }
+
+    findIndex(item, list, confirmList){
         if (item.indexSelect !== undefined && item.indexSelect === this.state.indexItemSelect) {
             if ( this.state.indexItemSelect > 2 ) {
                 this.setState({
@@ -1653,12 +1667,14 @@ class AtividadeMontarPalavra extends Component {
             }
             
         } else {
-            this.setState({
-                silabas: list,
-                playTenteNovamente: Sound.status.PLAYING
-            })
+            if (confirmList) {
+                this.setState({
+                    silabas: list,
+                    playTenteNovamente: Sound.status.PLAYING
+                })
+            }
+            
         }
-        
     }
 
     clickOuvir(){
@@ -1702,7 +1718,16 @@ class AtividadeMontarPalavra extends Component {
                 clickInfo={this.clickInfo}
                 clickClose={this.clickClose}
                 onClickOuvir={this.clickOuvir}
-                onClickProximo={this.clickProximo}>
+                onClickProximo={() => {
+                    this.setState({
+                        firstSilaba: '',
+                        secondSilaba: '',
+                        threeSilaba: '',
+                        indexItemSelect: 0
+                    })
+                    
+                    this.clickProximo()
+                }}>
                 <div className={classes.view}>
                     <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginBottom: 10}} >
                     <img   src={this.state.icon} 

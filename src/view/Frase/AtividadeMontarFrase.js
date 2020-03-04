@@ -7,6 +7,7 @@ import aGataNaMala from './../../Audios/Frases/aGataNaMala.mp3';
 import oTatuCavaoBuraco from './../../Audios/Frases/oTatuCavaoBuraco.mp3';
 import oTelefoneTocou from './../../Audios/Frases/oTelefoneTocou.mp3';
 import oRadioTocaAMusica from './../../Audios/Frases/oRadioTocaAMusica.mp3';
+import SelecioneFrase from './../../Audios/Frases/SelecioneFrase.mp3';
 import TenteNovamente from '../../Audios/TenteNovamente.mp3';
 import firebase from 'firebase';
 import 'firebase/app';
@@ -253,8 +254,10 @@ class AtividadeVogalFrase extends Component {
                     index: 1
                 }, 
             ],
-            sound: aGataNaMala,
-            play: Sound.status.PAUSED
+            soundInitial: SelecioneFrase,
+            play: Sound.status.PAUSED,
+            playInitial:  Sound.status.PLAYING,
+            sound: aGataNaMala
         }
 
         this.clickProximo = this.clickProximo.bind(this);
@@ -287,6 +290,12 @@ class AtividadeVogalFrase extends Component {
             frase: this.state.frasesUtilizadas[parseFloat(this.props.match.params.index)],
             indexNivelPalavras: parseFloat(this.props.match.params.index)
         })
+
+        setTimeout(() => { 
+            this.setState({
+                play: Sound.status.PLAYING,
+            })
+        }, 3000);
         
     }
 
@@ -536,6 +545,17 @@ class AtividadeVogalFrase extends Component {
                 </div>
                     
                 </Modal>
+                <Sound
+                    url={this.state.soundInitial}
+                    playStatus={this.state.playInitial}
+                    onLoading={() => {}}
+                    onPlaying={() => {}}
+                    onFinishedPlaying={() => {
+                            this.setState({
+                                playInitial: Sound.status.PAUSED
+                            })
+                    }}
+                />
                 <Sound
                     url={this.state.sound}
                     playStatus={this.state.play}
